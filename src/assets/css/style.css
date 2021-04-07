@@ -1,0 +1,113 @@
+/* HEADER */
+
+.kids {
+    background-color: #FFFDE7;
+}
+
+.logo {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;  
+    padding: 20px 0;
+}
+
+/* FOOTER */
+
+.footer-top {
+    display: flex;
+    justify-content: space-around;
+    background-color: #b8b5ff;
+    padding: 20px 0 10px 0;
+    color: #000;
+    font-family: 'Pangolin', cursive;
+}
+
+.address h3 {
+    font-size: 30px;
+    
+}
+
+.address a {
+    color: #000;
+}
+
+.address a:hover {
+    text-decoration: underline;
+}
+
+.address p {
+    font-size: 20px;
+}
+
+.social-links img {
+    margin-right: 15px;
+    width: 50px;
+    height: 50px;
+}
+
+.social-links img:hover {
+    width: 50px;
+    height: 50px;
+    background-color: #7868e6;
+    transition:1s;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+
+    .address {
+        display: none;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+    }
+
+    .social-links img {
+        width: 35px;
+        height: 35px;
+        margin-right: 15px;
+    }
+
+    .social-links img:hover {
+        width: 35px;
+        height: 35px;
+        background-color: #7868e6;
+        transition:1s;
+        opacity: 0.5;
+    }
+}
+
+.footer-bottom {
+    background-color: #7868e6;
+    font-family: 'Raleway', sans-serif;
+    color: #fff;
+    font-size: 0.875em;
+    height: 30px;
+}
+
+.footer-bottom p {
+    padding: 5px 0;
+}
+
+.footer-bottom a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+
+    .footer-bottom  {
+        display: none;
+    }
+}
+
+/* TABELA INSCRITOS */
+
+.noparticipants {
+    font-family: 'Pangolin', cursive;
+    font-size: 25px;
+    margin-bottom: 15px;;
+}
