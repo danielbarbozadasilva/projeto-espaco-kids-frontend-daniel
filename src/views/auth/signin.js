@@ -30,6 +30,7 @@ const SignIn = () => {
     };
 
     const submitForm = () => {
+        console.log("Entrou na função submit form")
         /* dispatch é a forma de comunicação do REACT > através
            do react-redux com o REDUX */
         dispatch(signInAction(form));
@@ -44,14 +45,14 @@ const SignIn = () => {
                         <Form>
                             <FormGroup>
                                 <Label for="email">E-mail</Label>
-                                <Input desabled={submit} type="email" name="usuario" id="usuario" onchange={handleChange} value={form.usuario || ""} placeholder="Informe o seu E-mail" />
+                                <Input disabled={submit} type="email" name="usuario" id="usuario" onChange={handleChange} value={form.usuario || ""} placeholder="Informe o seu E-mail" />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="password">Senha</Label>
-                                <Input desabled={submit} type="password" name="senha" id="usuario" onchange={handleChange} value={form.senha || ""} placeholder="Informe a sua senha" />
+                                <Input disabled={submit} type="password" name="senha" id="usuario" onChange={handleChange} value={form.senha || ""} placeholder="Informe a sua senha" />
                             </FormGroup>
 
-                            <Button color={submit ? 'secondary' : 'primary'} desabled="submit" size="sm" block onClick={submitForm}>
+                            <Button color={submit ? 'secondary' : 'primary'} disabled={submit} size="sm" block onClick={submitForm}>
                                 {submit ? (
                                     <div className="text-white">
                                         <Spinner size="sm" color="white" />Carregando...

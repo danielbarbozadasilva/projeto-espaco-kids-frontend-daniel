@@ -7,14 +7,14 @@ import {
     Redirect
 } from "react-router-dom";
 
-// config
-const adminRoute = ({ ...rest }) => {
-    if (!isAuthenticated()) {
-        return <Redirect to="/signin" />
-    }
+// // config
+// const adminRoute = ({ ...rest }) => {
+//     if (!isAuthenticated()) {
+//         return <Redirect to="/signin" />
+//     }
 
-    return <Route {...rest} />
-}
+//     return <Route {...rest} />
+// }
 // layout
 import Layout from './components/layout';
 
@@ -29,7 +29,7 @@ import Error404 from './views/errors/404';
 /* Pego todos os atributos passados exact, path 
    e quanlquer outro e armazeno tudo dentro de rest */
 const AdminRouter = ({ ...rest }) => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated()) {
         return <Redirect to="/signin" />
     }
 
@@ -39,17 +39,17 @@ const AdminRouter = ({ ...rest }) => {
 const Routers = () => {
     return (
         <Router>
-            <Switch>
-                <Route exact path='/signin' component={SignIn} />
-                <Layout nomeDaPagina="Casa da Dinda">
+            <Layout nomeDaPagina="Casa da Dinda">
+                <Switch>
+                    <Route exact path='/signin' component={SignIn} />
                     {/* Rota de login */}
 
                     <AdminRouter exact path='/' component={Oficinas} />
                     <AdminRouter exact path='/detalhes/:codoficina' component={Detalhes} />
                     <AdminRouter exact to="/errors/404" component={Error404} />
                     <Redirect from="*" to="/errors/404" />
-                </Layout>
-            </Switch>
+                </Switch>
+            </Layout>
 
         </Router >
     )

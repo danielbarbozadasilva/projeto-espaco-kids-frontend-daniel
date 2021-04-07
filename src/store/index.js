@@ -1,12 +1,12 @@
-// importar aas libs 
+// importar as libs 
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from 'redux-thunk';
 
-
 // importação dos reducers
 import SignReducer from './auth/auth.reducer';
 
+// combina todos os reduxs em um só
 const reducers = combineReducers({
     auth: SignReducer,
 })

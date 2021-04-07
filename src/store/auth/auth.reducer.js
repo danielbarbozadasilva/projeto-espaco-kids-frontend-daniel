@@ -1,5 +1,5 @@
 import { getToken, getUser } from '../../config/auth';
-import { SIGN_IN, SIGN_OUT, SIGN_LOADING } from '../../sign.action';
+import { SIGN_IN, SIGN_OUT, SIGN_LOADING } from './auth.action';
 
 const INICIAL_STATE = {
     loading: false,
@@ -8,6 +8,7 @@ const INICIAL_STATE = {
 };
 
 const reducer = (state = INICIAL_STATE, action) => {
+    console.log("Entrou no arquivo reduceAuth.js")
     switch (action.type) {
         case SIGN_IN:
             state.token = action.data.token

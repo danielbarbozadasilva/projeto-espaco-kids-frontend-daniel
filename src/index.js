@@ -5,15 +5,15 @@ import '../src/assets/css/style.css';
 import GlobalStyle from './assets/globalStyled';
 
 /* Conecto o meu react no redux */
-import { provider } from 'react-redux';
+import { Provider } from 'react-redux';
 
 /* Routers */
 import Routers from './routers';
 
-import store from './store'
+import store from './store';
 
 ReactDOM.render(
-    <Provider story={store}>
+    <Provider store={store}>
       <GlobalStyle />
       <Routers />
     </Provider>,
