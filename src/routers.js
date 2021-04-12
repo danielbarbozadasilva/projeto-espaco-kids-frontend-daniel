@@ -39,17 +39,18 @@ const AdminRouter = ({ ...rest }) => {
 const Routers = () => {
     return (
         <Router>
-            <Layout nomeDaPagina="Casa da Dinda">
-                <Switch>
-                    <Route exact path='/signin' component={SignIn} />
-                    {/* Rota de login */}
+            <Switch>
+                <Route exact path='/signin' component={SignIn} />
+                {/* Rota de login */}
 
+                <Layout nomeDaPagina="Casa da Dinda">
                     <AdminRouter exact path='/' component={Oficinas} />
                     <AdminRouter exact path='/detalhes/:codoficina' component={Detalhes} />
+
                     <AdminRouter exact to="/errors/404" component={Error404} />
-                    <Redirect from="*" to="/errors/404" />
-                </Switch>
-            </Layout>
+                    {/* <Redirect from="*" to="/errors/404" /> */}
+                </Layout>
+            </Switch>
 
         </Router >
     )

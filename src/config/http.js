@@ -1,9 +1,10 @@
-
 import axios from 'axios'; // import da dependencia
+import { getToken, removeToken } from './auth';
+import history from './history';
 
 // definindo a url da api
 const urlApi = process.env.REACT_APP_API;
-// const urlApi = "http://localhost:3001/v1";
+// const urlApi = "https://projeto-02-backend.herokuapp.com/v1";
 
 // criando um client http através do AXIOS
 const http = axios.create({
@@ -12,6 +13,24 @@ const http = axios.create({
 
 // Definindo o header padrão da aplicação
 http.defaults.headers['content-type'] = 'application/json';
+if (getToken()) {
+    http.defaults.headers['token'] = getToken();
+}
+
+http.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        switch (error.response.status) {
+            case 401:
+                removeToken()
+                history.push('/signin')
+                break;
+            default:
+                break;
+        }
+    }
+)
+
 
 
 export default http;

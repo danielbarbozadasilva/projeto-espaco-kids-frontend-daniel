@@ -1,19 +1,34 @@
-import { getToken, getUser } from '../../config/auth';
-import { SIGN_IN, SIGN_OUT, SIGN_LOADING } from './auth.action';
+import { TYPES } from './auth.action'
+import { getToken, getUser } from "../../config/auth";
 
-const INICIAL_STATE = {
+
+const INITIAL_STATE = {
     loading: false,
     token: getToken() || "",
-    usuario: getUser() || {}
+    usuario: getUser() || {},
+    error: []  
 };
 
-const reducer = (state = INICIAL_STATE, action) => {
-    console.log("Entrou no arquivo reduceAuth.js")
+const reducer = (state = INITIAL_STATE, action) => { // tamara recebe
     switch (action.type) {
-        case SIGN_IN:
+        case TYPES.SIGN_LOADING:
+            state.error = [];
+            state.loading = action.status
+            return state
+        case TYPES.SIGN_IN: // disponibiliza na mesa
             state.token = action.data.token
-            state.usuario = action.data.usuario;
-            return state;
+            state.usuario = action.data.usuario
+            state.loading = false
+            return state
+        case TYPES.SIGN_ERROR: // disponibiliza na mesa
+            const err = [...state.error, action.data]
+            state.loading = false
+            state.error = err;
+            return state
+        case TYPES.SIGN_OUT: // disponibiliza na mesa
+            state.token = ""
+            state.usuario = {}
+            return state
         default:
             return state;
     }

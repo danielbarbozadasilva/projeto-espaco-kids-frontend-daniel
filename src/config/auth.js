@@ -1,10 +1,9 @@
 const TOKEN_KEY = 'auth_gestao_cursos'
 
-// vai dentro do localstorage faz o parse
 const getToken = () => {
     const data = JSON.parse(localStorage.getItem(TOKEN_KEY));
-    if (data && data.usuario) {
-        return data.usuario;
+    if (data && data.token) {
+        return data.token; // TODO:  geralmente é token
     }
     return false;
 };
@@ -17,22 +16,22 @@ const getUser = () => {
     return false;
 };
 
-// Para verificar se ele está autenticado verificamos se ele tem token
 const isAuthenticated = () => {
-    // pega dentro do localstorage
+    // pegar dentro do localstage
     // validar o token
-    // return se true ou false
-    return getToken() != false; // se for diferente de 'false'
+    // retornar se true ou false
+    return getToken() !== false;
 };
 
-const saveAuth = (data) => localStorage.setItem(TOKEN_KEY, JSON.stringify(data));
-// só aceita String
+const removeToken = () => localStorage.removeItem(TOKEN_KEY);
 
+const saveAuth = (data) => localStorage.setItem(TOKEN_KEY, JSON.stringify(data))
 
 
 export {
     saveAuth,
     getToken,
-    getUser, 
-    isAuthenticated
+    getUser,
+    isAuthenticated,
+    removeToken
 }
