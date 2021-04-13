@@ -42,14 +42,6 @@ const Tabela = ({inscritos, update}) => {
         }    
     }
 
-
-    // const toggleModal = (data = null) => {
-    //     setModal({
-    //         isOpen: !modal.isOpen,
-    //         data
-    //     })
-    // }
-
     const openModal = (data = null) => {
       setModal({
         isOpen: true,

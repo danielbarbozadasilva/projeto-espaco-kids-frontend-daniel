@@ -1,59 +1,45 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { getServiceAllOficinas } from '../services/oficinas.service';
+import React, { useEffect } from 'react';
+import CardItem from "../components/oficinas/card_item";
 import Loading from '../components/loading';
-import CardItem from '../components/oficinas/card_item';
-import {Col, Row } from 'reactstrap';
 import styled from 'styled-components';
-import History from '../config/history';
+import { Col, Row } from 'reactstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { getOficinasAll } from '../store/oficina/oficina.action';
 
 const Oficinas = () => {
 
-    const [oficinas, setOficinas] = useState([]);
-    const [loading, setLoading] = useState(false);
-    // const [hasError, setError] = useState(false);
-
-    const getOficinas = useCallback(() => {
-        setLoading(true)
-        getServiceAllOficinas()
-            .then(res => {
-                setOficinas(res.data)
-                setLoading(false)
-            })
-            .catch(err => {
-                // setError(true)
-                console.log('Não foi possível acessar a Oficina selecionada. Tente novamente.', err)
-                setLoading(false)
-            })
-
-    }, [])
-
+    const dispatch = useDispatch()
+    // const [loading, setLoading] = useState(false)
+    const oficina = useSelector(state => state.oficinas.all)
+    const loading = useSelector(state => state.oficinas.loading)
 
     useEffect(() => {
-        getOficinas();
-    }, [getOficinas])
+        dispatch(getOficinasAll());
+    }, [dispatch])
 
 
     const MapearOficinas = (oficinas) => oficinas.map((item, i) => (
         <Col md="3" xl="3" sm="12" xs="12" key={i} className="mb-4">
             <CardItem item={{ ...item, status: true }} />
         </Col>
-
     ))
 
+    if (loading) {
+        return <Loading />
+    }
+
     return (
-        <div>
-            <h1>Oficinas do Mês de Abril</h1>
-        <BoxCursos>
-            {loading ? <Loading /> : MapearOficinas(oficinas)}
-        </BoxCursos>
-        </div>
+        <BoxOficinas>
+            {!loading && Oficinas.length === 0 ? "Não tem Oficinas disponiveis" : MapearOficinas(oficina)}
+            {/* {Oficinas.length == 0 ? "Não tem Oficinas disponiveis" : loading ? <Loading /> : MapearOficinas(Oficinas)} */}
+
+        </BoxOficinas>
     )
 }
 
 export default Oficinas;
 
-const BoxCursos = styled(Row)`
+
+const BoxOficinas = styled(Row)`
+
 `
-
-
-
