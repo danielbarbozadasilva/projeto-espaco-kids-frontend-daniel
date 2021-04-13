@@ -1,19 +1,17 @@
 
 import React, { useState } from 'react';
-import { NavLink as RRDNavLink} from 'react-router-dom'; // funcionalidade
+import { NavLink as RRDNavLink, useLocation } from 'react-router-dom'; // funcionalidade
 import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  Container,
-  NavbarBrand,
-  Tooltip,
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    Container,
+    NavbarBrand,
+    Tooltip,
 } from 'reactstrap';
 import styled from 'styled-components';
 import Logo from "../../assets/img/espacokids4.png";
 import '../../assets/css/style.css';
-
-
 
 const Header = (props) => {
 
@@ -22,42 +20,65 @@ const Header = (props) => {
 
     const toggleTooltip = () => setTooltipOpen(!tooltipOpen);
     const toggle = () => setIsOpen(!isOpen);
-  
 
-    return (
-        <header>
-
-            <SNavbar light expand="md">
-                <Container>
-
-                    <NavbarToggler onClick={toggle} />  
-                  
-                    <Collapse isOpen={isOpen} navbar> 
-                        <SNavbarBrand tag={RRDNavLink} to="/" id="titleNav"> Espaço Kids - {props.titulo} 
-                        </SNavbarBrand>
-                    </Collapse>
-                        
-                    <Tooltip placement="bottom" isOpen={tooltipOpen} autohide={true} target="titleNav" toggle={toggleTooltip}>
-                            Retornar para a página inicial.
-                    </Tooltip>
-                            
-                       
-                </Container>
-            </SNavbar>
-      
-            <Container className="kids" fluid={true}> 
-                <img className="logo" src= {Logo} alt="logo"/>
-            </Container>
-
-            <SContainer fluid={true}>
-                <h2>{props.titulo}</h2>
+    const location = useLocation();
+    console.log("----------------"+location.pathname);
+     if (location.pathname === '/signin') {
+        return (
+            <header>
                 
-                <p>Um espaço gostoso para a criança brincar e aprender através da linguagem das artes, <br />estimulando a imaginação, a coordenação motora, a socialização <br />e, é claro, a diversão dos pequenos.</p>
-            </SContainer>
-   
-        </header>
-    )
-}
+             <SNavbar light expand="md">
+                    <Container>
+                        <NavbarToggler onClick={toggle} />
+                        <Collapse isOpen={isOpen} navbar>
+                            <SNavbarBrand tag={RRDNavLink} to="/" id="titleNav"> Espaço Kids - {props.titulo}
+                            </SNavbarBrand>
+                        </Collapse>
+
+                        <Tooltip placement="bottom" isOpen={tooltipOpen} autohide={true} target="titleNav" toggle={toggleTooltip}>
+                            Retornar para a página inicial.
+                        </Tooltip>
+
+                    </Container>
+                </SNavbar>
+
+                <Container className="kids" fluid={true}>
+                    <img className="logo" src={Logo} alt="logo" />
+                </Container>
+            </header>
+        ) // Fecha o return
+    } else {
+        return (
+            <header>
+                <SNavbar light expand="md">
+                    <Container>
+
+                        <NavbarToggler onClick={toggle} />
+
+                        <Collapse isOpen={isOpen} navbar>
+                            <SNavbarBrand tag={RRDNavLink} to="/" id="titleNav"> Espaço Kids - {props.titulo}
+                            </SNavbarBrand>
+                        </Collapse>
+
+                        <Tooltip placement="bottom" isOpen={tooltipOpen} autohide={true} target="titleNav" toggle={toggleTooltip}>
+                            Retornar para a página inicial.
+                        </Tooltip>
+                    </Container>
+                </SNavbar>
+
+                <Container className="kids" fluid={true}>
+                    <img className="logo" src={Logo} alt="logo" />
+                </Container>
+
+                <SContainer fluid={true}>
+                    <h2>{props.titulo}</h2>
+
+                    <p>Um espaço gostoso para a criança brincar e aprender através da linguagem das artes, <br />estimulando a imaginação, a coordenação motora, a socialização <br />e, é claro, a diversão dos pequenos.</p>
+                </SContainer> 
+            </header>
+        )
+    }
+ }
 
 export default Header;
 

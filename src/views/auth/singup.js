@@ -1,8 +1,10 @@
 const SignUp = () => {
-    <>
-        <form action="">
-            
-        </form>
-    </>
+    return (
+        <>
+            <form action="">
+
+            </form>
+        </>
+    )
 }
 export default SignUp;
