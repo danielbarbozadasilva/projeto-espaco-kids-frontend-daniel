@@ -1,6 +1,6 @@
 import React from "react";
 import {
-    BrowserRouter as Router,
+    Router,
     Switch,
     Route,
     Redirect
@@ -36,7 +36,7 @@ const Routers = () => {
                 <Switch>
                     <Route exact path='/signin' component={SignIn} />
                     <Route exact path='/signup' component={SignUp} />
-                    
+
                     <AdminRoute exact path='/' component={Oficinas} />
                     <AdminRoute exact path='/detalhes/:codoficina' component={Detalhes} />
 

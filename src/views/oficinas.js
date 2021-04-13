@@ -4,7 +4,7 @@ import Loading from '../components/loading';
 import CardItem from '../components/oficinas/card_item';
 import {Col, Row } from 'reactstrap';
 import styled from 'styled-components';
-
+import History from '../config/history';
 
 const Oficinas = () => {
 
