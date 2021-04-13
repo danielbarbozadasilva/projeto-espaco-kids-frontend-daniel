@@ -27,10 +27,7 @@ const Inscricao = ({ id, update, isForm }) => {
     const submitForm = () => {
 
         const nform = {
-            ...form,
-            // nomeparticipante: form.nomeparticipante.toUpperCase(),
-            // nomeresponsavel: form.nomeresponsavel.toUpperCase(),
-            // emailresponsavel: form.emailresponsavel.toLowerCase(),
+            ...form
         }
         
         createServiceOficinas (id, nform)

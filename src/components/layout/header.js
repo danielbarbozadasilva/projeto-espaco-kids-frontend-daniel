@@ -21,7 +21,6 @@ const Header = (props) => {
     const [tooltipOpen, setTooltipOpen] = useState(false);
 
     const toggleTooltip = () => setTooltipOpen(!tooltipOpen);
-
     const toggle = () => setIsOpen(!isOpen);
   
 

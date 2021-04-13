@@ -9,7 +9,7 @@ const Layout = (props) => {
     // setar o titulo da pagina
     document.title = props.nomeDaPagina;
     return (
-        <React.Fragment>
+        <>
             <Header titulo={props.nomeDaPagina} />
             <Main className="container-fluid">
 
@@ -18,7 +18,7 @@ const Layout = (props) => {
     
             </Main>
             <Footer titulo={props.nomeDaPagina}/>
-        </React.Fragment>
+        </>
     )
 }
 

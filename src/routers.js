@@ -7,24 +7,14 @@ import {
     Redirect
 } from "react-router-dom";
 
-// // config
-// const adminRoute = ({ ...rest }) => {
-//     if (!isAuthenticated()) {
-//         return <Redirect to="/signin" />
-//     }
-
-//     return <Route {...rest} />
-// }
-// layout
 import Layout from './components/layout';
 
 // views
 import Oficinas from './views/oficinas';
 import SignIn from './views/auth/signin';
+import SignUp from './views/auth/singup';
 import Detalhes from './views/detalhes';
 import Error404 from './views/errors/404';
-
-// const isAuthenticated = false;  //mock
 
 /* Pego todos os atributos passados exact, path 
    e quanlquer outro e armazeno tudo dentro de rest */
@@ -40,10 +30,12 @@ const Routers = () => {
     return (
         <Router>
             <Switch>
-                <Route exact path='/signin' component={SignIn} />
                 {/* Rota de login */}
 
                 <Layout nomeDaPagina="Casa da Dinda">
+                    <Route exact path='/signin' component={SignIn} />
+                    <AdminRouter exact path='/signup' component={SignUp} />
+
                     <AdminRouter exact path='/' component={Oficinas} />
                     <AdminRouter exact path='/detalhes/:codoficina' component={Detalhes} />
 
