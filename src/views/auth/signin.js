@@ -17,17 +17,23 @@ const SignIn = () => {
 
 
     const dispatch = useDispatch();
+
+    // vindo do reducer (tudo que tiver 'state' pega o estado do reducer)
     const error = useSelector(state => state.auth.error)
     const loading = useSelector(state => state.auth.loading)
 
+    // estado somente da view
     const [form, setForm] = useState({
-        usuario: "liniker.silva@prof.infnet.edu.br",
-        senha: "123123"
+        email: "maria@gmail.com",
+        senha: "maria"
     })
+
     const handleChange = (props) => {
         const { value, name } = props.target;
         setForm({
             ...form,
+
+            //pega o name dos inputs, o name é um array, para cada indice'[]' para cada indice vou inserir um valor e atribui no name
             [name]: value,
         });
     };
@@ -36,10 +42,12 @@ const SignIn = () => {
 
     const submitForm = (event) => {
         event.preventDefault()
+
+        // manda para o action o meu estado com os dados e depois manda para o 'reducer'
         dispatch(signInAction(form))
     }
 
-    const isNotValid = () => form.usuario.length === 0 || form.senha.length === 0
+    const isNotValid = () => form.email.length === 0 || form.senha.length === 0
 
 
     useEffect(() => {
@@ -62,7 +70,7 @@ const SignIn = () => {
                         <Form>
                             <FormGroup>
                                 <Label for="email">E-mail:</Label>
-                                <Input disabled={loading} type="email" name="usuario" id="usuario" onChange={handleChange} value={form.usuario || ""} placeholder="Informe seu E-mail" />
+                                <Input disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="password">Senha:</Label>

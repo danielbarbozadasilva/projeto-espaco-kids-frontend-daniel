@@ -35,8 +35,8 @@ const Header = (props) => {
     }
 
     const location = useLocation();
-
-    if (location.pathname === '/signin') {
+console.log(location.pathname);
+    if (!location.pathname === '/signin') {
         return (
             <header>
                 <SNavbar color="dark" dark expand="md">
@@ -93,7 +93,6 @@ const Header = (props) => {
                         <Tooltip placement="bottom" isOpen={tooltipOpen} autohide={true} target="titleNav" toggle={toggleTooltip}>
                             Retornar para a página inicial.
                         </Tooltip>
-
                     </Container>
                 </SNavbar>
 

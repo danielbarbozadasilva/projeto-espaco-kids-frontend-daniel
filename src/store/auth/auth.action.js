@@ -18,11 +18,18 @@ export const signInAction = (data) => {
         dispatch({ type: TYPES.SIGN_LOADING, status: true })
 
         try {
+            // data - dados da view
+            // toda requisição tem uma resposta, envio os dados (email e senha) via post para o backend
             const result = await authService(data) 
             if (result.data) {
-                saveAuth(result.data)
+
+                // caso result retorne algo ele executa o save auth
+                saveAuth(result.data);
+
+                // colocar o token na 'URL', pois preciso fazer requisições, e ele verifica pelo cabeçalho
                 http.defaults.headers['token'] = result.data.token;
             }
+
             // mandando informação para o reducer
             dispatch({
                 type: TYPES.SIGN_IN, data: result.data 

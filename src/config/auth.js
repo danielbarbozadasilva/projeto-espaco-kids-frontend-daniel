@@ -1,9 +1,10 @@
 const TOKEN_KEY = 'auth_gestao_cursos'
 
 const getToken = () => {
+    // o localStorage pega algum valor para inserir na 'KEY' (LINHA 1)
     const data = JSON.parse(localStorage.getItem(TOKEN_KEY));
     if (data && data.token) {
-        return data.token; // TODO:  geralmente é token
+        return data.token; 
     }
     return false;
 };
@@ -25,6 +26,7 @@ const isAuthenticated = () => {
 
 const removeToken = () => localStorage.removeItem(TOKEN_KEY);
 
+// coloca o token no localstorage
 const saveAuth = (data) => localStorage.setItem(TOKEN_KEY, JSON.stringify(data))
 
 

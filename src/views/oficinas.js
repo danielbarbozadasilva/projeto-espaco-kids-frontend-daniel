@@ -8,10 +8,12 @@ import { getOficinasAll } from '../store/oficina/oficina.action';
 
 const Oficinas = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     // const [loading, setLoading] = useState(false)
-    const oficina = useSelector(state => state.oficinas.all)
-    const loading = useSelector(state => state.oficinas.loading)
+
+    // estou pegando o estado oficina no index
+    const oficina = useSelector(state => state.oficina.all);
+    const loading = useSelector(state => state.oficina.loading);
 
     useEffect(() => {
         dispatch(getOficinasAll());
@@ -30,7 +32,7 @@ const Oficinas = () => {
 
     return (
         <BoxOficinas>
-            {!loading && Oficinas.length === 0 ? "Não tem Oficinas disponiveis" : MapearOficinas(oficina)}
+            {!loading && oficina.length === 0 ? "Não tem Oficinas disponiveis" : MapearOficinas(oficina) }
             {/* {Oficinas.length == 0 ? "Não tem Oficinas disponiveis" : loading ? <Loading /> : MapearOficinas(Oficinas)} */}
 
         </BoxOficinas>

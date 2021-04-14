@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     loading: false,
     token: getToken() || "",
     usuario: getUser() || {},
-    error: []  
+    error: []
 };
 
 const reducer = (state = INITIAL_STATE, action) => { // tamara recebe
@@ -16,10 +16,17 @@ const reducer = (state = INITIAL_STATE, action) => { // tamara recebe
             state.loading = action.status
             return state
         case TYPES.SIGN_IN: // disponibiliza na mesa
+            // atribui apenas o token do back
             state.token = action.data.token
+            
+            // atribui apenas o objeto usuario (email, senha, tipo) do back
             state.usuario = action.data.usuario
+            
+            // para de carregar
             state.loading = false
+            
             return state
+
         case TYPES.SIGN_ERROR: // disponibiliza na mesa
             const err = [...state.error, action.data]
             state.loading = false
