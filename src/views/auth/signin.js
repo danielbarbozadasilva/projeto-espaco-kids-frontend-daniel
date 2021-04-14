@@ -14,7 +14,14 @@ import { useEffect } from 'react';
 const SignIn = () => {
 
     const [hasError, setHasError] = useState(false);
+    const [success, showSuccess] = useState(false)
+    const registered = useSelector(state => state.auth.registered)
 
+    useEffect(() => {
+        if (registered) {
+            showSuccess(true)
+        }
+    }, [registered])
 
     const dispatch = useDispatch();
 
@@ -61,8 +68,9 @@ const SignIn = () => {
                 <Alert color="danger" isOpen={hasError} toggle={closeError}>
                     <div><strong>OPS !!! </strong> Aconteceu um erro.</div>
                     <small>Verifique usuário e senha</small>
-
-
+                </Alert>
+                <Alert color="success" isOpen={success} toggle={() => showSuccess(!success)}>
+                    <div><strong>Usuario </strong> Cadastrado com sucesso.</div>
                 </Alert>
                 <Card>
                     <CardHeader tag="h4" className="text-center">Login</CardHeader>

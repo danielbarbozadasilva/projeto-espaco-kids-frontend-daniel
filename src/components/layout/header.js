@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { NavLink as RRDNavLink } from 'react-router-dom';
 import {
     Collapse,
@@ -35,50 +35,7 @@ const Header = (props) => {
     }
 
     const location = useLocation();
-console.log(location.pathname);
-    if (!location.pathname === '/signin') {
-        return (
-            <header>
-                <SNavbar color="dark" dark expand="md">
-                    <Container>
-                        <NavbarBrand tag={RRDNavLink} to="/" id="logoMain"> <IconLogo /> GC </NavbarBrand>
-                        <Tooltip placement="top" isOpen={tooltipOpen} autohide={false} target="logoMain" toggle={toggleTooltip}>
-                            Voltar ao Menu Principal
-                    </Tooltip>
-                        <NavbarToggler onClick={toggle} />
-                        {isAuthenticated() ? (
-                            <React.Fragment>
-                                <SCollapse isOpen={isOpen} navbar>
-                                    <Nav className="mr-auto" navbar>
-                                        <NavItem>
-                                            <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/" >Cursos</SNavLink>
-                                        </NavItem>
-                                        <NavItem >
-                                            <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/sobre" >Outros</SNavLink>
-                                        </NavItem>
-                                    </Nav>
-                                </SCollapse>
-
-                                <Nav >
-                                    <UncontrolledDropdown nav inNavbar>
-                                        <DropdownToggle nav caret>
-                                            {usuario.nome}
-                                        </DropdownToggle>
-                                        <DropdownMenu>
-                                            <DropdownItem>Perfil</DropdownItem>
-                                            <DropdownItem divider />
-                                            <DropdownItem onClick={logout}>Sair</DropdownItem>
-                                        </DropdownMenu>
-                                    </UncontrolledDropdown>
-                                </Nav>
-                            </React.Fragment>
-                        ) : ""}
-                    </Container>
-                </SNavbar>
-            </header>
-
-        ) // Fecha o return
-    } else {
+    if (location.pathname === '/signin') {
         return (
             <header>
 
@@ -103,7 +60,51 @@ console.log(location.pathname);
         )
 
     }
+
+    return (
+        <header>
+            <SNavbar color="dark" dark expand="md">
+                <Container>
+                    <NavbarBrand tag={RRDNavLink} to="/" id="logoMain"> <IconLogo /> GC </NavbarBrand>
+                    <Tooltip placement="top" isOpen={tooltipOpen} autohide={false} target="logoMain" toggle={toggleTooltip}>
+                        Voltar ao Menu Principal
+                    </Tooltip>
+                    <NavbarToggler onClick={toggle} />
+                    {isAuthenticated() ? (
+                        <React.Fragment>
+                            <SCollapse isOpen={isOpen} navbar>
+                                <Nav className="mr-auto" navbar>
+                                    <NavItem>
+                                        <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/" >Cursos</SNavLink>
+                                    </NavItem>
+                                    <NavItem >
+                                        <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/sobre" >Outros</SNavLink>
+                                    </NavItem>
+                                </Nav>
+                            </SCollapse>
+
+                            <Nav >
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>
+                                        {usuario.nome}
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem>Perfil</DropdownItem>
+                                        <DropdownItem divider />
+                                        <DropdownItem onClick={logout}>Sair</DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </Nav>
+                        </React.Fragment>
+                    ) : ""}
+                </Container>
+            </SNavbar>
+        </header>
+
+    ) // Fecha o return
 }
+
+
 
 export default Header;
 

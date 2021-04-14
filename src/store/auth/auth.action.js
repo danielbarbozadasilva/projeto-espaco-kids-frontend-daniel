@@ -20,7 +20,7 @@ export const signInAction = (data) => {
         try {
             // data - dados da view
             // toda requisição tem uma resposta, envio os dados (email e senha) via post para o backend
-            const result = await authService(data) 
+            const result = await authService(data)
             if (result.data) {
 
                 // caso result retorne algo ele executa o save auth
@@ -32,7 +32,7 @@ export const signInAction = (data) => {
 
             // mandando informação para o reducer
             dispatch({
-                type: TYPES.SIGN_IN, data: result.data 
+                type: TYPES.SIGN_IN, data: result.data
             })
             history.push('/')
         } catch (error) {
@@ -46,10 +46,13 @@ export const signUpAction = (data) => {
     return async (dispatch) => {
         dispatch({ type: TYPES.SIGN_LOADING, status: true })
         try {
-            const result = await registerUserService(data) 
+            const result = await registerUserService(data)
+
             dispatch({
-                type: TYPES.SIGN_UP, data: result.data  
+                type: TYPES.SIGN_UP, data: result.data
             })
+            history.push('/signin')
+
         } catch (error) {
             dispatch({ type: TYPES.SIGN_ERROR, data: error })
         }

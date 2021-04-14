@@ -40,7 +40,8 @@ const SignUp = () => {
 
     const formatDate = (date) => {
         return (
-            date.toLocaleDateString('pt-BR', { timeZone: 'UTC' })
+            // .toLocaleDateString('pt-BR', { timeZone: 'UTC' })
+            new Date(date).toLocaleDateString('pt-BR',{ timeZone:'UTC'})
         )
     }
 
@@ -75,9 +76,7 @@ const SignUp = () => {
     return (
         <Sign>
             <Col sm={12} md={4} lg={5}>
-                <Alert color="success" isOpen={success} toggle={() => showSuccess(!success)}>
-                    <div><strong>Usuario </strong> Cadastrado com sucesso.</div>
-                </Alert>
+               
                 <Alert color="danger" isOpen={hasError} toggle={closeError}>
                     <div><strong>OPS !!! </strong> Aconteceu um erro.</div>
                     <small>Verifique usuário e senha</small>
