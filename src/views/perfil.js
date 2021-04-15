@@ -8,7 +8,7 @@ import styled from "styled-components";
 
 const Perfil = () => {
     document.title = "Casa da Dinda";
-    const perfil = useSelector(state => state.usuario);
+    const perfil = useSelector(state => state.auth.usuario);
     console.log(perfil);
     const [form, setForm] = useState({ ...perfil });
 

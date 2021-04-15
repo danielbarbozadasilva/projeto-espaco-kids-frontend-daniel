@@ -1,4 +1,6 @@
-import React, {useSelector} from "react";
+import React from "react";
+import { useSelector } from 'react-redux';
+
 import {
     Router,
     Switch,
@@ -46,8 +48,7 @@ const AdminRoute = ({ ...rest }) => {
 
 
 const Routers = () => {
-    const isAdmin = useSelector(state => state.isAdmin)
-
+    const isAdmin = useSelector(state => state.auth.isAdmin)
     return (
         <Router history={history}>
         <Layout nomeDaPagina="Casa da Dinda">

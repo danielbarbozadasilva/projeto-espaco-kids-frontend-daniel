@@ -9,8 +9,7 @@ export const TYPES = {
     SIGN_UP: "SIGN_UP",
     SIGN_OUT: "SIGN_OUT",
     SIGN_ERROR: "SIGN_ERROR",
-    SIGN_LOADING: "SIGN_LOADING",
-
+    SIGN_LOADING: "SIGN_LOADING"
 }
 
 export const signInAction = (data) => {

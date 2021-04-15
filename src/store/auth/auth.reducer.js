@@ -1,5 +1,12 @@
-import { TYPES } from './auth.action'
 import { getToken, getUser } from "../../config/auth";
+
+ const TYPES = {
+    SIGN_IN: "SIGN_IN",
+    SIGN_UP: "SIGN_UP",
+    SIGN_OUT: "SIGN_OUT",
+    SIGN_ERROR: "SIGN_ERROR",
+    SIGN_LOADING: "SIGN_LOADING"
+}
 
 const INITIAL_STATE = {
     isAdmin: getUser().tipo === '1' || false,
@@ -11,10 +18,13 @@ const INITIAL_STATE = {
 };
 
 const reducer = (state = INITIAL_STATE, action) => { 
+    console.log(TYPES);
+    console.log(action);
+
     switch (action.type) {
         case TYPES.SIGN_LOADING:
             state.error = [];
-            state.loading = action.status
+            state.loading = action.status;
             return state
 
 

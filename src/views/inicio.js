@@ -12,8 +12,8 @@ const Oficinas = () => {
     const dispatch = useDispatch();
 
     // estou pegando o estado oficina no index
-    const oficina = useSelector(state => state.all);
-    const loading = useSelector(state => state.loading);
+    const oficina = useSelector(state => state.oficina.all);
+    const loading = useSelector(state => state.auth.loading);
 
     useEffect(() => {
         dispatch(getOficinasAll());
