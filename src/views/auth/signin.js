@@ -19,8 +19,8 @@ const SignIn = () => {
     const dispatch = useDispatch();
     
     // vindo do reducer (tudo que tiver 'state' pega o estado do reducer)
-    const error = useSelector(state => state.error)
-    const loading = useSelector(state => state.loading)
+    const error = useSelector(state => state.auth.error)
+    const loading = useSelector(state => state.auth.loading)
 
     // estado somente da view
     const [form, setForm] = useState({

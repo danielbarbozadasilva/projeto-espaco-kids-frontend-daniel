@@ -16,9 +16,9 @@ const SignUp = () => {
     const [hasError, setHasError] = useState(false)
     const [success, showSuccess] = useState(false)
     const dispatch = useDispatch();
-    const loading = useSelector(state => state.loading)
-    const error = useSelector(state => state.error)
-    const registered = useSelector(state => state.registered)
+    const loading = useSelector(state => state.auth.loading)
+    const error = useSelector(state => state.auth.error)
+    const registered = useSelector(state => state.auth.registered)
 
     const [form, setForm] = useState({
         nome: 'Daniel',
