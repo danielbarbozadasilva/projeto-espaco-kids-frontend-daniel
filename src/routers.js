@@ -32,7 +32,7 @@ const AdminRoute = ({ ...rest }) => {
 const Routers = () => {
     return (
         <Router history={history}>
-            <Layout nomeDaPagina="Nome do projeto">
+            <Layout nomeDaPagina="Casa da Dinda">
                 <Switch>
                     <Route exact path='/signin' component={SignIn} />
                     <Route exact path='/signup' component={SignUp} />

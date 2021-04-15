@@ -31,8 +31,8 @@ const SignIn = () => {
 
     // estado somente da view
     const [form, setForm] = useState({
-        email: "maria@gmail.com",
-        senha: "maria"
+        email: "taina@gmail.com",
+        senha: "4534555"
     })
 
     const handleChange = (props) => {

@@ -38,7 +38,6 @@ const Header = (props) => {
     if (location.pathname === '/signin') {
         return (
             <header>
-
                 <SNavbar light expand="md">
                     <Container>
                         <NavbarToggler onClick={toggle} />
@@ -58,15 +57,15 @@ const Header = (props) => {
                 </Container>
             </header>
         )
-
     }
 
     return (
         <header>
             <SNavbar color="dark" dark expand="md">
                 <Container>
-                    <NavbarBrand tag={RRDNavLink} to="/" id="logoMain"> <IconLogo /> GC </NavbarBrand>
-                    <Tooltip placement="top" isOpen={tooltipOpen} autohide={false} target="logoMain" toggle={toggleTooltip}>
+                    <SNavbarBrand tag={RRDNavLink} to="/" id="titleNav"> Espaço Kids - {props.titulo}
+                    </SNavbarBrand>
+                    <Tooltip placement="top" isOpen={tooltipOpen} autohide={false} target="titleNav" toggle={toggleTooltip}>
                         Voltar ao Menu Principal
                     </Tooltip>
                     <NavbarToggler onClick={toggle} />
@@ -75,7 +74,7 @@ const Header = (props) => {
                             <SCollapse isOpen={isOpen} navbar>
                                 <Nav className="mr-auto" navbar>
                                     <NavItem>
-                                        <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/" >Cursos</SNavLink>
+                                        <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/" >Oficinas</SNavLink>
                                     </NavItem>
                                     <NavItem >
                                         <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/sobre" >Outros</SNavLink>
@@ -99,6 +98,15 @@ const Header = (props) => {
                     ) : ""}
                 </Container>
             </SNavbar>
+            <Container className="kids" fluid={true}>
+                <img className="logo" src={Logo} alt="logo" />
+            </Container>
+
+            <SContainer fluid={true}>
+                <h2>{props.titulo}</h2>
+
+                <p>Um espaço gostoso para a criança brincar e aprender através da linguagem das artes, <br />estimulando a imaginação, a coordenação motora, a socialização <br />e, é claro, a diversão dos pequenos.</p>
+            </SContainer>
         </header>
 
     ) // Fecha o return
@@ -109,26 +117,31 @@ const Header = (props) => {
 export default Header;
 
 const SNavbar = styled(Navbar)`
-    background-color: #053566 !important;
-    border-bottom: 5px solid #4b8EC7;
+    display: flex;    
+    font-family: 'Pangolin', cursive!important;
+    font-size: 18px;
+    background-color: #b8b5ff!important;;
+    min-height: 30px;
+    margin-bottom: 5px;
 
     a {
-        color: #fff !important;
+        color: black!important;
     }
 
 `
 
 const SNavLink = styled(NavLink)`
-    margin: auto 5px;
+    margin-left: 30px;
     border-radius: 5px;
 
+
     &.active {
-        color: #fff !important;
+        color: black!important;
         background-color: #4B8EC7 !important;
     }
 
     @media (max-width: 767.98px) {
-        margin:6px 0;
+        margin: 6px 0;
         
     }
 
@@ -144,6 +157,27 @@ const IconLogo = styled(AiFillRead)`
 
 
 const SNavbarBrand = styled(NavbarBrand)`
-    font-family: 'Pangolin', cursive;
-    font-size: 25px;
+font-size: 24px;
+
+    
 `
+
+const SContainer = styled(Container)`
+    background-color: #e4fbff;
+    min-height: 140px;
+    padding: 10px;
+    margin: 5px 0;
+    font-family: 'Pangolin', cursive;
+    text-align: center;
+
+
+    p {
+        font-size: 25px;
+    }
+`
+
+
+
+
+
+
