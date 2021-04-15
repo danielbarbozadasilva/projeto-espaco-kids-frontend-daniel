@@ -1,47 +1,6 @@
-import React, { useEffect } from 'react';
-import CardItem from "../components/oficinas/card_item";
-import Loading from '../components/loading';
-import styled from 'styled-components';
-import { Col, Row } from 'reactstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { getOficinasAll } from '../store/oficina/oficina.action';
-
-const Oficinas = () => {
-
-    const dispatch = useDispatch();
-    // const [loading, setLoading] = useState(false)
-
-    // estou pegando o estado oficina no index
-    const oficina = useSelector(state => state.oficina.all);
-    const loading = useSelector(state => state.oficina.loading);
-
-    useEffect(() => {
-        dispatch(getOficinasAll());
-    }, [dispatch])
-
-
-    const MapearOficinas = (oficinas) => oficinas.map((item, i) => (
-        <Col md="3" xl="3" sm="12" xs="12" key={i} className="mb-4">
-            <CardItem item={{ ...item, status: true }} />
-        </Col>
-    ))
-
-    if (loading) {
-        return <Loading />
-    }
-
+const Gerenciaroficinas = () => {
     return (
-        <BoxOficinas>
-            {!loading && oficina.length === 0 ? "Não tem Oficinas disponiveis" : MapearOficinas(oficina) }
-            {/* {Oficinas.length == 0 ? "Não tem Oficinas disponiveis" : loading ? <Loading /> : MapearOficinas(Oficinas)} */}
-
-        </BoxOficinas>
+        <h2>Gerenciar Oficinas</h2>
     )
 }
-
-export default Oficinas;
-
-
-const BoxOficinas = styled(Row)`
-
-`
+export default Gerenciaroficinas;

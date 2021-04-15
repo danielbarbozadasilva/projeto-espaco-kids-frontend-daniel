@@ -13,21 +13,14 @@ import { useEffect } from 'react';
 
 const SignIn = () => {
 
-    const [hasError, setHasError] = useState(false);
-    const [success, showSuccess] = useState(false)
-    const registered = useSelector(state => state.auth.registered)
 
-    useEffect(() => {
-        if (registered) {
-            showSuccess(true)
-        }
-    }, [registered])
+    const [hasError, setHasError] = useState(false);
 
     const dispatch = useDispatch();
-
+    
     // vindo do reducer (tudo que tiver 'state' pega o estado do reducer)
-    const error = useSelector(state => state.auth.error)
-    const loading = useSelector(state => state.auth.loading)
+    const error = useSelector(state => state.error)
+    const loading = useSelector(state => state.loading)
 
     // estado somente da view
     const [form, setForm] = useState({
@@ -69,9 +62,9 @@ const SignIn = () => {
                     <div><strong>OPS !!! </strong> Aconteceu um erro.</div>
                     <small>Verifique usuário e senha</small>
                 </Alert>
-                <Alert color="success" isOpen={success} toggle={() => showSuccess(!success)}>
+                {/* <Alert color="success" isOpen={success} toggle={() => showSuccess(!success)}>
                     <div><strong>Usuario </strong> Cadastrado com sucesso.</div>
-                </Alert>
+                </Alert> */}
                 <Card>
                     <CardHeader tag="h4" className="text-center">Login</CardHeader>
                     <CardBody>

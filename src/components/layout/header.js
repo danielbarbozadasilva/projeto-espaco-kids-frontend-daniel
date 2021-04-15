@@ -7,18 +7,18 @@ import {
     NavbarToggler,
     NavbarBrand,
     NavItem,
-    NavLink,    // estilo
+    NavLink,    
     Container,
     Tooltip,
     Nav, UncontrolledDropdown, DropdownItem, DropdownToggle, DropdownMenu
+
 } from 'reactstrap';
-import Logo from "../../assets/img/espacokids4.png";
-import '../../assets/css/style.css';
+import styled from 'styled-components';
 import { AiFillRead } from 'react-icons/ai'
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutAction } from '../../store/auth/auth.action';
 import { isAuthenticated } from '../../config/auth';
-import styled from 'styled-components';
+import history from '../../config/history';
 
 const Header = (props) => {
 
@@ -29,12 +29,14 @@ const Header = (props) => {
     const toggleTooltip = () => setTooltipOpen(!tooltipOpen);
     const toggle = () => setIsOpen(!isOpen);
     const usuario = useSelector(state => state.auth.usuario)
+    const isAdmin = useSelector(state => state.auth.isAdmin)
 
     const logout = () => {
         dispatch(logoutAction())
     }
 
     const location = useLocation();
+
     if (location.pathname === '/signin') {
         return (
             <header>
@@ -46,14 +48,14 @@ const Header = (props) => {
                             </SNavbarBrand>
                         </Collapse>
 
-                        <Tooltip placement="bottom" isOpen={tooltipOpen} autohide={true} target="titleNav" toggle={toggleTooltip}>
+                        <Tooltip placement="bottom" isOpen={tooltipOpen} autohide={false} target="titleNav" toggle={toggleTooltip}>
                             Retornar para a página inicial.
                         </Tooltip>
                     </Container>
                 </SNavbar>
 
                 <Container className="kids" fluid={true}>
-                    <img className="logo" src={Logo} alt="logo" />
+                    {/* <img className="logo" src={Logo} alt="logo" /> */}
                 </Container>
             </header>
         )
@@ -88,7 +90,10 @@ const Header = (props) => {
                                         {usuario.nome}
                                     </DropdownToggle>
                                     <DropdownMenu>
-                                        <DropdownItem>Perfil</DropdownItem>
+                                        {isAdmin ? (
+                                            <DropdownItem onClick={() => history.push('/usuarios')}>Usuários</DropdownItem>
+                                        ) : ""}
+                                        <DropdownItem onClick={() => history.push('/perfil')}>Perfil</DropdownItem>
                                         <DropdownItem divider />
                                         <DropdownItem onClick={logout}>Sair</DropdownItem>
                                     </DropdownMenu>
@@ -99,7 +104,7 @@ const Header = (props) => {
                 </Container>
             </SNavbar>
             <Container className="kids" fluid={true}>
-                <img className="logo" src={Logo} alt="logo" />
+                {/* <img className="logo" src={Logo} alt="logo" /> */}
             </Container>
 
             <SContainer fluid={true}>

@@ -16,10 +16,9 @@ const SignUp = () => {
     const [hasError, setHasError] = useState(false)
     const [success, showSuccess] = useState(false)
     const dispatch = useDispatch();
-    const loading = useSelector(state => state.auth.loading)
-    const error = useSelector(state => state.auth.error)
-    const registered = useSelector(state => state.auth.registered)
-
+    const loading = useSelector(state => state.loading)
+    const error = useSelector(state => state.error)
+    const registered = useSelector(state => state.registered)
 
     const [form, setForm] = useState({
         nome: 'Daniel',
@@ -27,7 +26,6 @@ const SignUp = () => {
         datanascimento: '05/03/1997',
         senha: '123456'
     })
-
     const handleChange = (props) => {
         const { value, name } = props.target;
         setForm({
@@ -41,7 +39,7 @@ const SignUp = () => {
     const formatDate = (date) => {
         return (
             // .toLocaleDateString('pt-BR', { timeZone: 'UTC' })
-            new Date(date).toLocaleDateString('pt-BR',{ timeZone:'UTC'})
+            new Date(date).toLocaleDateString('pt-BR', { timeZone: 'UTC' })
         )
     }
 
@@ -76,7 +74,9 @@ const SignUp = () => {
     return (
         <Sign>
             <Col sm={12} md={4} lg={5}>
-               
+                <Alert color="success" isOpen={success} toggle={() => showSuccess(!success)}>
+                    <div><strong>Usuario </strong> Cadastrado com sucesso.</div>
+                </Alert>
                 <Alert color="danger" isOpen={hasError} toggle={closeError}>
                     <div><strong>OPS !!! </strong> Aconteceu um erro.</div>
                     <small>Verifique usuário e senha</small>

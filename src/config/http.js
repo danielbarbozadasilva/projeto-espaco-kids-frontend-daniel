@@ -1,6 +1,8 @@
 import axios from 'axios'; // import da dependencia
 import { getToken, removeToken } from './auth';
 import history from './history';
+import store from '../store'
+import { logoutAction } from '../store/auth/auth.action';
 
 // definindo a url da api
 const urlApi = process.env.REACT_APP_API;
@@ -22,7 +24,7 @@ http.interceptors.response.use(
     (error) => {
         switch (error.response.status) {
             case 401:
-                removeToken()
+                store.dispatch(logoutAction())
                 history.push('/signin')
                 break;
             default:

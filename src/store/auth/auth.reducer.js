@@ -1,8 +1,8 @@
 import { TYPES } from './auth.action'
 import { getToken, getUser } from "../../config/auth";
 
-
 const INITIAL_STATE = {
+    isAdmin: getUser().tipo === '1' || false,
     loading: false,
     token: getToken() || "",
     usuario: getUser() || {},
@@ -10,7 +10,7 @@ const INITIAL_STATE = {
     error: []
 };
 
-const reducer = (state = INITIAL_STATE, action) => { // tamara recebe
+const reducer = (state = INITIAL_STATE, action) => { 
     switch (action.type) {
         case TYPES.SIGN_LOADING:
             state.error = [];
@@ -18,7 +18,7 @@ const reducer = (state = INITIAL_STATE, action) => { // tamara recebe
             return state
 
 
-        case TYPES.SIGN_IN: // disponibiliza na mesa
+        case TYPES.SIGN_IN: 
             // atribui apenas o token do back
             state.token = action.data.token
 
@@ -28,9 +28,11 @@ const reducer = (state = INITIAL_STATE, action) => { // tamara recebe
             // para de carregar
             state.loading = false
 
+            state.isAdmin = action.data.usuario.tipo === '1'
+
             return state
 
-        case TYPES.SIGN_ERROR: // disponibiliza na mesa
+        case TYPES.SIGN_ERROR:
             const err = [...state.error, action.data]
             state.loading = false
             state.error = err;
@@ -39,10 +41,11 @@ const reducer = (state = INITIAL_STATE, action) => { // tamara recebe
         case TYPES.SIGN_OUT: // disponibiliza na mesa
             state.token = ""
             state.usuario = {}
+            state.isAdmin = false === '1'
+            state.error = []
             return state
 
         case TYPES.SIGN_UP:
-            state.error = [];
             state.loading = false;
             state.registered = true;
 

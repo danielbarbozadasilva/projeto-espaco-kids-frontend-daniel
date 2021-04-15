@@ -10,8 +10,7 @@ import { Jumbotron,
          Nav, 
          Button } from 'reactstrap';
 import styled from 'styled-components';
-import { BsPersonPlus, BsListCheck } from 'react-icons/bs';
-
+import { AiFillCloseSquare, AiFillCheckSquare } from "react-icons/ai";
 
 
 const Detalhes = (props) => {
@@ -21,9 +20,8 @@ const Detalhes = (props) => {
 
     const [loading, setLoading] = useState(false);
     const [detalhes, setDetalhes] = useState({});
-    const [update, setUpdate] = useState(false);
-    const [isParticipants, setParticipants] = useState(false);
-    //const [hasError, setError] = useState(false);
+    const [update, setUpdate] = useState(false)
+    const [isSub, setSub] = useState(false)
 
 
     const getDetalhes = useCallback(async () => {
@@ -31,16 +29,11 @@ const Detalhes = (props) => {
         try {
             setLoading(true)
             const res = await getServiceDetalhes(codoficina);
-            setDetalhes(res.data)
-            
-            //  console.log(detalhes);
+            setDetalhes(res.data);
+            setLoading(false);
 
-            setLoading(false)
-
-            
         } catch (error) {
-            console.log('>>>>', error)
-            // hasError(true)
+            console.log('-----', error)
             history.push('/?error=404')
         }
         
@@ -48,7 +41,6 @@ const Detalhes = (props) => {
 
     
     // use Effect é o ciclo de vida que executa antes* de renderizar a página.
-
     useEffect(() => {
         console.log('start')
         getDetalhes()
@@ -58,7 +50,7 @@ const Detalhes = (props) => {
 
 
     const Detalhamento = ({ nomeoficina, dataoficina, horaoficina, valoroficina, nomemonitor, descricaoficina  }) => (
-        <SJumbotron>
+        <SJumbotron style={{ backgroundColor: isSub ? '#D4EDDA' : '#F8D7DA' }}>
             <div className="container">
                 <p className="nomeoficina">{nomeoficina}</p>
                 <p className="info_oficina">
@@ -82,32 +74,22 @@ const Detalhes = (props) => {
 
 
     const Menu = () => (
-        <SNavbar light expand="md mb-4">
-            <div className="info d-none d-md-block d-lg-block">
-                {isParticipants ? "Cadastre o Participante" : "Lista de Participantes"}
-            </div>
-            <Nav className="mr-auto" navbar>
-                <Button onClick={() => setParticipants(!isParticipants)} color={!isParticipants ? "info" : "info"} size="md">
-                    {!isParticipants ? (<><BsPersonPlus /> Cadastrar </>) : (<><BsListCheck /> Lista de Participantes </>)}
-                </Button>
-            </Nav>
-        </SNavbar>
+        <Navbar expand="md mb-4">
+
+            <Button onClick={() => setSub(!isSub)} color={!isSub ? "primary" : "secondary"} size="sm">
+
+                {!isSub ? (<><AiFillCheckSquare /> Inscreva-se </>) : (<><AiFillCloseSquare /> Remover Inscrição</>)}
+            </Button>
+        </Navbar>
     )
 
-
-    const montarTela = (detalhes) => (
+    const montarTela = (detalhe) => (
         <div>
-            {Detalhamento(detalhes)}
+            {Detalhamento(detalhe)}
             {Menu()}
-            {
-                // [condicao] ? [true] : [false]
-                isParticipants
-                    ? (<Inscricao id={codoficina} update={setUpdate} isForm={setParticipants} />)
-                    : (<TabelaInscritos inscritos={detalhes.inscricoes} update={setUpdate} />)
-            }
+
         </div>
     )
-
 
     return (
         loading 
