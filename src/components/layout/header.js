@@ -7,7 +7,7 @@ import {
     NavbarToggler,
     NavbarBrand,
     NavItem,
-    NavLink,    
+    NavLink,
     Container,
     Tooltip,
     Nav, UncontrolledDropdown, DropdownItem, DropdownToggle, DropdownMenu
@@ -37,14 +37,17 @@ const Header = (props) => {
 
     const location = useLocation();
 
+    // pathname - Retorna o endereço da URL atual
     if (location.pathname === '/signin') {
         return (
             <header>
-                <SNavbar light expand="md">
+                <SNavbar light expand="md" >
+
                     <Container>
                         <NavbarToggler onClick={toggle} />
                         <Collapse isOpen={isOpen} navbar>
-                            <SNavbarBrand tag={RRDNavLink} to="/" id="titleNav"> Espaço Kids - {props.titulo}
+                            <SNavbarBrand tag={RRDNavLink} to="/" id="titleNav">
+                                <img class="logo-img" src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/530/5071630530_410c4119-7b64-40a1-aa87-a2c3638b6c55.png?cb=1618556501" alt="" />
                             </SNavbarBrand>
                         </Collapse>
 
@@ -53,17 +56,13 @@ const Header = (props) => {
                         </Tooltip>
                     </Container>
                 </SNavbar>
-
-                <Container className="kids" fluid={true}>
-                    {/* <img className="logo" src={Logo} alt="logo" /> */}
-                </Container>
             </header>
         )
     }
 
     return (
         <header>
-            <SNavbar color="dark" dark expand="md">
+            <SNavbar expand="md">
                 <Container>
                     <SNavbarBrand tag={RRDNavLink} to="/" id="titleNav"> Espaço Kids - {props.titulo}
                     </SNavbarBrand>
@@ -122,16 +121,14 @@ const Header = (props) => {
 export default Header;
 
 const SNavbar = styled(Navbar)`
-    display: flex;    
-    font-family: 'Pangolin', cursive!important;
-    font-size: 18px;
-    background-color: #b8b5ff!important;;
-    min-height: 30px;
-    margin-bottom: 5px;
-
-    a {
-        color: black!important;
-    }
+    background-image: linear-gradient(to left, #ff425b, #c42252);
+    box-shadow: 0 4px 12px 0 rgb(226 60 82 / 20%);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-weight: 700;
+    border-style: none;
 
 `
 
@@ -141,13 +138,13 @@ const SNavLink = styled(NavLink)`
 
 
     &.active {
-        color: black!important;
+        color: white!important;
         background-color: #4B8EC7 !important;
     }
 
     @media (max-width: 767.98px) {
         margin: 6px 0;
-        
+
     }
 
 `
@@ -162,9 +159,9 @@ const IconLogo = styled(AiFillRead)`
 
 
 const SNavbarBrand = styled(NavbarBrand)`
-font-size: 24px;
+    font-size: 24px;
+    color:white!important;
 
-    
 `
 
 const SContainer = styled(Container)`
@@ -179,6 +176,7 @@ const SContainer = styled(Container)`
     p {
         font-size: 25px;
     }
+
 `
 
 

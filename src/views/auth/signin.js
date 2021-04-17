@@ -5,27 +5,30 @@ import {
     CardHeader,
     Button, CardFooter, Label, Alert, Spinner
 } from 'reactstrap';
+import styled from 'styled-components';
+
 import { Sign } from '../../assets/styled';
 import { Link } from 'react-router-dom';
 import { signInAction } from '../../store/auth/auth.action'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import '../../assets/css/style.css';
+
+
 
 const SignIn = () => {
-
-
     const [hasError, setHasError] = useState(false);
 
     const dispatch = useDispatch();
-    
+
     // vindo do reducer (tudo que tiver 'state' pega o estado do reducer)
     const error = useSelector(state => state.auth.error)
     const loading = useSelector(state => state.auth.loading)
 
     // estado somente da view
     const [form, setForm] = useState({
-        email: "taina@gmail.com",
-        senha: "4534555"
+        email:"",
+        senha:"" 
     })
 
     const handleChange = (props) => {
@@ -62,35 +65,44 @@ const SignIn = () => {
                     <div><strong>OPS !!! </strong> Aconteceu um erro.</div>
                     <small>Verifique usuário e senha</small>
                 </Alert>
-                {/* <Alert color="success" isOpen={success} toggle={() => showSuccess(!success)}>
-                    <div><strong>Usuario </strong> Cadastrado com sucesso.</div>
-                </Alert> */}
-                <Card>
-                    <CardHeader tag="h4" className="text-center">Login</CardHeader>
+    
+                <SCard>
+                    <h2 tag="h4" className="text-login">Login</h2>
                     <CardBody>
                         <Form>
                             <FormGroup>
-                                <Label for="email">E-mail:</Label>
-                                <Input disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
+                                <label class="label" for="email">E-mail:</label>
+                                <Input class="form-control" disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="password">Senha:</Label>
-                                <Input disabled={loading} type="password" name="senha" id="senha" onChange={handleChange} value={form.senha || ""} placeholder="Informe sua senha" />
+                                <label class="label" for="password">Senha:</label>
+                                <input class="form-control" disabled={loading} type="password" name="senha" id="senha" onChange={handleChange} value={form.senha || ""} placeholder="Informe sua senha" />
                             </FormGroup>
-                            <Button color={isNotValid() || loading ? 'secondary' : 'primary'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
+                            <button data-testing-id="funnel-survey-select_category-next" class="rounded-full px-6 py-2 shadow-redBtn hover:bg-gradient-l-primary-gradient-solid hover:text-white hover:border-none
+            bg-gradient-l-primary-gradient text-white font-bold border-none
+            " type="button" color={isNotValid() || loading ? 'secondary' : 'primary'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
                                 {loading ? (<><Spinner size="sm" color="light" /> Carregando...</>) : "Enviar"}
-                            </Button>
+
+                                <i class="icon-angle-right ml-2"></i>  </button>
+
                         </Form >
                     </CardBody>
                     <CardFooter className="text-muted">
                         Não tem Cadastro? <Link to="/signup">Cadastre-se</Link>
                     </CardFooter>
 
-                </Card>
+                </SCard>
             </Col>
         </Sign>
     )
 }
 
 export default SignIn;
+
+const SCard = styled(Card)`
+    margin: 100px 0;
+    box-shadow: 0px 2px 15px 6px rgba(0,0,0,0.11);
+    padding-top: 10px;
+
+`
 
