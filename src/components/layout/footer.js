@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../assets/fontawesome/css/all.min.css';
 import '../../assets/css/style.css';
-
+import LogoFooter from '../../assets/img/logo2.png';
 
 
 const Footer = (props) => {
@@ -18,7 +18,8 @@ const Footer = (props) => {
             </div>
       
         <div class="nome">
-            <img class="imagemFooter" src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/251/5089393251_401ffe77-813b-41f1-9661-a55726bce4db.png?cb=1618818706" alt="" />
+        <img class="imagemFooter" src={LogoFooter} />
+
             <h3 class="nome-footer">Copyright © 2021 - Todos os direitos reservados</h3>
         </div>
         <div className="infomacoes">
