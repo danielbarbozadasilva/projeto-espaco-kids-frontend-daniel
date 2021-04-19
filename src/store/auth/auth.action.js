@@ -41,16 +41,22 @@ export const signInAction = (data) => {
     };
 }
 export const signUpAction = (data) => {
-
     return async (dispatch) => {
         dispatch({ type: TYPES.SIGN_LOADING, status: true })
         try {
-            const result = await registerUserService(data)
-
+            const result = await registerUserService(data) //liguei para o ezer
+            if (result.data) {
+                saveAuth(result.data)
+                http.defaults.headers['token'] = result.data.token;
+            }
             dispatch({
-                type: TYPES.SIGN_UP, data: result.data
+                type: TYPES.SIGN_UP, data: result.data  // mandei para a tamara
             })
-            // history.push('/signin')
+
+            setTimeout(() => {
+                history.push('/')
+            }, 5000);
+
 
         } catch (error) {
             dispatch({ type: TYPES.SIGN_ERROR, data: error })

@@ -1,58 +1,46 @@
 import React from 'react';
-import WAIcon from '../../assets/icons/whatsapp.svg';
-import FBIcon from '../../assets/icons/facebook.svg';
-import IGIcon from '../../assets/icons/instagram.svg';
-import TWIcon from '../../assets/icons/twitter.svg';
-import YTIcon from '../../assets/icons/youtube.svg';
+import '../../assets/fontawesome/css/all.min.css';
+import '../../assets/css/style.css';
 
 
 
 const Footer = (props) => {
 
     return (
-
         <footer className="footer">
-            <div className="footer-top">
-                <div className="address">
-                    <h3><a href="/">{props.titulo}</a></h3>
-                    <p>Rua Jorge Yunes, 125 - Recreio dos Bandeirantes - Rio de Janeiro - RJ</p>
-                    <p>oficinas@espacokids.com</p>
-                    <p>+55 21 24380548</p>
+            <div className="redes-sociais">
+                <h3 className="tituloRedesSociais">Redes sociais</h3>
+                <div className="icons-redes-sociais">
+                    <a href="https://www.facebook.com/" target="_blank"><i className="fab fa-facebook-square"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank"><i className="fab fa-instagram-square"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=+5521992690225" target="_blank"><i className="fab fa-whatsapp-square"></i></a>
                 </div>
-                <div className="social-links">                 
-                    <a href="https://web.whatsapp.com/" target='_blank' rel="noreferrer"><img src={WAIcon} alt="whatsapp"/></a>
-                    <a href="https://www.facebook.com/" target='_blank' rel="noreferrer"><img src={FBIcon} alt=""/></a>
-                    <a href="https://www.instagram.com/" target='_blank' rel="noreferrer"><img src={IGIcon} alt=""/></a>
-                    <a href="https://twitter.com/" target='_blank' rel="noreferrer"><img src={TWIcon} alt=""/></a>
-                    <a href="https://www.youtube.com/" target='_blank' rel="noreferrer"><img src={YTIcon} alt=""/></a>
-                </div>         
-
-                {/* <div class="redes-sociais">
-                    <h3 class="chamada-rodape">Redes sociais</h3>
-                    <div class="icons-redes-sociais">
-                        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-square"></i></a>
-                        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram-square"></i></a>
-                        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter-square"></i></a>
-                    </div>
-                </div>  */}
-
-
+            </div>
+      
+        <div class="nome">
+            <img class="imagemFooter" src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/251/5089393251_401ffe77-813b-41f1-9661-a55726bce4db.png?cb=1618818706" alt="" />
+            <h3 class="nome-footer">Copyright © 2021 - Todos os direitos reservados</h3>
+        </div>
+        <div className="infomacoes">
+            <div className="address">
+                <h6> <i className="fas fa-map-marker-alt"></i>
+                    Endereço: Rua Jorge Yunes, 125</h6>
             </div>
 
-            <div className="footer-bottom">
-                <p className="text-center">&copy; 2021 - All rights reserved <span> || </span> Powered by <a href="/"><strong>Espaço Kids - {props.titulo}</strong></a></p>
+            <div className="email">
+                <h6><i className="far fa-envelope"> </i>
+                    Email: oficinas@espacokids.com</h6>
             </div>
-        </footer>
+
+            <div class="phone">
+                <h6><i className="fab fa-whatsapp"></i>
+                    Telefone: +55 21 24380548</h6>
+            </div>
+        </div>
+
+    </footer>
     )
 }
 
 export default Footer;
-
-/* 
-${({theme}) => css`
-    background-color: ${theme.primary}!important;
-    boder-bottom: 5px solid ${theme.secondary};
-`
-
-*/
 

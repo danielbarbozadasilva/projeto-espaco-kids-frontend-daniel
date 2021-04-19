@@ -20,6 +20,8 @@ import { logoutAction } from '../../store/auth/auth.action';
 import { isAuthenticated } from '../../config/auth';
 import history from '../../config/history';
 
+import LogoHeader from '../../assets/img/logo.png';
+
 const Header = (props) => {
 
     const dispatch = useDispatch()
@@ -47,7 +49,7 @@ const Header = (props) => {
                         <NavbarToggler onClick={toggle} />
                         <Collapse isOpen={isOpen} navbar>
                             <SNavbarBrand tag={RRDNavLink} to="/" id="titleNav">
-                                <img class="logo-img" src="https://dewey.tailorbrands.com/production/brand_version_mockup_image/530/5071630530_410c4119-7b64-40a1-aa87-a2c3638b6c55.png?cb=1618556501" alt="" />
+                                <img class="logo-img" src={LogoHeader} />
                             </SNavbarBrand>
                         </Collapse>
 
@@ -62,21 +64,27 @@ const Header = (props) => {
 
     return (
         <header>
-            <SNavbar expand="md">
+            <SNavbar color="dark" dark expand="md">
                 <Container>
-                    <SNavbarBrand tag={RRDNavLink} to="/" id="titleNav"> Espaço Kids - {props.titulo}
-                    </SNavbarBrand>
-                    <Tooltip placement="top" isOpen={tooltipOpen} autohide={false} target="titleNav" toggle={toggleTooltip}>
+
+                    <NavbarBrand tag={RRDNavLink} to="/" id="logoMain">
+                        <img class="logo-img" src={LogoHeader} />
+                    </NavbarBrand>
+                    <Tooltip placement="top" isOpen={tooltipOpen} autohide={false} target="logoMain" toggle={toggleTooltip}>
                         Voltar ao Menu Principal
                     </Tooltip>
-                    <NavbarToggler onClick={toggle} />
                     {isAuthenticated() ? (
                         <React.Fragment>
                             <SCollapse isOpen={isOpen} navbar>
                                 <Nav className="mr-auto" navbar>
                                     <NavItem>
-                                        <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/" >Oficinas</SNavLink>
+                                        <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/">Inicio</SNavLink>
                                     </NavItem>
+                                    {isAdmin ? (
+                                        <NavItem>
+                                            <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/oficinas" >Oficinas</SNavLink>
+                                        </NavItem>
+                                    ) : ""}
                                     <NavItem >
                                         <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/sobre" >Outros</SNavLink>
                                     </NavItem>
@@ -85,9 +93,9 @@ const Header = (props) => {
 
                             <Nav >
                                 <UncontrolledDropdown nav inNavbar>
-                                    <DropdownToggle nav caret>
+                                    <SDropdownToggle nav caret>
                                         {usuario.nome}
-                                    </DropdownToggle>
+                                    </SDropdownToggle>
                                     <DropdownMenu>
                                         {isAdmin ? (
                                             <DropdownItem onClick={() => history.push('/usuarios')}>Usuários</DropdownItem>
@@ -100,19 +108,12 @@ const Header = (props) => {
                             </Nav>
                         </React.Fragment>
                     ) : ""}
+                    {isAdmin ? (
+                        <NavbarToggler onClick={toggle} />
+                    ) : ""}
                 </Container>
             </SNavbar>
-            <Container className="kids" fluid={true}>
-                {/* <img className="logo" src={Logo} alt="logo" /> */}
-            </Container>
-
-            <SContainer fluid={true}>
-                <h2>{props.titulo}</h2>
-
-                <p>Um espaço gostoso para a criança brincar e aprender através da linguagem das artes, <br />estimulando a imaginação, a coordenação motora, a socialização <br />e, é claro, a diversão dos pequenos.</p>
-            </SContainer>
         </header>
-
     ) // Fecha o return
 }
 
@@ -127,19 +128,21 @@ const SNavbar = styled(Navbar)`
     padding-right: 1.5rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    margin-bottom: 40px;
     font-weight: 700;
     border-style: none;
 
 `
 
 const SNavLink = styled(NavLink)`
-    margin-left: 30px;
-    border-radius: 5px;
+    margin-left: 70px;
+    border-radius: 5px;        
+
 
 
     &.active {
         color: white!important;
-        background-color: #4B8EC7 !important;
+        margin-left: 80px!important;
     }
 
     @media (max-width: 767.98px) {
@@ -152,35 +155,14 @@ const SCollapse = styled(Collapse)`
     /* flex-grow: 0; */
 `
 
-const IconLogo = styled(AiFillRead)`
-    font-size: 26px;
-    margin-top: -4px
-`
-
 
 const SNavbarBrand = styled(NavbarBrand)`
     font-size: 24px;
     color:white!important;
 
 `
+const SDropdownToggle = styled(DropdownToggle)`
 
-const SContainer = styled(Container)`
-    background-color: #e4fbff;
-    min-height: 140px;
-    padding: 10px;
-    margin: 5px 0;
-    font-family: 'Pangolin', cursive;
-    text-align: center;
-
-
-    p {
-        font-size: 25px;
-    }
+    color:white!important;
 
 `
-
-
-
-
-
-

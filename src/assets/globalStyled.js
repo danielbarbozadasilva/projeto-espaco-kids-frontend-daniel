@@ -2,9 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
 
-@import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap');
 
     * {
         margin: 0;
@@ -13,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     h1 {
-        font-family: 'Pangolin', cursive;
+        font-family: 'Lato', sans-serif;
         text-align: center;
         margin: 25px 0;
     }
