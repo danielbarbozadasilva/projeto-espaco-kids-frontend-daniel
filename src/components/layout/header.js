@@ -49,7 +49,7 @@ const Header = (props) => {
                         <NavbarToggler onClick={toggle} />
                         <Collapse isOpen={isOpen} navbar>
                             <SNavbarBrand tag={RRDNavLink} to="/" id="titleNav">
-                                <img class="logo-img" src={LogoHeader} />
+                                <img className="logo-img" src={LogoHeader} />
                             </SNavbarBrand>
                         </Collapse>
 
@@ -68,7 +68,7 @@ const Header = (props) => {
                 <Container>
 
                     <NavbarBrand tag={RRDNavLink} to="/" id="logoMain">
-                        <img class="logo-img" src={LogoHeader} />
+                        <img className="logo-img" src={LogoHeader} />
                     </NavbarBrand>
                     <Tooltip placement="top" isOpen={tooltipOpen} autohide={false} target="logoMain" toggle={toggleTooltip}>
                         Voltar ao Menu Principal

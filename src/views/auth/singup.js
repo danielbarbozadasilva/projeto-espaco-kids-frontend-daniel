@@ -27,7 +27,7 @@ const SignUp = () => {
         cpf: '111.222.333-90',
         telefone: '2199334455',
         endereco: 'Rua abc, 235',
-        tipo: '1',
+        tipo: '2',
         email: 'carolina@gmail.com',
         senha: 'carolina',    
     })
@@ -65,22 +65,29 @@ const SignUp = () => {
     }
 
     useEffect(() => {
-        setHasError(error.length > 0)
-    }, [error])
 
-    useEffect(() => {
+        if(error.length > 0){
+            setHasError();
+        }
+
         if (registered) {
             showSuccess(true)
             setForm({})
         }
-    }, [registered])
+        console.log(error)
+        console.log(registered)
+    }, [error, registered])
+
+   
 
 
     return (
         <Sign>
             <Col sm={12} md={4} lg={5}>
                 <Alert color="success" isOpen={success} toggle={() => showSuccess(!success)}>
-                    <div><strong>Usuario </strong> Cadastrado com sucesso.</div>
+                    <div><strong>Usuario </strong> cadastrado com sucesso.</div>
+                    <div>Você será redirecionado em 5 segundos.</div>
+
                 </Alert>
                 <Alert color="danger" isOpen={hasError} toggle={closeError}>
                     <div><strong>OPS !!! </strong> Aconteceu um erro.</div>
@@ -114,14 +121,7 @@ const SignUp = () => {
                                 <Label for="endereco">Endereço:</Label>
                                 <Input disabled={loading} type="text" name="endereco" id="endereco" onChange={handleChange} value={form.endereco || ""} placeholder="Informe o endereço" />
                             </FormGroup>
-                                <FormGroup>
-                                <Label for="tipo">Tipo do usuário:</Label>
-                                    <Input type="select" name="tipo" id="tipo">
-                                        <option value="0">1 - Administrador</option>
-                                        <option value="1">2 - Funcionário</option>
-                                        <option value="2">3 - Participante</option>
-                                    </Input>
-                                </FormGroup>
+
                                 <FormGroup>
                                     <Label for="email">E-mail:</Label>
                                     <Input disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />

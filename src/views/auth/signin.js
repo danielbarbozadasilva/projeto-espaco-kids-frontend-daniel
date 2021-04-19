@@ -71,19 +71,19 @@ const SignIn = () => {
                     <CardBody>
                         <Form>
                             <FormGroup>
-                                <label class="label" for="email">E-mail:</label>
-                                <Input class="form-control" disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
+                                <label className="label" for="email">E-mail:</label>
+                                <Input className="form-control" disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
                             </FormGroup>
                             <FormGroup>
-                                <label class="label" for="password">Senha:</label>
-                                <input class="form-control" disabled={loading} type="password" name="senha" id="senha" onChange={handleChange} value={form.senha || ""} placeholder="Informe sua senha" />
+                                <label className="label" for="password">Senha:</label>
+                                <input className="form-control" disabled={loading} type="password" name="senha" id="senha" onChange={handleChange} value={form.senha || ""} placeholder="Informe sua senha" />
                             </FormGroup>
                             <button data-testing-id="funnel-survey-select_category-next" class="rounded-full px-6 py-2 shadow-redBtn hover:bg-gradient-l-primary-gradient-solid hover:text-white hover:border-none
             bg-gradient-l-primary-gradient text-white font-bold border-none
             " type="button" color={isNotValid() || loading ? 'secondary' : 'primary'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
                                 {loading ? (<><Spinner size="sm" color="light" /> Carregando...</>) : "Enviar"}
 
-                                <i class="icon-angle-right ml-2"></i>  </button>
+                                <i className="icon-angle-right ml-2"></i>  </button>
 
                         </Form >
                     </CardBody>

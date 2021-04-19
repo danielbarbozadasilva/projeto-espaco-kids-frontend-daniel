@@ -17,10 +17,10 @@ const Footer = (props) => {
                 </div>
             </div>
       
-        <div class="nome">
-        <img class="imagemFooter" src={LogoFooter} />
+        <div className="nome">
+        <img className="imagemFooter" src={LogoFooter} />
 
-            <h3 class="nome-footer">Copyright © 2021 - Todos os direitos reservados</h3>
+            <h3 className="nome-footer">Copyright © 2021 - Todos os direitos reservados</h3>
         </div>
         <div className="infomacoes">
             <div className="address">
@@ -33,7 +33,7 @@ const Footer = (props) => {
                     Email: oficinas@espacokids.com</h6>
             </div>
 
-            <div class="phone">
+            <div className="phone">
                 <h6><i className="fab fa-whatsapp"></i>
                     Telefone: +55 21 24380548</h6>
             </div>

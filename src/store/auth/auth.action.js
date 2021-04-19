@@ -9,7 +9,9 @@ export const TYPES = {
     SIGN_UP: "SIGN_UP",
     SIGN_OUT: "SIGN_OUT",
     SIGN_ERROR: "SIGN_ERROR",
-    SIGN_LOADING: "SIGN_LOADING"
+    SIGN_LOADING: "SIGN_LOADING",
+    SIGN_UPDATE_REGISTER: "SIGN_UPDATE_REGISTER"
+
 }
 
 export const signInAction = (data) => {
@@ -50,10 +52,14 @@ export const signUpAction = (data) => {
                 http.defaults.headers['token'] = result.data.token;
             }
             dispatch({
-                type: TYPES.SIGN_UP, data: result.data  // mandei para a tamara
+                type: TYPES.SIGN_UP, data: result.data  
             })
 
             setTimeout(() => {
+                dispatch({
+                    type: TYPES.SIGN_UPDATE_REGISTER
+                    
+                })
                 history.push('/')
             }, 5000);
 
