@@ -6,10 +6,11 @@ import thunk from 'redux-thunk'
 // importação dos reducers
 import SignReducer from "./auth/auth.reducer";
 import OficinaReducer from "./oficina/oficina.reducer";
-
+import UsuarioReducer from "./usuario/usuario.reducer";
 const reducers = combineReducers({
     auth: SignReducer,
     oficina: OficinaReducer,
+    usuario: UsuarioReducer
 })
 
 // middlewares de redux

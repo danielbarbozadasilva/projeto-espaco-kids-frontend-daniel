@@ -5,16 +5,17 @@ const getServiceAllOficinas = () => http.get('/oficinas');
 
 const getServiceDetalhes = (codoficina) => http.get(`/oficinas/${codoficina}`);
 
-const createServiceOficinas = (id, data) => http.post(`/oficinas/${id}/inscricao`, data);
+const subServiceOficinas = (id, data) => http.post(`oficinas/${id}/inscricao`, data);
+
+const createServiceOficinas = (oficina) => http.post(`oficinas`, oficina);
 
 const deleteServiceOficinas = (id_oficinas, id_inscricao) => http.delete(`/oficinas/${id_oficinas}/inscricao/${id_inscricao}`);
 
-// exemplo
-// const createServiceOficinas = (data) => http.post('/oficinas/create', data);
 
 export {
     getServiceAllOficinas,
     getServiceDetalhes,
-    createServiceOficinas,
+    subServiceOficinas,
     deleteServiceOficinas,
+    createServiceOficinas
 }

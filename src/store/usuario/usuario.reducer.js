@@ -1,4 +1,4 @@
-import { TYPES } from './oficina.action'
+import { TYPES } from './usuario.action'
 
 const INITIAL_STATE = {
     all: [],
@@ -7,10 +7,10 @@ const INITIAL_STATE = {
 
 const reducer = (state = INITIAL_STATE, action) => { // tamara recebe
     switch (action.type) {
-        case TYPES.OFICINA_LOADING:
+        case TYPES.USUARIO_LOADING:
             state.loading = action.status
             return state;
-        case TYPES.OFICINA_ALL:
+        case TYPES.USUARIO_ALL:
             state.all = action.data
             state.loading = false
             return state;

@@ -24,6 +24,7 @@ const Perfil = () => {
             ...form,
             name: form.name.toUpperCase(),
             email: form.email.toLowerCase()
+            
         }
         console.log(nform)
     }

@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import CardItem from "../components/oficinas/card_item";
 import Loading from '../components/loading';
 import styled from 'styled-components';
-import { Breadcrumb, Col, Row } from 'reactstrap';
+import { Breadcrumb, Col, Row, Button } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOficinasAll } from '../store/oficina/oficina.action';
 
 const Oficinas = () => {
-    document.title =  "Casa da Dinda - Início";
+    document.title = "Casa da Dinda - Início";
 
     const dispatch = useDispatch();
 

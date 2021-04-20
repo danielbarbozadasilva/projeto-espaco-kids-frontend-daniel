@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components"
 
 const TitlePage = styled.div`
     color: #4b8EC7;
@@ -8,7 +8,11 @@ const TitlePage = styled.div`
     font-weight:500;
     border-bottom: 1px dotted #4b8EC7;
     padding: 5px;
+    display:flex;
+    justify-content: space-between
 `
+
+
 
 const Sign = styled.div`
     display:flex;
