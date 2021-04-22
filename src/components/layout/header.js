@@ -11,10 +11,8 @@ import {
     Container,
     Tooltip,
     Nav, UncontrolledDropdown, DropdownItem, DropdownToggle, DropdownMenu
-
 } from 'reactstrap';
 import styled from 'styled-components';
-import { AiFillRead } from 'react-icons/ai'
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutAction } from '../../store/auth/auth.action';
 import { isAuthenticated } from '../../config/auth';
@@ -44,9 +42,12 @@ const Header = (props) => {
         return (
             <header>
                 <SNavbar light expand="md" >
-
                     <Container>
-                        <NavbarToggler onClick={toggle} />
+
+                        {isAdmin ? (
+                            <NavbarToggler onClick={toggle} />
+                        ) : ""}
+
                         <Collapse isOpen={isOpen} navbar>
                             <SNavbarBrand tag={RRDNavLink} to="/" id="titleNav">
                                 <img className="logo-img" src={LogoHeader} />
@@ -94,7 +95,7 @@ const Header = (props) => {
                             <Nav >
                                 <UncontrolledDropdown nav inNavbar>
                                     <SDropdownToggle nav caret>
-                                        {usuario.nome}
+                                        {usuario.nomeusuario}
                                     </SDropdownToggle>
                                     <DropdownMenu>
                                         {isAdmin ? (
@@ -125,8 +126,7 @@ const SNavbar = styled(Navbar)`
     background-image: linear-gradient(to left, #ff425b, #c42252);
     box-shadow: 0 4px 12px 0 rgb(226 60 82 / 20%);
     padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-top: 0.5rem;
+    min-height: 50px;
     padding-bottom: 0.5rem;
     margin-bottom: 40px;
     font-weight: 700;
@@ -162,7 +162,6 @@ const SNavbarBrand = styled(NavbarBrand)`
 
 `
 const SDropdownToggle = styled(DropdownToggle)`
-
     color:white!important;
 
 `

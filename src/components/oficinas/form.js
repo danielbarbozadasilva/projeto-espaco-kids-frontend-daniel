@@ -31,7 +31,7 @@ const FormOficina = (props) => {
 
         ReactSwal.fire({
             icon: 'success',
-            title: `Oficina ${form.name} cadastrado com sucesso !`,
+            title: `Oficina ${form.nomeoficina} cadastrado com sucesso !`,
             showConfirmButton: false,
             showCloseButton: true,
             timer: 4000,
@@ -48,19 +48,39 @@ const FormOficina = (props) => {
         <BoxInscricao>
             <Col xs="12" sm="12" md="8" lg="8">
                 <FormGroup>
-                    <Label for="name">Nome da oficina</Label>
-                    <Input type="text" id="name" value={form.name || ""} onChange={handleChange}
-                        name="name" placeholder="Insira seu nome" />
+                    <Label for="nomeoficina">Nome da oficina</Label>
+                    <Input type="text" id="nomeoficina" value={form.nomeoficina || ""} onChange={handleChange}
+                        name="nomeoficina" placeholder="Insira o nome da oficina" />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="name">Nome do Coordenador</Label>
-                    <Input type="text" id="coordinator" value={form.coordinator || ""} onChange={handleChange}
-                        name="coordinator" placeholder="Insira do coordinator" />
+                    <Label for="urlimagemoficina">URL da imagem</Label>
+                    <Input type="text" id="urlimagemoficina" value={form.urlimagemoficina || ""} onChange={handleChange}
+                        name="urlimagemoficina" placeholder="Insira url da imagem" />
                 </FormGroup>
                 <FormGroup>
-                    <Label for="name">Data de Início</Label>
-                    <Input type="date" id="start_date" value={form.start_date || ""} onChange={handleChange}
-                        name="start_date" />
+                    <Label for="dataoficina">Data da oficina</Label>
+                    <Input type="date" id="dataoficina" value={form.dataoficina || ""} onChange={handleChange}
+                        name="dataoficina" />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="horaoficina">Horário da oficina</Label>
+                    <Input type="text" id="horaoficina" value={form.horaoficina || ""} onChange={handleChange}
+                        name="horaoficina" placeholder="Insira a hora da oficina" />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="name">Preço da oficina</Label>
+                    <Input type="text" id="valoroficina" value={form.valoroficina || ""} onChange={handleChange}
+                        name="valoroficina" placeholder="Insira o valor" />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="nomemonitor">Nome do monitor</Label>
+                    <Input type="text" id="nomemonitor" value={form.nomemonitor || ""} onChange={handleChange}
+                        name="nomemonitor" placeholder="Insira o nome do monitor" />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="name">Descrição da oficina</Label>
+                    <Input type="text" id="descricaoficina" value={form.descricaoficina || ""} onChange={handleChange}
+                        name="descricaoficina" placeholder="Insira a descrição da oficina"/>
                 </FormGroup>
                 <FormGroup>
                     <Button color="primary" onClick={handleSubmit}>Cadastrar</Button>

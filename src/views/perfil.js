@@ -4,8 +4,6 @@ import { TitlePage } from '../assets/styled';
 import { useSelector } from 'react-redux';
 import styled from "styled-components";
 
-
-
 const Perfil = () => {
     document.title = "Casa da Dinda";
     const perfil = useSelector(state => state.auth.usuario);
@@ -18,13 +16,18 @@ const Perfil = () => {
             [e.target.name]: e.target.value
         })
     }
+//    const formatDate = (data) => {
+//         const [y, m, d] = data.split('-')
+//         return `${d}/${m}/${y}`
+//     }
 
     const updateForm = () => {
         const nform = {
             ...form,
-            name: form.name.toUpperCase(),
-            email: form.email.toLowerCase()
-            
+            nameusuario: form.nameusuario,
+            email: form.email,
+            nomeparticipante: form.nomeparticipante,
+            datanascimento: form.datanascimento
         }
         console.log(nform)
     }
@@ -36,19 +39,23 @@ const Perfil = () => {
             <BoxInscricao>
                 <Col xs="12" sm="12" md="8" lg="8">
                     <FormGroup>
-                        <Label for="name">Nome</Label>
-                        <Input type="text" id="name" value={form.nome || ""} onChange={handleChange}
-                            name="nome" placeholder="Insira seu nome" className="text-uppercase" />
+                        <Label for="name">Nome do Usuário</Label>
+                        <Input type="text" id="name" value={form.nomeusuario || ""} onChange={handleChange}
+                            name="nome" placeholder="Insira seu nome" />
                     </FormGroup>
                     <FormGroup>
                         <Label for="email">Email</Label>
                         <Input type="email" id="email" value={form.email || ""} onChange={handleChange}
-                            name="email" placeholder="Insira seu email" className="text-lowercase" />
+                            name="email" placeholder="Insira seu email" />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="nascimento">Data Nascimento</Label>
-                        <Input type="date" id="nascimento" value={form.data_nascimento || ""} onChange={handleChange}
-                            name="data_nascimento" placeholder="Insira seu nascimento" />
+                        <Label for="nomeparticipante">Nome do Participante</Label>
+                        <Input type="text" name="nomeparticipante" id="nomeparticipante" value={form.nomeparticipante || ""} onChange={handleChange} placeholder="Insira o nome do participante" />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="datanascimento">Data de Nascimento</Label>
+                        <Input type="date" id="datanascimento" value={form.datanascimento || ""} onChange={handleChange}
+                            name="datanascimento" />
                     </FormGroup>
                     <FormGroup>
                         <Button color="primary" onClick={updateForm}>Cadastrar</Button>

@@ -12,8 +12,6 @@ const TitlePage = styled.div`
     justify-content: space-between
 `
 
-
-
 const Sign = styled.div`
     display:flex;
     justify-content: center;

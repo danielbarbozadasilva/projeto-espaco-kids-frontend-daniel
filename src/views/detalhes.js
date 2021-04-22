@@ -3,11 +3,8 @@ import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router";
 import { getServiceDetalhes } from '../services/oficinas.service';
 import Loading from '../components/loading';
-import TabelaInscritos from '../components/tabela-inscritos/index';
-import Inscricao from '../components/inscricaoform/index';
 import { Jumbotron, 
-         Navbar, 
-         Nav, 
+         Navbar,
          Button } from 'reactstrap';
 import styled from 'styled-components';
 import { AiFillCloseSquare, AiFillCheckSquare } from "react-icons/ai";
@@ -115,28 +112,3 @@ const SJumbotron = styled(Jumbotron)`
         font-size: 20px;
     }
 `
-const SNavbar = styled(Navbar)`
-    background-color: none !important;
-    margin: 10px 0;
-    padding: 10px 0;
-    border-bottom: 1px dotted #7868e6;
-    display: flex;
-    
-    .info {
-        flex: 1;
-        font-family: 'Pangolin', cursive;
-        font-size: 25px;
-    }
-`
-
-
-// tela de detalhes
-
-// Menu de toogle de troca de tela (Botão)
-// tela de inscrição / tabela
-
-
-
-
-
-

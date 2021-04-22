@@ -1,20 +1,20 @@
 import { Table } from 'reactstrap'
 
-const TableList = ({ oficinas }) => {
+const TableList = ({ usuarios }) => {
 
     return (
         <Table>
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>NOME DA OFICINA</th>
+                    <th>NOME DO USUÁRIO</th>
                 </tr>
             </thead>
             <tbody>
-                {oficinas?.map((oficinas, i) => (
+                {usuarios?.map((usuarios, i) => (
                     <tr key={i}>
-                        <th scope="row">{oficinas.codoficina}</th>
-                        <td>{oficinas.nomeoficina}</td>
+                        <th scope="row">{usuarios.id}</th>
+                        <td>{usuarios.nomeusuario}</td>
                     </tr>
                 ))}
             </tbody>

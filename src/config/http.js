@@ -1,5 +1,5 @@
 import axios from 'axios'; // import da dependencia
-import { getToken, removeToken } from './auth';
+import { getToken } from './auth';
 import history from './history';
 import store from '../store'
 import { logoutAction } from '../store/auth/auth.action';

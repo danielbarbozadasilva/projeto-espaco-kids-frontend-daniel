@@ -1,15 +1,15 @@
 
 import http from '../config/http';
 
-const getServiceAllUsuarios = () => http.get('/usuarios');
+const getServiceAllUsuarios = () => http.get('/participante');
 
-const getServiceDetalhesUsuarios = (id) => http.get(`/usuarios/${id}`);
+const getServiceDetalhesUsuarios = (id) => http.get(`/participante/${id}`);
 
-const subServiceUsuarios = (id, data) => http.post(`usuarios/${id}/inscricao`, data);
+const subServiceUsuarios = (id, data) => http.post(`participante/${id}/inscricao`, data);
 
-const createServiceUsuarios = (usuarios) => http.post(`usuarios`, usuarios);
+const createServiceUsuarios = (participante) => http.post(`participante`, participante);
 
-const deleteServiceUsuarios = (id, id_inscricao) => http.delete(`/usuarios/${id}/inscricao/${id_inscricao}`);
+const deleteServiceUsuarios = (id, id_inscricao) => http.delete(`/participante/${id}/inscricao/${id_inscricao}`);
 
 
 export {

@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import {
     Form, FormGroup, Input,
     Card, Col, CardBody,
-    CardHeader,
-    Button, CardFooter, Label, Alert, Spinner
+    CardFooter, Alert, Spinner
 } from 'reactstrap';
 import styled from 'styled-components';
 
@@ -81,7 +80,7 @@ const SignIn = () => {
                             <button data-testing-id="funnel-survey-select_category-next" class="rounded-full px-6 py-2 shadow-redBtn hover:bg-gradient-l-primary-gradient-solid hover:text-white hover:border-none
             bg-gradient-l-primary-gradient text-white font-bold border-none
             " type="button" color={isNotValid() || loading ? 'secondary' : 'primary'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
-                                {loading ? (<><Spinner size="sm" color="light" /> Carregando...</>) : "Enviar"}
+                                {loading ? (<><Spinner size="sm" color="light" /> Carregando...</>) : "Entrar"}
 
                                 <i className="icon-angle-right ml-2"></i>  </button>
 

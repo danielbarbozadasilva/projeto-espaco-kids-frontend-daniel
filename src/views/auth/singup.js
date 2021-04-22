@@ -21,15 +21,14 @@ const SignUp = () => {
     const registered = useSelector(state => state.auth.registered)
 
     const [form, setForm] = useState({
-        nomeparticipante: 'carolina',
-        nome: 'Marilene',
-        datanascimento: '2011-09-09',
-        cpf: '111.222.333-90',
-        telefone: '2199334455',
-        endereco: 'Rua abc, 235',
-        tipo: '2',
-        email: 'carolina@gmail.com',
-        senha: 'carolina',    
+        nomeusuario:"",
+        datanascimento:"",
+        nomeparticipante:"",
+        cpf:"",
+        telefone:"",
+        endereco:"",
+        email:"",
+        senha:"",
     })
     const handleChange = (props) => {
         const { value, name } = props.target;
@@ -59,14 +58,14 @@ const SignUp = () => {
     }
 
     const isNotValid = () => {
-        const inputs = ['nome', 'datanascimento', 'email', 'senha']
+        const inputs = ['nomeusuario', 'datanascimento', 'nomeparticipante', 'cpf', 'telefone', 'endereco', 'email', 'senha']
         const invalid = (label) => !Object.keys(form).includes(label) || form[label].length === 0
         return inputs.some(item => invalid(item))
     }
 
     useEffect(() => {
 
-        if(error.length > 0){
+        if (error.length > 0) {
             setHasError();
         }
 
@@ -78,7 +77,7 @@ const SignUp = () => {
         console.log(registered)
     }, [error, registered])
 
-   
+
 
 
     return (
@@ -98,16 +97,17 @@ const SignUp = () => {
                     <CardBody>
                         <Form>
                             <FormGroup>
-                                <Label for="nomeparticipante">Nome do participante:</Label>
-                                <Input disabled={loading} type="text" name="nomeparticipante" id="nomeparticipante" onChange={handleChange} value={form.nomeparticipante || ""} placeholder="Informe o nome do participante" />
+                                <Label for="nomeusuario">Nome do Usuário:</Label>
+                                <Input disabled={loading} type="text" name="nomeusuario" id="nomeusuario" onChange={handleChange} value={form.nomeusuario || ""} placeholder="Informe o nome do usuário" />
                             </FormGroup>
-                            <FormGroup>
-                                <Label for="nome">Nome:</Label>
-                                <Input disabled={loading} type="text" name="nome" id="nome" onChange={handleChange} value={form.nome || ""} placeholder="Informe o nome" />
-                            </FormGroup>
+
                             <FormGroup>
                                 <Label for="datanascimento">Data de Nascimento:</Label>
                                 <Input disabled={loading} type="date" name="datanascimento" id="datanascimento" onChange={handleChange} value={form.datanascimento || ""} placeholder="Informe o e-mail" />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="nomeparticipante">Nome do Participante:</Label>
+                                <Input disabled={loading} type="text" name="nomeparticipante" id="nomeparticipante" onChange={handleChange} value={form.nomeparticipante || ""} placeholder="Informe o nome do participante" />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="cpf">Cpf:</Label>
@@ -122,24 +122,24 @@ const SignUp = () => {
                                 <Input disabled={loading} type="text" name="endereco" id="endereco" onChange={handleChange} value={form.endereco || ""} placeholder="Informe o endereço" />
                             </FormGroup>
 
-                                <FormGroup>
-                                    <Label for="email">E-mail:</Label>
-                                    <Input disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
-                                </FormGroup>
+                            <FormGroup>
+                                <Label for="email">E-mail:</Label>
+                                <Input disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
+                            </FormGroup>
 
-                                <FormGroup>
-                                    <Label for="senha">Senha:</Label>
-                                    <Input disabled={loading} type="password" name="senha" id="senha" onChange={handleChange} value={form.senha || ""} placeholder="Informe sua senha" />
-                                </FormGroup>
+                            <FormGroup>
+                                <Label for="senha">Senha:</Label>
+                                <Input disabled={loading} type="password" name="senha" id="senha" onChange={handleChange} value={form.senha || ""} placeholder="Informe sua senha" />
+                            </FormGroup>
 
-                                <Button color={isNotValid() || loading ? 'secondary' : 'primary'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
-                                    {loading ? (<><Spinner size="sm" color="light" /> Carregando...</>) : "Cadastrar"}
-                                </Button>
+                            <Button color={isNotValid() || loading ? 'secondary' : 'primary'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
+                                {loading ? (<><Spinner size="sm" color="light" /> Carregando...</>) : "Cadastrar"}
+                            </Button>
                         </Form >
                     </CardBody>
-                        <CardFooter className="text-muted">
-                            Já tem acesso ? <Link to="/signin">Faça o Login</Link>
-                        </CardFooter>
+                    <CardFooter className="text-muted">
+                        Já tem acesso ? <Link to="/signin">Faça o Login</Link>
+                    </CardFooter>
 
                 </Card>
             </Col>

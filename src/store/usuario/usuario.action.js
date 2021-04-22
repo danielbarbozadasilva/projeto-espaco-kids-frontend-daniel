@@ -13,6 +13,7 @@ export const getUsuariosAll = () => {
 
         try {
             const all = await getServiceAllUsuarios()
+            console.log(all)
             dispatch({
                 type: TYPES.USUARIO_ALL,
                 data: all.data
