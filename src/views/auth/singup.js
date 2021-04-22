@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 const SignUp = () => {
 
     const [hasError, setHasError] = useState(false)
-    const [success, showSuccess] = useState(false)
+    const [success, setSuccess] = useState(false)
     const dispatch = useDispatch();
     const loading = useSelector(state => state.auth.loading)
     const error = useSelector(state => state.auth.error)
@@ -66,11 +66,13 @@ const SignUp = () => {
     useEffect(() => {
 
         if (error.length > 0) {
-            setHasError();
+            setHasError(true);
+        }else{
+            setHasError(false);
         }
 
         if (registered) {
-            showSuccess(true)
+            setSuccess(true)
             setForm({})
         }
         console.log(error)
@@ -83,7 +85,7 @@ const SignUp = () => {
     return (
         <Sign>
             <Col sm={12} md={4} lg={5}>
-                <Alert color="success" isOpen={success} toggle={() => showSuccess(!success)}>
+                <Alert color="success" isOpen={success} toggle={() => setSuccess(!success)}>
                     <div><strong>Usuario </strong> cadastrado com sucesso.</div>
                     <div>Você será redirecionado em 5 segundos.</div>
 

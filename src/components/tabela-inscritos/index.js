@@ -2,64 +2,63 @@
 import { useParams } from 'react-router';
 import { deleteServiceOficinas } from '../../services/oficinas.service';
 import { useState } from 'react';
-import { Table, 
-         Button, 
-         Modal, 
-         ModalHeader, 
-         ModalBody, 
-         ModalFooter,
-         } from 'reactstrap';
+import {useDispatch} from 'react-redux';
+import {
+    Table,
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter,
+} from 'reactstrap';
 import { FaTrash } from 'react-icons/fa';
-import styled from 'styled-components';        
+import styled from 'styled-components';
 import ReactSwal from '../../plugins/alert';
 
 
-const Tabela = ({inscritos, update}) => {
+const Tabela = ({ inscritos, update }) => {
 
-    console.log(inscritos);
-
-    const { id: id_oficinas } = useParams(); // rename id para id_oficinas
+    const dispatch = useDispatch()
 
     const [modal, setModal] = useState({
         isOpen: false,
         data: null
     })
 
-
     const apagarInscricao = () => {
         if (modal.data.id) {
-            deleteServiceOficinas(id_oficinas, modal.data.id)
-            .then(() => {
-                ReactSwal.fire({
-                    icon: 'success',
-                    title: `Participante ${modal?.data?.nomeparticipante?.split(" ")[0]} excluído com sucesso!`,
-                    showConfirmButton: false,
-                    showCloseButton: true,
+            dispatch(deleteServiceOficinas(modal.data.id))
+                .then(() => {
+                    ReactSwal.fire({
+                        icon: 'success',
+                        title: `Participante ${modal?.data?.nomeparticipante?.split(" ")[0]} excluído com sucesso!`,
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                    })
+                    toggleModal();
                 })
-                update(true)
-            })
-            .catch(erro => console.log('Tente novamente!'))
-        }    
+                .catch(erro => console.log('Tente novamente!'))
+        }
     }
 
     const openModal = (data = null) => {
-      setModal({
-        isOpen: true,
-        data
-       })
+        setModal({
+            isOpen: true,
+            data
+        })
     }
 
     const toggleModal = () => {
-       setModal({
-        isOpen: false,
-        data: null
-       })
+        setModal({
+            isOpen: false,
+            data: null
+        })
     }
 
 
     return (
         <div>
-            {inscritos && inscritos.length ? ( 
+            {inscritos && inscritos.length ? (
                 <div>
                     <STable responsive size="sm">
                         <thead>
@@ -80,7 +79,7 @@ const Tabela = ({inscritos, update}) => {
                             {inscritos && inscritos.map((valores, indice) => (
                                 <TableTr key={indice}>
                                     <td>{valores.nomeparticipante}</td>
-                                    <td>{ new Date(valores.datanascimentoparticipante).toLocaleDateString('pt-BR', {timeZone: 'UTC'}) }</td> 
+                                    <td>{new Date(valores.datanascimentoparticipante).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</td>
                                     <td>{valores.nomeresponsavel}</td>
                                     <td>{valores.telefonecontato}</td>
                                     {/* <td>{valores.telefonemergencia}</td> */}
@@ -88,7 +87,7 @@ const Tabela = ({inscritos, update}) => {
                                     <td>{valores.emailresponsavel}</td>
                                     <td>{valores.enderecoresponsavel}</td>
                                     <td>{valores.observacoes}</td>
-                                    
+
                                     <td>
                                         <Button alt="Cancelar a Inscrição" size="sm" className="text-warning" color="link" onClick={() => openModal(valores)}><FaTrash size="20" /></Button>
                                     </td>
@@ -102,19 +101,19 @@ const Tabela = ({inscritos, update}) => {
                         <ModalBody>
                             Deseja Excluir o Participante <strong>{modal?.data?.nomeparticipante?.split(" ")[0]}</strong> ?
                         </ModalBody>
-                        
-                        <ModalFooter>                            
+
+                        <ModalFooter>
                             <Button size="sm" color="danger" onClick={apagarInscricao}>Sim</Button>
                             <Button size="sm" color="warning" onClick={toggleModal}>Não</Button>
                         </ModalFooter>
                     </Modal>
                 </div>
 
-                ) : (
-                    <div className="noparticipants">Nenhum participante cadastrado!</div> 
-                )}
+            ) : (
+                <div className="noparticipants">Nenhum participante cadastrado!</div>
+            )}
         </div>
-       )
+    )
 }
 
 export default Tabela;

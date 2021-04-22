@@ -2,7 +2,8 @@ import { TYPES } from './oficina.action'
 
 const INITIAL_STATE = {
     all: [],
-    loading: false
+    loading: false,
+    details: {}
 };
 
 const reducer = (state = INITIAL_STATE, action) => { // tamara recebe

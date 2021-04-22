@@ -1,4 +1,4 @@
-import { createServiceUsuarios, getServiceAllUsuarios} from '../../services/usuario.service';
+import { createServiceUsuario, getServiceAllUsuarios} from '../../services/usuario.service';
 
 export const TYPES = {
     USUARIO_LOADING: "USUARIO_LOADING",
@@ -30,7 +30,7 @@ export const createUsuario = (usuario) => {
     return async (dispatch) => {
         dispatch({ type: TYPES.USUARIO_LOADING, status: true })
         try {
-            const result = await createServiceUsuarios(usuario)
+            const result = await createServiceUsuario(usuario)
             dispatch(getUsuariosAll())
 
         } catch (error) {
