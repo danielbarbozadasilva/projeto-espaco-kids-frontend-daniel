@@ -102,7 +102,6 @@ export default Detalhes;
 const SJumbotron = styled(Jumbotron)`
     background-color: #FFFDE7;
     margin-top: 10px;
-    font-family: 'Pangolin', cursive;
 
     .nomeoficina {
         font-size: 35px;   

@@ -19,6 +19,7 @@ import { isAuthenticated } from '../../config/auth';
 import history from '../../config/history';
 
 import LogoHeader from '../../assets/img/logo.png';
+import '../../assets/css/style.css';
 
 const Header = (props) => {
 
@@ -65,7 +66,7 @@ const Header = (props) => {
 
     return (
         <header>
-            <SNavbar color="dark" dark expand="md">
+            <SNavbar className="barraHeader" color="dark" dark expand="md">
                 <Container>
 
                     <NavbarBrand tag={RRDNavLink} to="/" id="logoMain">
@@ -125,12 +126,12 @@ export default Header;
 const SNavbar = styled(Navbar)`
     background-image: linear-gradient(to left, #ff425b, #c42252);
     box-shadow: 0 4px 12px 0 rgb(226 60 82 / 20%);
-    padding-left: 1.5rem;
     min-height: 50px;
     padding-bottom: 0.5rem;
-    margin-bottom: 40px;
-    font-weight: 700;
+    font-size: 18px;
+    font-weight: 600;
     border-style: none;
+
 
 `
 

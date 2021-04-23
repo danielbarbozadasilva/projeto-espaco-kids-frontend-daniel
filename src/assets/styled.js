@@ -1,13 +1,11 @@
 import styled from "styled-components"
 
 const TitlePage = styled.div`
-    color: #4b8EC7;
-    font-family: 'Roboto', sans-serif;
-    font-size:22px;
-    margin-bottom: 10px;
+    color: back;
+    font-size: 22px;
     font-weight:500;
+    padding-bottom: 25px;
     border-bottom: 1px dotted #4b8EC7;
-    padding: 5px;
     display:flex;
     justify-content: space-between
 `

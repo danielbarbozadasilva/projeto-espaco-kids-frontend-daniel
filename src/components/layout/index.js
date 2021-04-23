@@ -4,21 +4,24 @@ import Footer from './footer';
 import styled from 'styled-components';
 
 const Layout = (props) => {
-    
-        document.title = props.nomeDaPagina;
-        return (
-            <>
-                <Header titulo={props.nomeDaPagina} />
-                <Main className="container-fluid">
-                    {props.children}
-                </Main>
-                <Footer titulo={props.nomeDaPagina}/>
-            </>
-        )
+
+    document.title = props.nomeDaPagina;
+    return (
+        <>
+            <Header titulo={props.nomeDaPagina} />
+            <Main className="container-fluid">
+                {props.children}
+            </Main>
+            <Footer titulo={props.nomeDaPagina} />
+        </>
+    )
 }
 
 export default Layout;
 
 const Main = styled.main`
+
+    width: 85%;
     flex: 1;
+    
 `

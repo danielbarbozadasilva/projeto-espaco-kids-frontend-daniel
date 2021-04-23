@@ -119,8 +119,7 @@ const Tabela = ({ inscritos, update }) => {
 export default Tabela;
 
 const STable = styled(Table)`
-   font-family: 'Raleway', sans-serif;
-   margin-bottom: 50px;
+    margin-bottom: 50px;
 `
 const TableTr = styled.tr`
 

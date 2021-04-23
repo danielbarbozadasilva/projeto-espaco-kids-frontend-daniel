@@ -27,7 +27,7 @@ const CardItem = (props) => {
             <CardTitle><strong>Data: </strong> { new Date(dataoficina).toLocaleDateString('pt-BR', {timeZone: 'UTC'}) }</CardTitle>
             <CardTitle><strong>Valor: R$ </strong> {String(valoroficina).replace('.',',')} </CardTitle>
           
-            <Button text="center" color="link" size="lg"
+            <Button text="center" size="lg"
                 tag={Link} to={`/detalhes/${codoficina}`}>Informações
             </Button>
         </CardBody>
@@ -40,16 +40,16 @@ const CardItem = (props) => {
 export default CardItem;
 
 const SCard =  styled(Card)`
-
-    background-color: #FFFDE7;
-    border: none;
-    font-family: 'Pangolin', cursive;
+  
+    width: 20rem;
+    
+    background-color: #FFF;
     font-size: 20px;
     text-align: center;
     margin-bottom: 20px;
-
+    
     .cardimg {
-      height: 260px;
+      height: 220px;
       object-fit: cover;
     }
 
@@ -58,8 +58,8 @@ const SCard =  styled(Card)`
     }
 
     :hover {
-        background-color: #FFEB3B;
+        box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.253)!important;
         transition:1s;
-        opacity: 0.7;
+        opacity: 0.5;
     }
 `

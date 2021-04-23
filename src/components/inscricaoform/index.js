@@ -109,7 +109,6 @@ export default Inscricao;
 const BoxInscricao = styled(Row)`
 
     button {
-        font-family: 'Raleway', sans-serif;
         font-weight: 600;
         margin-bottom: 10px 0;
     }
@@ -117,24 +116,20 @@ const BoxInscricao = styled(Row)`
 
 const SFormGroup = styled(FormGroup)`
     width: 100%;
-    font-family: 'Raleway', sans-serif;
     font-size: 16px;
 
     label {
-        font-family: 'Raleway', sans-serif;
         font-weight: 600;
     }
 
     input {
-    background-color: #e4fbff;
-    width: 100%;
-    margin-top: 1px;
-    padding: 5px;
-    border-style: none;
-    border-radius: 5px;
-    font-family: 'Raleway', sans-serif;
-    font-size: 16px;
-    color: #16697a;
+        width: 100%;
+        margin-top: 1px;
+        padding: 5px;
+        border-style: none;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #16697a;
     }
 `
 

@@ -22,7 +22,7 @@ const GerenciarOficinas = () => {
         <>
             <TitlePage>
                 Oficinas
-              <Button onClick={() => setIsForm(!isForm)} size="sm" color="info">{isForm ? 'Listar' : 'Cadastrar'}</Button>
+              <Button onClick={() => setIsForm(!isForm)} size="sm">{isForm ? 'Listar' : 'Cadastrar'}</Button>
             </TitlePage>
 
             {isForm ? <FormOficina setIsForm={setIsForm} /> : <TableList oficinas={oficinas} />}

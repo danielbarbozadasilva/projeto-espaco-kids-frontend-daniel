@@ -21,7 +21,7 @@ const Oficinas = () => {
 
 
     const MapearOficinas = (oficinas) => oficinas.map((item, i) => (
-        <Col md="3" xl="3" sm="12" xs="12" key={i} className="mb-4">
+        <Col md="4" xl="4" sm="12" xs="12" key={i} className="mb-4">
             <CardItem item={{ ...item, status: true }} />
         </Col>
     ))

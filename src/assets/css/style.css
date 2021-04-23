@@ -1,6 +1,10 @@
 
 /* HEADER */
 /* logo espaço-kids */
+.barraHeader{
+    margin-bottom: 60px;
+  }
+
 .logo-img{
     width: 160px;
     height: 50px;
@@ -10,6 +14,7 @@
     background-color: #FFFDE7;
 }
 
+
 .logo {
     display: block;
     max-width: 100%;
@@ -17,19 +22,29 @@
     padding: 20px 0;
 }
 
+body {
+    min-height: 100vh;
+    background: #fafafa;
+}
+
+
 @media (max-width: 768px) {
 
 }
 
 @media (max-width: 768px) {
 
-  
+ 
+}
+.btn{
+    background-image: linear-gradient(to left, #ff425b, #c42252);
+    border: none;
+    color: #fff;
 }
 
 /* TABELA INSCRITOS */
 
 .noparticipants {
-    font-family: 'Lato', sans-serif;
     font-size: 25px;
     margin-bottom: 15px;;
 }
@@ -80,36 +95,38 @@
 }
 
 
-    .form-group .label {
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: #000;
-        font-weight: 700;
-    }
+.form-group .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #000;
+    font-weight: 700;
+}
 
-    .text-login{
-        line-height: 1.5;
-        font-weight: 500;
-        color: #000;
-        padding-left: 20px;
-    }
+.text-login{
+    line-height: 1.5;
+    font-weight: 500;
+    color: #000;
+    padding-left: 20px;
+}
 
-    .text-muted{
-        font-size: 16px;
-        line-height: 1.8;
-        font-weight: 900;
-        background: #f8f9fd;
-        color: gray;
-        letter-spacing: 1px;
-    }
+.text-muted{
+    font-size: 16px;
+    line-height: 1.8;
+    font-weight: 900;
+    background: #f8f9fd;
+    color: gray;
+    letter-spacing: 1px;
+}
 
 /* FOOTER */
 footer {
+    
     font-size: 24px;
     /* altera o tamanho da fonte para 24px */
     display: flex;
     justify-content: space-between;
+    margin-top: 25px;
     flex-wrap: wrap;
     background-image: linear-gradient(to left, #ff425b, #c42252);
     color: white;
@@ -133,7 +150,7 @@ footer .tituloRedesSociais {
     text-transform: uppercase;
     /* caixa alta */
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 600;
     /* altera o peso da fonte, deixando mais pesada */
     letter-spacing: 3px;
     /* espaçamento entre as letras */
