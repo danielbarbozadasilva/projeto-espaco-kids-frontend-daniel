@@ -78,10 +78,7 @@ const SignUp = () => {
 
     return (
         <>
-
             <div className="colunasFormularios">
-
-
                 <div class="coluna1">
                     <h2 tag="h4" className="text-cadastro">Cadastre-se</h2>
                     <FormGroup>
@@ -141,33 +138,4 @@ const SignUp = () => {
     );
 }
 
-//     return (
-//         <Sign>
-//             <Col sm={12} md={4} lg={4}>
-
-//                 <SCard>
-//                     <CardHeader tag="h4" className="text-center">Cadastre-se</CardHeader>
-//                     <CardBody className="form-cad-sigup">
-//                         <Form>
-
-//                         </Form >
-//                     </CardBody>
-//                     <CardFooter className="text-muted">
-//                         Já tem acesso ? <Link to="/signin">Faça o Login</Link>
-//                     </CardFooter>
-
-//                 </SCard>
-//             </Col>
-//         </Sign>
-//     )
-// }
-
 export default SignUp;
-
-
-// const SCard = styled(Card)`
-//     margin: 100px 0;
-//     box-shadow: 0px 2px 15px 6px rgba(0,0,0,0.11);
-//     padding-top: 10px;
-// `
-
