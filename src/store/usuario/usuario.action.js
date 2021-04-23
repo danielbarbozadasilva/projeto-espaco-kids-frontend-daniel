@@ -30,7 +30,7 @@ export const createUsuario = (usuario) => {
     return async (dispatch) => {
         dispatch({ type: TYPES.USUARIO_LOADING, status: true })
         try {
-            const result = await createServiceUsuario(usuario)
+            await createServiceUsuario(usuario)
             dispatch(getUsuariosAll())
 
         } catch (error) {

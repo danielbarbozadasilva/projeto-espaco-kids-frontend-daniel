@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 
-import { Sign } from '../../assets/styled';
-import { Link } from 'react-router-dom';
 import { signUpAction } from '../../store/auth/auth.action'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import '../../assets/css/style.css';
-import styled from 'styled-components';
 
-import { Form, FormGroup, Label, Input, FormFeedback, FormText, Alert, Col, Button, Spinner } from 'reactstrap';
+import { FormGroup, Label, Input, Alert, Button, Spinner } from 'reactstrap';
 
 const SignUp = () => {
 
@@ -84,15 +81,6 @@ const SignUp = () => {
 
             <div className="colunasFormularios">
 
-                <Alert color="success" isOpen={success} toggle={() => setSuccess(!success)}>
-                    <div><strong>Usuario </strong> cadastrado com sucesso.</div>
-                    <div>Você será redirecionado em 5 segundos.</div>
-
-                </Alert>
-                <Alert color="danger" isOpen={hasError} toggle={closeError}>
-                    <div><strong>OPS !!! </strong> Aconteceu um erro.</div>
-                    <small>Verifique usuário e senha</small>
-                </Alert>
 
                 <div class="coluna1">
                     <h2 tag="h4" className="text-cadastro">Cadastre-se</h2>
@@ -137,6 +125,16 @@ const SignUp = () => {
                     <Button className="botaoFormulario" color={isNotValid() || loading ? 'secondary' : 'primary'} disabled={isNotValid()} size="md" block onClick={submitForm}>
                         {loading ? (<><Spinner size="sm" color="light" /> Carregando...</>) : "Cadastrar"}
                     </Button>
+                    <Alert color="success" isOpen={success} toggle={() => setSuccess(!success)}>
+                        <div><strong>Usuario </strong> cadastrado com sucesso.</div>
+                        <div>Você será redirecionado em 5 segundos.</div>
+
+                    </Alert>
+                    <Alert color="danger" isOpen={hasError} toggle={closeError}>
+                        <div><strong>OPS !!! </strong> Aconteceu um erro.</div>
+                        <small>Verifique usuário e senha</small>
+                    </Alert>
+
                 </div>
             </div>
         </>

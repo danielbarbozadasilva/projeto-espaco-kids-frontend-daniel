@@ -11,14 +11,14 @@ const Footer = (props) => {
             <div className="redes-sociais">
                 <h3 className="tituloRedesSociais">Redes sociais</h3>
                 <div className="icons-redes-sociais">
-                    <a href="https://www.facebook.com/" target="_blank"><i className="fab fa-facebook-square"></i></a>
-                    <a href="https://www.instagram.com/" target="_blank"><i className="fab fa-instagram-square"></i></a>
-                    <a href="https://api.whatsapp.com/send?phone=+5521992690225" target="_blank"><i className="fab fa-whatsapp-square"></i></a>
+                    <a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><i className="fab fa-facebook-square"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noreferrer"><i className="fab fa-instagram-square"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=+5521992690225" target="_blank" rel="noreferrer"><i className="fab fa-whatsapp-square"></i></a>
                 </div>
             </div>
       
         <div className="nome">
-        <img className="imagemFooter" src={LogoFooter} />
+        <img className="imagemFooter" src={LogoFooter} alt="imagem do footer" />
 
             <h3 className="nome-footer">Copyright © 2021 - Todos os direitos reservados</h3>
         </div>

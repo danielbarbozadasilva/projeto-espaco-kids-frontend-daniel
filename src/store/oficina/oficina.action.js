@@ -30,7 +30,7 @@ export const createOficina = (oficina) => {
     return async (dispatch) => {
         dispatch({ type: TYPES.OFICINA_LOADING, status: true })
         try {
-            const result = await createServiceOficinas(oficina)
+            await createServiceOficinas(oficina)
             dispatch(getOficinasAll())
 
         } catch (error) {
