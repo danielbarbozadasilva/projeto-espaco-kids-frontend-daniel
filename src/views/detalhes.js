@@ -8,46 +8,30 @@ import { Jumbotron,
          Button } from 'reactstrap';
 import styled from 'styled-components';
 import { AiFillCloseSquare, AiFillCheckSquare } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { getDetails } from "../store/oficina/oficina.action";
+import Tabela from '../components/tabela'
 
 
 const Detalhes = (props) => {
     const { codoficina } = useParams();
-    const { history } = props // pegando o histórico do componente
+    const dispatch = useDispatch();
 
-
-    const [loading, setLoading] = useState(false);
-    const [detalhes, setDetalhes] = useState({});
-    const [update, setUpdate] = useState(false)
-    const [isSub, setSub] = useState(false)
-
-
-    const getDetalhes = useCallback(async () => {
-
-        try {
-            setLoading(true)
-            const res = await getServiceDetalhes(codoficina);
-            setDetalhes(res.data);
-            setLoading(false);
-
-        } catch (error) {
-            console.log('-----', error)
-            history.push('/?error=404')
-        }
-        
-    }, [codoficina, history]);
-
+    const isAdmin = useSelector(state => state.auth.isAdmin)
+    const detalhe = useSelector(state => state.oficina.details)
+    const registered = useSelector(state => state.oficina.details.registered)
     
-    // use Effect é o ciclo de vida que executa antes* de renderizar a página.
-    useEffect(() => {
-        console.log('start')
-        getDetalhes()
-        setUpdate(false)
+    const loading = useSelector(state => state.oficina.loading)
 
-    }, [getDetalhes, update])
+
+    useEffect(() => {
+        dispatch(getDetails(codoficina))
+    }, [dispatch, codoficina])
+
 
 
     const Detalhamento = ({ nomeoficina, dataoficina, horaoficina, valoroficina, nomemonitor, descricaoficina  }) => (
-        <SJumbotron style={{ backgroundColor: isSub ? '#D4EDDA' : '#F8D7DA' }}>
+        <SJumbotron style={{ backgroundColor: registered ? '#D4EDDA' : '#F8D7DA' }}>
             <div className="container">
                 <p className="nomeoficina">{nomeoficina}</p>
                 <p className="info_oficina">
@@ -72,10 +56,8 @@ const Detalhes = (props) => {
 
     const Menu = () => (
         <Navbar expand="md mb-4">
-
-            <Button onClick={() => setSub(!isSub)} color={!isSub ? "primary" : "secondary"} size="sm">
-
-                {!isSub ? (<><AiFillCheckSquare /> Inscreva-se </>) : (<><AiFillCloseSquare /> Remover Inscrição</>)}
+            <Button onClick={() => { }} color={!registered ? "primary" : "secondary"} size="sm">
+                {!registered ? (<><AiFillCheckSquare /> Inscreva-se </>) : (<><AiFillCloseSquare /> Remover Inscrição</>)}
             </Button>
         </Navbar>
     )
@@ -83,25 +65,28 @@ const Detalhes = (props) => {
     const montarTela = (detalhe) => (
         <div>
             {Detalhamento(detalhe)}
-            {Menu()}
+            {!isAdmin ? Menu() : <Tabela inscritos={detalhe.inscricoes} />}
 
         </div>
     )
 
     return (
-        loading 
-            ? <Loading /> 
-            : montarTela(detalhes)
-    )
+        loading
+            ? <Loading />
+            : montarTela(detalhe)
 
+    )
 }
 
+
 export default Detalhes;
+
 
 
 const SJumbotron = styled(Jumbotron)`
     background-color: #FFFDE7;
     margin-top: 10px;
+    font-family: 'Pangolin', cursive;
 
     .nomeoficina {
         font-size: 35px;   

@@ -9,6 +9,7 @@
     height: 50px;
 }
 
+
 .colunasFormularios{
     display: flex;
     /* flex container, transforma os filhos em flex itens */
@@ -61,7 +62,7 @@ body {
 
  
 }
-.btn{
+.estilo-botao{
     background-image: linear-gradient(to left, #ff425b, #c42252);
     border: none;
     color: #fff;
