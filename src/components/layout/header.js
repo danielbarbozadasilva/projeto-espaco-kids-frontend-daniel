@@ -19,8 +19,9 @@ import { isAuthenticated } from '../../config/auth';
 import history from '../../config/history';
 
 import LogoHeader from '../../assets/img/logo.png';
-import '../../assets/css/style.css';
 
+import '../../assets/css/style.css';
+import {CriarCarousel} from '../carousel'
 const Header = (props) => {
 
     const dispatch = useDispatch()
@@ -39,7 +40,68 @@ const Header = (props) => {
     const location = useLocation();
 
     // pathname - Retorna o endereço da URL atual
-    if (location.pathname === '/signin') {
+    if (location.pathname === '/') {
+
+        return (
+            <header>
+                <SNavbar className="barraHeader" color="dark" dark expand="md">
+                    <Container>
+    
+                        <NavbarBrand tag={RRDNavLink} to="/" id="logoMain">
+                            <img className="logo-img" src={LogoHeader} alt="logo" />
+                        </NavbarBrand>
+                        <Tooltip placement="top" isOpen={tooltipOpen} autohide={false} target="logoMain" toggle={toggleTooltip}>
+                            Voltar ao Menu Principal
+                        </Tooltip>
+                        {isAuthenticated() ? (
+                            <React.Fragment>
+                                <SCollapse isOpen={isOpen} navbar>
+                                    <Nav className="mr-auto" navbar>
+                                        <NavItem>
+                                            <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/">Inicio</SNavLink>
+                                        </NavItem>
+                                        {isAdmin ? (
+                                            <NavItem>
+                                                <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/oficinas" >Oficinas</SNavLink>
+                                            </NavItem>
+                                        ) : ""}
+                                        <NavItem >
+                                            <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/sobre" >Outros</SNavLink>
+                                        </NavItem>
+                                    </Nav>
+                                </SCollapse>
+    
+                                <Nav >
+                                    <UncontrolledDropdown nav inNavbar>
+                                        <SDropdownToggle nav caret>
+                                            {usuario.nomeusuario}
+                                        </SDropdownToggle>
+                                        <DropdownMenu>
+                                            {isAdmin ? (
+                                                <DropdownItem onClick={() => history.push('/usuarios')}>Usuários</DropdownItem>
+                                            ) : ""}
+                                            <DropdownItem onClick={() => history.push('/perfil')}>Perfil</DropdownItem>
+                                            <DropdownItem divider />
+                                            <DropdownItem onClick={logout}>Sair</DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                </Nav>
+                            </React.Fragment>
+                        ) : ""}
+                        {isAdmin ? (
+                            <NavbarToggler onClick={toggle} />
+                        ) : ""}
+                    </Container>
+                </SNavbar>
+                <CriarCarousel>
+                </CriarCarousel>
+    
+            </header>
+        ) // Fecha o return
+     }
+
+     if (location.pathname === '/signin') {
+
         return (
             <header>
                 <SNavbar light expand="md" >
@@ -63,7 +125,6 @@ const Header = (props) => {
             </header>
         )
     }
-
     return (
         <header>
             <SNavbar className="barraHeader" color="dark" dark expand="md">
@@ -115,9 +176,12 @@ const Header = (props) => {
                     ) : ""}
                 </Container>
             </SNavbar>
+
         </header>
     ) // Fecha o return
+
 }
+
 
 
 

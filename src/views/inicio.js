@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getOficinasAll } from '../store/oficina/oficina.action';
 
 const Oficinas = () => {
+   
     document.title = "Casa da Dinda - Início";
 
     const dispatch = useDispatch();
@@ -18,7 +19,6 @@ const Oficinas = () => {
     useEffect(() => {
         dispatch(getOficinasAll());
     }, [dispatch])
-
 
     const MapearOficinas = (oficinas) => oficinas.map((item, i) => (
         <Col md="4" xl="4" sm="12" xs="12" key={i} className="mb-4">
@@ -38,6 +38,7 @@ const Oficinas = () => {
             </BoxOficinas>
         </>
     )
+    
 }
 
 export default Oficinas;
