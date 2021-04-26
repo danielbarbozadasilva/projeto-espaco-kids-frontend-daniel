@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { AiFillCloseSquare, AiFillCheckSquare } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetails } from "../store/oficina/oficina.action";
-import Tabela from '../components/tabela'
+import TabelaOficinasInscritos from '../components/tabela'
 
 
 const Detalhes = (props) => {
@@ -53,19 +53,22 @@ const Detalhes = (props) => {
         </SJumbotron>
     )
 
-
     const Menu = () => (
         <Navbar expand="md mb-4">
-            <Button onClick={() => { }} color={!registered ? "primary" : "secondary"} size="sm">
-                {!registered ? (<><AiFillCheckSquare /> Inscreva-se </>) : (<><AiFillCloseSquare /> Remover Inscrição</>)}
+            <Button color={!registered ? "primary" : "secondary"} size="sm">
+             {!registered ? (<><AiFillCheckSquare /> Inscreva-se </>) : (<><AiFillCloseSquare /> Remover Inscrição</>)} 
+
+      
+        
             </Button>
         </Navbar>
     )
+    
 
     const montarTela = (detalhe) => (
         <div>
             {Detalhamento(detalhe)}
-            {!isAdmin ? Menu() : <Tabela inscritos={detalhe.inscricoes} />}
+            {!isAdmin ? Menu() : <TabelaOficinasInscritos inscritos={detalhe.inscricoes} />}
 
         </div>
     )

@@ -14,7 +14,7 @@ export const CriarCarousel = () => {
                     src={imagem02}/>
                 <Carousel.Caption>
                     <h3 className="carousel-texto-h3">Casa da Dinda</h3>
-                    <p className="carousel-paragrafo">Um espaço gostoso para a criança brincar e aprender através da linguagem das artes.</p>
+                    <p className="carousel-paragrafo">Um espaço gostoso para a criança brincar e aprender.</p>
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>

@@ -47,6 +47,7 @@ export const getDetails = (id) => {
         try {
             const { auth } = getState()
             const res = await getServiceDetalhes(id)
+            console.log(res.data)
             res.data.registered = res.data.inscricoes.some(item => item.email === auth.usuario.email);
   
             dispatch({

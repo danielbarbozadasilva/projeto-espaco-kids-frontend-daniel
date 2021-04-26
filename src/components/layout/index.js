@@ -20,8 +20,6 @@ const Layout = (props) => {
 export default Layout;
 
 const Main = styled.main`
-
     width: 85%;
     flex: 1;
-    
 `

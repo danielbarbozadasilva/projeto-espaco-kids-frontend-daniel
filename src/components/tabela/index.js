@@ -56,9 +56,9 @@ const Tabela = ({ inscritos }) => {
                         <tbody>
                             {inscritos && inscritos.map((v, i) => (
                                 <TableTr key={i}>
-                                    <td>{v.nomeparticipante}</td>
-                                    <td>{new Date(v.datanascimento).toLocaleDateString()}</td>
-                                    <td>{v.email}</td>
+                                    <td>{v.usuarios.nomeusuario}</td>
+                                    <td>{new Date(v.usuarios.datanascimento).toLocaleDateString()}</td>
+                                    <td>{v.usuarios.email}</td>
                                     <td>
 
                                         <Button alt='Excluir usuário' size="sm" className="text-danger" color="link"
