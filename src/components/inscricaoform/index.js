@@ -50,47 +50,47 @@ const Inscricao = ({ id, update, isForm }) => {
         <BoxInscricao>
             <Col xs="12" sm="12" md="8" lg="8">
                 <SFormGroup>
-                    <Label for="nomeparticipante">Nome do Participante</Label>
+                    <Label htmlFor="nomeparticipante">Nome do Participante</Label>
                     <Input type="text" id="nomeparticipante" value={form.nomeparticipante || ""} onChange={handleChange} 
                     name="nomeparticipante" placeholder="Nome do participante" className="text-uppercase" />
                 </SFormGroup>
                 <SFormGroup>
-                    <Label for="datanascimentoparticipante">Data de Nascimento</Label>
+                    <Label htmlFor="datanascimentoparticipante">Data de Nascimento</Label>
                     <Input type="date" id="datanascimentoparticipante" value={form.datanascimentoparticipante || ""} onChange={handleChange}
                     name="datanascimentoparticipante" placeholder="Data de nascimento" />
                 </SFormGroup>
                 <SFormGroup>
-                    <Label for="nomeresponsavel">Nome do Responsável</Label>
+                    <Label htmlFor="nomeresponsavel">Nome do Responsável</Label>
                     <Input type="text" id="nomeresponsavel" value={form.nomeresponsavel || ""} onChange={handleChange} 
                     name="nomeresponsavel" placeholder="Nome do responsável" className="text-uppercase" />
                 </SFormGroup>
                 <SFormGroup>
-                    <Label for="telefonecontato">Telefone de Contato</Label>
+                    <Label htmlFor="telefonecontato">Telefone de Contato</Label>
                     <Input type="tel" id="telefonecontato" value={form.telefonecontato || ""} onChange={handleChange} 
                     name="telefonecontato" placeholder="Telefone de contato" />
                 </SFormGroup>
                 <SFormGroup>
-                    <Label for="telefonemergencia">Telefone de Emergência</Label>
+                    <Label htmlFor="telefonemergencia">Telefone de Emergência</Label>
                     <Input type="tel" id="telefonemergencia" value={form.telefonemergencia || ""} onChange={handleChange} 
                     name="telefonemergencia" placeholder="Telefone de emergência" />
                 </SFormGroup>
                 <SFormGroup>
-                    <Label for="cpfresponsavel">CPF do Responsável</Label>
+                    <Label htmlFor="cpfresponsavel">CPF do Responsável</Label>
                     <Input type="text" id="cpfresponsavel" value={form.cpfresponsavel || ""} onChange={handleChange}
                     name="cpfresponsavel" placeholder="CPF do responsável" />
                 </SFormGroup>
                 <SFormGroup>
-                    <Label for="emailresponsavel">E-mail</Label>
+                    <Label htmlFor="emailresponsavel">E-mail</Label>
                     <Input type="email" id="emailresponsavel" value={form.emailresponsavel || ""} onChange={handleChange} 
                      name="emailresponsavel" placeholder="E-mail" className="text-lowercase" />
                 </SFormGroup>
                 <SFormGroup>
-                    <Label for="enderecoresponsavel">Endereço</Label>
+                    <Label htmlFor="enderecoresponsavel">Endereço</Label>
                     <Input type="text" id="enderecoresponsavel" value={form.enderecoresponsavel || ""} onChange={handleChange}
                      name="enderecoresponsavel" placeholder="Endereço"/>
                 </SFormGroup>
                 <SFormGroup>
-                    <Label for="observacoes">Observações</Label>
+                    <Label htmlFor="observacoes">Observações</Label>
                     <Input type="text" id="observacoes" value={form.observacoes || ""} onChange={handleChange}
                      name="observacoes" placeholder="Observações"/>
                 </SFormGroup>

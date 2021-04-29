@@ -1,7 +1,6 @@
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router";
-import { getServiceDetalhes } from '../services/oficinas.service';
 import Loading from '../components/loading';
 import { Jumbotron, 
          Navbar,
@@ -68,7 +67,7 @@ const Detalhes = (props) => {
     const montarTela = (detalhe) => (
         <div>
             {Detalhamento(detalhe)}
-            {!isAdmin ? Menu() : <TabelaOficinasInscritos inscritos={detalhe.inscricoes} />}
+            {!isAdmin ? Menu() : <TabelaOficinasInscritos inscricoes={detalhe.inscricoes} />}
 
         </div>
     )
@@ -89,7 +88,6 @@ export default Detalhes;
 const SJumbotron = styled(Jumbotron)`
     background-color: #FFFDE7;
     margin-top: 10px;
-    font-family: 'Pangolin', cursive;
 
     .nomeoficina {
         font-size: 35px;   

@@ -7,7 +7,7 @@ import ReactSwal from '../../plugins/swal';
 import { deletarParticipanteOficina } from '../../store/oficina/oficina.action';
 import { useDispatch } from 'react-redux';
 
-const Tabela = ({ inscritos }) => {
+const Tabela = ({ inscricoes }) => {
     const dispatch = useDispatch()
 
     const [modal, setModal] = useState({
@@ -16,12 +16,14 @@ const Tabela = ({ inscritos }) => {
     })
 
     const apagarInscricao = () => {
+        console.log('--------------------------',modal)
         if (modal.data.id) {
-            dispatch(deletarParticipanteOficina(modal.data.id))
+            console.log('---------',modal.data);
+            dispatch(deletarParticipanteOficina(modal.data.oficina_id, modal.data.id,modal.data.usuario_id))
                 .then(() => {
                     ReactSwal.fire({
                         icon: 'success',
-                        title: `O Aluno ${modal?.data?.name?.split(" ")[0]} deletado com sucesso !`,
+                        title: `O Aluno ${modal?.data?.nomeparticipante?.split(" ")[0]} deletado com sucesso !`,
                         showConfirmButton: false,
                         showCloseButton: true,
                     })
@@ -42,25 +44,29 @@ const Tabela = ({ inscritos }) => {
 
     return (
         <div>
-            {inscritos && inscritos.length ? (
+            {inscricoes && inscricoes.length ? (
                 <div>
+                    {}
                     <STable responsive striped size="sm">
                         <thead>
                             <TableTr>
-                                <th>Nome</th>
+                                <th>Nome do Participante</th>
                                 <th>Nascimento</th>
                                 <th>Email</th>
+                                <th>Responsável</th>
+                                <th>Telefone</th>
                                 <th>Ações</th>
                             </TableTr>
                         </thead>
                         <tbody>
-                            {inscritos && inscritos.map((v, i) => (
+                            {inscricoes && inscricoes.map((v, i) => (
                                 <TableTr key={i}>
-                                    <td>{v.usuarios.nomeusuario}</td>
+                                    <td>{v.usuarios.nomeparticipante}</td>
                                     <td>{new Date(v.usuarios.datanascimento).toLocaleDateString()}</td>
                                     <td>{v.usuarios.email}</td>
+                                    <td>{v.usuarios.nomeusuario}</td>
+                                    <td>{v.usuarios.telefone}</td>
                                     <td>
-
                                         <Button alt='Excluir usuário' size="sm" className="text-danger" color="link"
                                             onClick={() => toggleModal(v)} ><BiTrash size="20" /></Button>
                                     </td>
@@ -70,9 +76,9 @@ const Tabela = ({ inscritos }) => {
                     </STable>
 
                     <Modal isOpen={modal.isOpen} toggle={toggleModal}>
-                        <ModalHeader toggle={toggleModal}>Excluir Aluno</ModalHeader>
+                        <ModalHeader toggle={toggleModal}>Excluir Participante</ModalHeader>
                         <ModalBody>
-                            Deseja Excluir o Aluno <strong>{modal?.data?.nomeparticipante?.split(" ")[0]}</strong> ?
+                            Deseja Excluir o Participante <strong>{modal?.data?.nomeparticipante?.split(" ")[0]}</strong> ?
                         </ModalBody>
                         <ModalFooter>
 
@@ -95,7 +101,6 @@ const STable = styled(Table)`
     overflow:hidden;
     border-radius: 4px;
     font-size:14px;
-    font-family: 'Roboto', sans-serif;
 `
 const TableTr = styled.tr`
 

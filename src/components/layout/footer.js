@@ -7,7 +7,7 @@ import LogoFooter from '../../assets/img/logo2.png';
 const Footer = (props) => {
 
     return (
-        <footer className="footer">
+        <footer>
             <div className="redes-sociais">
                 <h3 className="tituloRedesSociais">Redes sociais</h3>
                 <div className="icons-redes-sociais">

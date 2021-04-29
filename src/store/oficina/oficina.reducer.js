@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     details: {}
 };
 
-const reducer = (state = INITIAL_STATE, action) => { // tamara recebe
+const reducer = (state = INITIAL_STATE, action) => { 
     switch (action.type) {
         case TYPES.OFICINA_LOADING:
             state.loading = action.status

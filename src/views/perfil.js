@@ -16,18 +16,18 @@ const Perfil = () => {
             [e.target.name]: e.target.value
         })
     }
-//    const formatDate = (data) => {
-//         const [y, m, d] = data.split('-')
-//         return `${d}/${m}/${y}`
-//     }
+
 
     const updateForm = () => {
         const nform = {
             ...form,
             nameusuario: form.nameusuario,
-            email: form.email,
+            datanascimento: form.datanascimento,
             nomeparticipante: form.nomeparticipante,
-            datanascimento: form.datanascimento
+            cpf: form.cpf,
+            telefone: form.telefone,
+            endereco: form.endereco,
+            email: form.email
         }
         console.log(nform)
     }
@@ -39,24 +39,41 @@ const Perfil = () => {
             <BoxInscricao>
                 <Col xs="12" sm="12" md="8" lg="8">
                     <FormGroup>
-                        <Label for="name">Nome do Usuário</Label>
-                        <Input type="text" id="name" value={form.nomeusuario || ""} onChange={handleChange}
-                            name="nome" placeholder="Insira seu nome" />
+                        <Label htmlFor="name">Nome do Usuário</Label>
+                        <Input type="text" id="nomeusuario" value={form.nomeusuario || ""} onChange={handleChange}
+                            name="nomeusuario" placeholder="Insira seu nome" />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="email">Email</Label>
+                        <Label htmlFor="datanascimento">Data de Nascimento</Label>
+                        <Input type="date" id="datanascimento" value={new Date(form.datanascimento).toLocaleDateString("en-ZA").replaceAll('/', '-') || ""} onChange={handleChange}
+                            name="datanascimento" />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label htmlFor="nomeparticipante">Nome do Participante</Label>
+                        <Input type="text" id="nomeparticipante" value={form.nomeparticipante || ""} onChange={handleChange}
+                            name="nomeparticipante" placeholder="Insira nome do participante" />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label htmlFor="cpf">CPF</Label>
+                        <Input type="text" name="cpf" id="cpf" value={form.cpf || ""} onChange={handleChange} placeholder="Insira o seu cpf" />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label htmlFor="telefone">Telefone</Label>
+                        <Input type="text" id="telefone" value={form.telefone || ""} onChange={handleChange}
+                            name="telefone" placeholder="Insira o seu telefone" />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label htmlFor="endereco">Endereco</Label>
+                        <Input type="text" id="endereco" value={form.endereco || ""} onChange={handleChange}
+                            name="endereco" placeholder="Insira o seu endereco" />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label htmlFor="email">Email</Label>
                         <Input type="email" id="email" value={form.email || ""} onChange={handleChange}
                             name="email" placeholder="Insira seu email" />
                     </FormGroup>
-                    <FormGroup>
-                        <Label for="nomeparticipante">Nome do Participante</Label>
-                        <Input type="text" name="nomeparticipante" id="nomeparticipante" value={form.nomeparticipante || ""} onChange={handleChange} placeholder="Insira o nome do participante" />
-                    </FormGroup>
-                    <FormGroup>
-                        <Label for="datanascimento">Data de Nascimento</Label>
-                        <Input type="date" id="datanascimento" value={form.datanascimento || ""} onChange={handleChange}
-                            name="datanascimento" />
-                    </FormGroup>
+
+
                     <FormGroup>
                         <Button color="primary" onClick={updateForm}>Cadastrar</Button>
                     </FormGroup>

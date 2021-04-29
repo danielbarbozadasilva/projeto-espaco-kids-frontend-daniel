@@ -5,17 +5,22 @@ const getServiceAllOficinas = () => http.get('/oficinas');
 
 const getServiceDetalhes = (codoficina) => http.get(`/oficinas/${codoficina}`);
 
-const subServiceOficinas = (id, data) => http.post(`oficinas/${id}/inscricao`, data);
-
 const createServiceOficinas = (oficina) => http.post(`oficinas`, oficina);
 
-const deleteServiceOficinas = (id_oficinas, id_inscricao) => http.delete(`/oficinas/${id_oficinas}/inscricao/${id_inscricao}`);
+const updateServiceOficina = (codoficina, data) => http.put(`oficinas/${codoficina}`, data);
 
+const removeServiceOficina = (codoficina) => http.delete(`oficinas/${codoficina}`);
+
+const subServiceOficinas = (codoficina, data) => http.post(`oficinas/${codoficina}/inscricao`, data);
+
+const deleteServiceInscricaoOficina = (codoficina, id_inscricao, id_usuario) => http.delete(`/oficinas/${codoficina}/inscricao/${id_inscricao}/usuario/${id_usuario}`);
 
 export {
     getServiceAllOficinas,
     getServiceDetalhes,
+    createServiceOficinas,
+    updateServiceOficina,
+    removeServiceOficina,
     subServiceOficinas,
-    deleteServiceOficinas,
-    createServiceOficinas
+    deleteServiceInscricaoOficina,
 }

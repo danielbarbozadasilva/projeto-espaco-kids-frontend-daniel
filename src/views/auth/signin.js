@@ -26,8 +26,8 @@ const SignIn = () => {
 
     // estado somente da view
     const [form, setForm] = useState({
-        email:"",
-        senha:"" 
+        email: "",
+        senha: ""
     })
 
     const handleChange = (props) => {
@@ -58,29 +58,31 @@ const SignIn = () => {
 
 
     return (
-        
+
         <Sign>
+                  
             <Col sm={12} md={4} lg={5}>
-                <Alert color="danger" isOpen={hasError} toggle={closeError}>
+
+                 <Alert color="danger" isOpen={hasError} toggle={closeError}>
                     <div><strong>OPS !!! </strong> Aconteceu um erro.</div>
                     <small>Verifique usuário e senha</small>
                 </Alert>
-    
-                <SCard>
+                <SCard className="formularioLogar">
                     <h2 tag="h4" className="text-login">Login</h2>
                     <CardBody>
-                        <Form>
+                        <Form>  
+                   
                             <FormGroup>
-                                <label className="label" for="email">E-mail:</label>
+                                <label className="label" htmlFor="email">E-mail:</label>
                                 <Input className="form-control" disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
                             </FormGroup>
                             <FormGroup>
-                                <label className="label" for="password">Senha:</label>
+                                <label className="label" htmlFor="password">Senha:</label>
                                 <input className="form-control" disabled={loading} type="password" name="senha" id="senha" onChange={handleChange} value={form.senha || ""} placeholder="Informe sua senha" />
                             </FormGroup>
-                            <button data-testing-id="funnel-survey-select_category-next" class="rounded-full px-6 py-2 shadow-redBtn hover:bg-gradient-l-primary-gradient-solid hover:text-white hover:border-none
+                            <button data-testing-id="funnel-survey-select_category-next" className="rounded-full px-6 py-2 shadow-redBtn hover:bg-gradient-l-primary-gradient-solid hover:text-white hover:border-none
             bg-gradient-l-primary-gradient text-white font-bold border-none
-            " type="button" color={isNotValid() || loading ? 'secondary' : 'primary'} disabled={isNotValid()} size="sm" block onClick={submitForm}>
+            " type="button" color={isNotValid() || loading ? 'secondary' : 'primary'} disabled={isNotValid()} size="sm" onClick={submitForm}>
                                 {loading ? (<><Spinner size="sm" color="light" /> Carregando...</>) : "Entrar"}
 
                                 <i className="icon-angle-right ml-2"></i>  </button>
@@ -101,8 +103,8 @@ export default SignIn;
 
 const SCard = styled(Card)`
     background-color: #FAFAFA;
-    margin: 100px 0;
+    margin-bottom: 50px;
     box-shadow: 0px 2px 15px 6px rgba(0,0,0,0.11);
-    padding-top: 10px;
+    padding-top: 15px;
 `
 
