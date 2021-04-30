@@ -9,6 +9,7 @@ const Perfil = () => {
     const perfil = useSelector(state => state.auth.usuario);
     console.log(perfil);
     const [form, setForm] = useState({ ...perfil });
+    const isAdmin = useSelector(state => state.auth.isAdmin)
 
     const handleChange = (e) => {
         setForm({
@@ -23,7 +24,7 @@ const Perfil = () => {
             ...form,
             nameusuario: form.nameusuario,
             datanascimento: form.datanascimento,
-            nomeparticipante: form.nomeparticipante,
+            nomeparticipante: !isAdmin ? (form.nomeparticipante                    ) : (form.nomeparticipante = "Administrador"),
             cpf: form.cpf,
             telefone: form.telefone,
             endereco: form.endereco,
@@ -48,11 +49,15 @@ const Perfil = () => {
                         <Input type="date" id="datanascimento" value={new Date(form.datanascimento).toLocaleDateString("en-ZA").replaceAll('/', '-') || ""} onChange={handleChange}
                             name="datanascimento" />
                     </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="nomeparticipante">Nome do Participante</Label>
-                        <Input type="text" id="nomeparticipante" value={form.nomeparticipante || ""} onChange={handleChange}
-                            name="nomeparticipante" placeholder="Insira nome do participante" />
-                    </FormGroup>
+                    {!isAdmin ? (
+                        <FormGroup>
+                            <Label htmlFor="nomeparticipante">Nome do Participante</Label>
+
+                            <Input type="text" id="nomeparticipante" value={form.nomeparticipante || ""} onChange={handleChange}
+                                name="nomeparticipante" placeholder="Insira nome do participante" />
+
+                        </FormGroup>
+                    ) : ""}
                     <FormGroup>
                         <Label htmlFor="cpf">CPF</Label>
                         <Input type="text" name="cpf" id="cpf" value={form.cpf || ""} onChange={handleChange} placeholder="Insira o seu cpf" />

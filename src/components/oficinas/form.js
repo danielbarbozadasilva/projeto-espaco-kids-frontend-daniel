@@ -1,9 +1,5 @@
-import { Button, Col, Label, Row, FormGroup, Input } from 'reactstrap';
+import { Col, Label, Row, FormGroup, Input } from 'reactstrap';
 import styled from 'styled-components';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createOficina } from '../../store/oficina/oficina.action';
-import ReactSwal from '../../plugins/swal';
 
 const FormOficina = ({state}) => {
     const [form, setForm] = state

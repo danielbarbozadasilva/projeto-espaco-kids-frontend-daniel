@@ -38,7 +38,6 @@ const SignUp = () => {
 
     const formatDate = (date) => {
         return (
-            // .toLocaleDateString('pt-BR', { timeZone: 'UTC' })
             new Date(date).toLocaleDateString('pt-BR', { timeZone: 'UTC' })
         )
     }
@@ -54,7 +53,7 @@ const SignUp = () => {
     }
 
     const isNotValid = () => {
-        const inputs = ['nomeusuario', 'datanascimento', 'cpf', 'telefone', 'endereco', 'email', 'senha']
+        const inputs = ['nomeusuario', 'datanascimento', 'nomeparticipante', 'cpf', 'telefone', 'endereco', 'email', 'senha']
         const invalid = (label) => !Object.keys(form).includes(label) || form[label].length === 0
         return inputs.some(item => invalid(item))
     }

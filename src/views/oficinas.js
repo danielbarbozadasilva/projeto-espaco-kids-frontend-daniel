@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { TitlePage } from "../assets/styled";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { getOficinasAll, deletarOficina, createOficina, getDetails, deletarParticipanteOficina, updateOficina} from '../store/oficina/oficina.action';
+import { getOficinasAll, deletarOficina, createOficina, getDetails, updateOficina} from '../store/oficina/oficina.action';
 import TableList from '../components/oficinas/tableList';
 import FormOficina from '../components/oficinas/form';
 import ReactSwal from '../plugins/swal';

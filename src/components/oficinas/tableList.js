@@ -10,13 +10,13 @@ const TableList = ( props ) => {
         <Table>
             <thead>
                 <tr>
-                    <th>NOME DA OFICINA</th>
-                    <th>INSCRITOS</th>
-                    <th>DATA</th>
-                    <th>HORA</th>
-                    <th>PREÇO</th>
-                    <th>NOME DO MONITOR</th>
-                    <th>AÇÕES</th>
+                    <th>Nome da Oficina</th>
+                    <th>Inscritos</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Preço</th>
+                    <th>Nome do Monitor</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,7 +26,7 @@ const TableList = ( props ) => {
                         <td>{oficinas.qtd_inscricoes}</td>
                         <td>{new Date (oficinas.dataoficina).toLocaleDateString('pt-BR', {timeZone: 'UTC'}) }</td>
                         <td>{oficinas.horaoficina}</td>
-                        <td>{oficinas.valoroficina}</td>
+                        <td>{'R$'+(oficinas.valoroficina).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}).replace(".", ",")}</td>
                         <td>{oficinas.nomemonitor}</td>
 
                         <td>
