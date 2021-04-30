@@ -3,9 +3,19 @@ import React, { useState } from 'react';
 import { Table, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const TableList = ({ usuarios }) => {
-    const [modal, setModal] = useState(false);
 
-    const toggle = () => setModal(!modal);
+    const [modal, setModal] = useState({
+        status: false,
+        data:{}
+    });
+
+    const toggle = (data = {}) => {
+        setModal({
+            status: !modal.status,
+            data: data
+        })
+    }
+
 
     function calcularIdade(aniversario) {
         var nascimento = aniversario.split("/");
@@ -16,8 +26,9 @@ const TableList = ({ usuarios }) => {
         var diferenca = Date.now() - dataNascimento.getTime();
         var idade = new Date(diferenca);
 
-        return Math.abs(idade.getUTCFullYear() - 1970);
+        return Math.abs(idade.getUTCFullYear()-1970);
     }
+
     return (
         <>
             <Table>
@@ -38,7 +49,7 @@ const TableList = ({ usuarios }) => {
                             <td>{usuarios.telefone}</td>
                             <td>{usuarios.email}</td>
                             <td>{usuarios.nomeparticipante}</td>
-                            <td>{calcularIdade(new Date(usuarios.datanascimento).toLocaleDateString('pt-BR', { timeZone: 'UTC' }))} anos</td>
+                            <td>{calcularIdade(new Date(usuarios.datanascimentoparticipante).toLocaleDateString('pt-BR', { timeZone: 'UTC' }))} anos</td>
                             <td>{usuarios.inscricoes.length > 0 ? (<div onClick={toggle} style={{ cursor: 'pointer' }}><BsListTask /></div>) : ""}</td>
 
                         </tr>

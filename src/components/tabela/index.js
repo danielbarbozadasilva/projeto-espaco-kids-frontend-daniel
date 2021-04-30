@@ -62,7 +62,7 @@ const Tabela = ({ inscricoes }) => {
                             {inscricoes && inscricoes.map((v, i) => (
                                 <TableTr key={i}>
                                     <td>{v.usuarios.nomeparticipante}</td>
-                                    <td>{new Date(v.usuarios.datanascimento).toLocaleDateString()}</td>
+                                    <td>{new Date(v.usuarios.datanascimentoparticipante).toLocaleDateString()}</td>
                                     <td>{v.usuarios.email}</td>
                                     <td>{v.usuarios.nomeusuario}</td>
                                     <td>{v.usuarios.telefone}</td>

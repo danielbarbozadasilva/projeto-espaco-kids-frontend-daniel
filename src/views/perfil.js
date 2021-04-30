@@ -23,7 +23,7 @@ const Perfil = () => {
         const nform = {
             ...form,
             nameusuario: form.nameusuario,
-            datanascimento: form.datanascimento,
+            datanascimentoparticipante: form.datanascimentoparticipante,
             nomeparticipante: !isAdmin ? (form.nomeparticipante                    ) : (form.nomeparticipante = "Administrador"),
             cpf: form.cpf,
             telefone: form.telefone,
@@ -45,9 +45,9 @@ const Perfil = () => {
                             name="nomeusuario" placeholder="Insira seu nome" />
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor="datanascimento">Data de Nascimento</Label>
-                        <Input type="date" id="datanascimento" value={new Date(form.datanascimento).toLocaleDateString("en-ZA").replaceAll('/', '-') || ""} onChange={handleChange}
-                            name="datanascimento" />
+                        <Label htmlFor="datanascimentoparticipante">Data de Nascimento</Label>
+                        <Input type="date" id="datanascimentoparticipante" value={new Date(form.datanascimentoparticipante).toLocaleDateString("en-ZA").replaceAll('/', '-') || ""} onChange={handleChange}
+                            name="datanascimentoparticipante" />
                     </FormGroup>
                     {!isAdmin ? (
                         <FormGroup>

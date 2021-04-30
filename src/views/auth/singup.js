@@ -18,7 +18,7 @@ const SignUp = () => {
 
     const [form, setForm] = useState({
         nomeusuario: "",
-        datanascimento: "",
+        datanascimentoparticipante: "",
         nomeparticipante: "",
         cpf: "",
         telefone: "",
@@ -46,14 +46,14 @@ const SignUp = () => {
 
         const nForm = {
             ...form,
-            datanascimento: formatDate(form.datanascimento)
+            datanascimentoparticipante: formatDate(form.datanascimentoparticipante)
         }
 
         dispatch(signUpAction(nForm))
     }
 
     const isNotValid = () => {
-        const inputs = ['nomeusuario', 'datanascimento', 'nomeparticipante', 'cpf', 'telefone', 'endereco', 'email', 'senha']
+        const inputs = ['nomeusuario', 'datanascimentoparticipante', 'nomeparticipante', 'cpf', 'telefone', 'endereco', 'email', 'senha']
         const invalid = (label) => !Object.keys(form).includes(label) || form[label].length === 0
         return inputs.some(item => invalid(item))
     }
@@ -86,8 +86,8 @@ const SignUp = () => {
                     </FormGroup>
 
                     <FormGroup>
-                        <Label htmlFor="datanascimento" className="label" >Data de Nascimento:</Label>
-                        <Input disabled={loading} type="date" name="datanascimento" id="datanascimento" onChange={handleChange} value={form.datanascimento || ""} placeholder="Informe o e-mail" />
+                        <Label htmlFor="datanascimentoparticipante" className="label" >Data de Nascimento:</Label>
+                        <Input disabled={loading} type="date" name="datanascimentoparticipante" id="datanascimentoparticipante" onChange={handleChange} value={form.datanascimentoparticipante || ""} placeholder="Informe o e-mail" />
                     </FormGroup>
                     <FormGroup>
                         <Label htmlFor="nomeparticipante" className="label">Nome do Participante:</Label>

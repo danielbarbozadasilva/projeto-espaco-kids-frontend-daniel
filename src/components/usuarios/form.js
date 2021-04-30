@@ -24,7 +24,7 @@ const FormUsuario = (props) => {
     const handleSubmit = () => {
         const nForm = {
             ...form,
-            datanascimento: formatDate(form.datanascimento)
+            datanascimentoparticipante: formatDate(form.datanascimentoparticipante)
         }
 
         dispatch(createUsuario(nForm))
@@ -48,19 +48,20 @@ const FormUsuario = (props) => {
         <BoxInscricao>
             <Col xs="12" sm="12" md="8" lg="8">
                 <FormGroup>
-                    <Label htmlFor="nomeusuario">Nome do usuário</Label>
+                    <Label htmlFor="nomeusuario">Nome do Responsável</Label>
                     <Input type="text" id="nomeusuario" value={form.nomeusuario || ""} onChange={handleChange}
                         name="nomeusuario" placeholder="Insira o nome do usuário" />
                 </FormGroup>
-                <FormGroup>
-                    <Label htmlFor="datanascimento">Data de nascimento</Label>
-                    <Input type="date" id="datanascimento" value={form.datanascimento || ""} onChange={handleChange}
-                        name="datanascimento" />
-                </FormGroup>
+                
                 <FormGroup>
                     <Label htmlFor="nomeparticipante">Nome do participante</Label>
                     <Input type="text" id="nomeparticipante" value={form.nomeparticipante || ""} onChange={handleChange}
                         name="nomeparticipante" placeholder="Insira o nome do participante" />
+                </FormGroup>
+                <FormGroup>
+                    <Label htmlFor="datanascimentoparticipante">Data de nascimento do Participante</Label>
+                    <Input type="date" id="datanascimentoparticipante" value={form.datanascimentoparticipante || ""} onChange={handleChange}
+                        name="datanascimentoparticipante" />
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="cpf">CPF</Label>
