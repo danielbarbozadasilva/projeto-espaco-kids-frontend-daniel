@@ -22,15 +22,14 @@ const GerenciarOficinas = () => {
     const oficinas = useSelector(state => state.oficina.all)
     const detalhe = useSelector(state => state.oficina.details)
     
-    const toggle = () => {
-        if(modal){
-            setForm({})
+    const toggle = (hadEvent) => {
+        if(hadEvent){
             setUpdate(false)
+            // Caso tenha evento ele zera o form
+            setForm({})
         }
         setModal(!modal)
-    }
-
-    console.log('--------------',oficinas)
+    };
 
     useEffect(() => {
         dispatch(getOficinasAll());

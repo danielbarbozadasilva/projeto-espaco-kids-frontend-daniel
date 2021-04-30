@@ -1,4 +1,4 @@
-import { TYPES } from './usuario.action'
+import { TYPES } from './participante.action'
 
 const INITIAL_STATE = {
     all: [],

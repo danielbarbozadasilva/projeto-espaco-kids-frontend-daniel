@@ -1,4 +1,4 @@
-import { createServiceUsuario, getServiceAllUsuarios} from '../../services/usuario.service';
+import { createServiceUsuario, getServiceAllUsuarios} from '../../services/participante.service';
 
 export const TYPES = {
     USUARIO_LOADING: "USUARIO_LOADING",

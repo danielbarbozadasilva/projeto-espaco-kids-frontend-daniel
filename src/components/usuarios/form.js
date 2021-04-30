@@ -2,7 +2,7 @@ import { Button, Col, Label, Row, FormGroup, Input } from 'reactstrap';
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createUsuario } from '../../store/usuario/usuario.action';
+import { createUsuario } from '../../store/participante/participante.action';
 import ReactSwal from '../../plugins/swal';
 
 const FormUsuario = (props) => {

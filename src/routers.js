@@ -11,13 +11,13 @@ import {
 // Configuração
 import { isAuthenticated } from './config/auth';
 
-// layout
+// layoute
 import Layout from "./components/layout";
 
 // views
 import Inicio from './views/inicio';
 import Oficinas from './views/oficinas';
-import Usuarios from './views/usuarios';
+import Participantes from './views/participantes';
 import Sobre from './views/sobre';
 import Detalhes from './views/detalhes';
 import Error401 from './views/errors/401';
@@ -64,7 +64,7 @@ const Routers = () => {
 
                   
                     {/* ADMIN */}
-                    <AdminRoute exact path='/usuarios' admin={isAdmin} component={Usuarios} />
+                    <AdminRoute exact path='/participantes' admin={isAdmin} component={Participantes} />
                     <AdminRoute exact path='/oficinas' admin={isAdmin} component={Oficinas} />
 
 
