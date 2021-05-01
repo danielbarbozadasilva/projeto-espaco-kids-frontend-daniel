@@ -34,11 +34,11 @@ const TableList = ({ usuarios }) => {
             <Table>
                 <thead>
                     <tr>
-                        <th>NOME RESPONSÁVEL</th>
-                        <th>TELEFONE RESPONSÁVEL</th>
-                        <th>E-MAIL RESPONSÁVEL </th>
-                        <th>NOME PARTICIPANTE</th>
-                        <th>IDADE PARTICIPANTE</th>
+                        <th>Nome do responsável</th>
+                        <th>Telefone do responsável</th>
+                        <th>E-mail do responsável</th>
+                        <th>Nome do participante</th>
+                        <th>Idade do participante</th>
 
                     </tr>
                 </thead>
@@ -56,7 +56,7 @@ const TableList = ({ usuarios }) => {
                     ))}
                 </tbody>
             </Table>
-            <Modal isOpen={modal} toggle={toggle}>
+            {/* <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>Modal title</ModalHeader>
                 <ModalBody>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -65,7 +65,7 @@ const TableList = ({ usuarios }) => {
                     <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
                     <Button color="secondary" onClick={toggle}>Cancel</Button>
                 </ModalFooter>
-            </Modal>
+            </Modal> */}
         </>
     )
 

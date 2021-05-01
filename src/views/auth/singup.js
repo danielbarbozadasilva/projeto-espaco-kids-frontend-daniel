@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import '../../assets/css/style.css';
 
-import { FormGroup, Label, Input, Alert, Button, Spinner } from 'reactstrap';
+import { FormGroup, Label, Input, Alert, Button, Spinner,FormFeedback } from 'reactstrap';
 
 const SignUp = () => {
 
@@ -16,6 +16,7 @@ const SignUp = () => {
     const error = useSelector(state => state.auth.error)
     const registered = useSelector(state => state.auth.registered)
 
+    const [formValidate, setFormValidate] = useState({});
     const [form, setForm] = useState({
         nomeusuario: "",
         datanascimentoparticipante: "",
@@ -28,11 +29,34 @@ const SignUp = () => {
     })
     const handleChange = (props) => {
         const { value, name } = props.target;
+        formValidarCampo(name, value);
         setForm({
             ...form,
             [name]: value,
+            
         });
+        
     };
+
+    const formValidarCampo = (nome, valor) => {
+        var menssage = "";
+        switch (nome) {
+            case 'nomeusuario':
+                var nomeregex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/;
+                if (!nomeregex.test(valor)){
+                    menssage += "Não pode conter números "
+                } 
+                else if(valor.trim() == ""){
+                    menssage += "Não pode ser vazio "
+                } 
+                else if(valor.length < 5) {
+                    menssage += "Não ter menos que 5 caracteres "
+                }
+                
+            break;
+        }
+       
+    }
 
     const closeError = () => setHasError(false);
 
@@ -55,8 +79,14 @@ const SignUp = () => {
     const isNotValid = () => {
         const inputs = ['nomeusuario', 'datanascimentoparticipante', 'nomeparticipante', 'cpf', 'telefone', 'endereco', 'email', 'senha']
         const invalid = (label) => !Object.keys(form).includes(label) || form[label].length === 0
-        return inputs.some(item => invalid(item))
-    }
+
+        const validacoes = Object.values(formValidate).length > 0
+
+    console.log('prof: '+inputs.some(item => invalid(item))+'     Validações: '+validacoes)
+    
+    return inputs.some(item => invalid(item)) || validacoes
+
+}
 
     useEffect(() => {
 
@@ -82,7 +112,8 @@ const SignUp = () => {
                     <h2 tag="h4" className="text-cadastro">Cadastre-se</h2>
                     <FormGroup>
                         <Label htmlFor="nomeusuario" className="label" >Nome do Usuário:</Label>
-                        <Input disabled={loading} type="text" name="nomeusuario" id="nomeusuario" onChange={handleChange} value={form.nomeusuario || ""} placeholder="Informe o nome do usuário" />
+                        <Input invalid ={formValidate.nomeusuario ? true : false} disabled={loading} type="text" name="nomeusuario" id="nomeusuario" onChange={handleChange} value={form.nomeusuario || ""} placeholder="Informe o nome do usuário" />
+                        <FormFeedback>{formValidate.nomeusuario || ""}</FormFeedback>
                     </FormGroup>
 
                     <FormGroup>
