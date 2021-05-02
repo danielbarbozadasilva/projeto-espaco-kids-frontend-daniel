@@ -8,29 +8,61 @@ import { Jumbotron,
 import styled from 'styled-components';
 import { AiFillCloseSquare, AiFillCheckSquare } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetails } from "../store/oficina/oficina.action";
+import { getDetails, deletarParticipanteOficina, inscreverParticipanteNaOficina } from "../store/oficina/oficina.action";
 import TabelaOficinasInscritos from '../components/tabela'
+import ReactSwal from "../plugins/swal";
+
 
 
 const Detalhes = (props) => {
     const { codoficina } = useParams();
     const dispatch = useDispatch();
 
+
     const isAdmin = useSelector(state => state.auth.isAdmin)
     const detalhe = useSelector(state => state.oficina.details)
     const registered = useSelector(state => state.oficina.details.registered)
     
     const loading = useSelector(state => state.oficina.loading)
+    const inscricoes = useSelector(state => state.oficina.details.inscricoes)
+    const perfil = useSelector(state => state.auth.usuario);
 
+
+    const toogleSubcription = (inscricoes) => {
+        if (registered) {
+            dispatch(deletarParticipanteOficina(perfil, inscricoes.id, inscricoes.usuario.id))
+                .then(() => {
+                    ReactSwal.fire({
+                        icon: 'success',
+                        title: `Aluno Removido do Curso`,
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                    })
+                })
+                .catch(erro => console.log('deu ruim...'))
+        } else {
+            dispatch(inscreverParticipanteNaOficina(inscricoes.id))
+                .then(() => {
+                    ReactSwal.fire({
+                        icon: 'success',
+                        title: `Aluno Cadastrado com sucesso !`,
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                    })
+                })
+                .catch(erro => console.log('deu ruim...'))
+        }
+
+
+    }
 
     useEffect(() => {
         dispatch(getDetails(codoficina))
     }, [dispatch, codoficina])
 
 
-
     const Detalhamento = ({ nomeoficina, dataoficina, horaoficina, valoroficina, nomemonitor, descricaoficina  }) => (
-        <SJumbotron style={{ backgroundColor: registered ? '#D4EDDA' : '#F8D7DA' }}>
+        <Jumbotron style={{ backgroundColor: registered && !isAdmin ? '#D4EDDA' : '#eee' }}>
             <div className="container">
                 <p className="nomeoficina">{nomeoficina}</p>
                 <p className="info_oficina">
@@ -49,20 +81,17 @@ const Detalhes = (props) => {
                 <strong> Descrição: </strong> {descricaoficina}
                 </p>
             </div>
-        </SJumbotron>
+        </Jumbotron>
     )
+
 
     const Menu = () => (
-        <Navbar expand="md mb-4">
-            <Button color={!registered ? "primary" : "secondary"} size="sm">
-             {!registered ? (<><AiFillCheckSquare /> Inscreva-se </>) : (<><AiFillCloseSquare /> Remover Inscrição</>)} 
-
-      
-        
+        <SNavbar expand="md mb-4">
+            <Button onClick={() => toogleSubcription(inscricoes)} color={!registered ? "primary" : "secondary"} size="sm">
+                {!registered ? (<><AiFillCheckSquare /> Inscreva-se </>) : (<><AiFillCloseSquare /> Remover Inscrição</>)}
             </Button>
-        </Navbar>
+        </SNavbar>
     )
-    
 
     const montarTela = (detalhe) => (
         <div>
@@ -84,16 +113,15 @@ const Detalhes = (props) => {
 export default Detalhes;
 
 
-
-const SJumbotron = styled(Jumbotron)`
-    background-color: #FFFDE7;
-    margin-top: 10px;
-
-    .nomeoficina {
-        font-size: 35px;   
-    }
-
-    .info_oficina {
-        font-size: 20px;
+const SNavbar = styled.div`
+    background-color:none !important;
+    margin: 10px 0 20px;
+    padding: 10px 0;
+    border-bottom: thin dotted #4446;
+    display:flex;
+    
+    .info {
+        flex:1;
     }
 `
+

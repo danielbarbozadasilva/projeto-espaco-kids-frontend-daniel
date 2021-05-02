@@ -1,4 +1,5 @@
 import { createServiceOficinas, getServiceAllOficinas, getServiceDetalhes, deleteServiceInscricaoOficina, removeServiceOficina, updateServiceOficina } from "../../services/oficinas.service"
+import {subServiceUsuarios} from "../../services/participante.service";
 
 export const TYPES = {
     OFICINA_LOADING: "OFICINA_LOADING",
@@ -124,4 +125,17 @@ export const deletarOficina = (codoficina) => {
     }
 }
 
+export const inscreverParticipanteNaOficina = (id_curso, id_inscricao) => {
+    return async (dispatch) => {
+
+        try {
+            const all = await subServiceUsuarios(id_curso, id_inscricao)
+            if (all.data) {
+                dispatch(getDetails(id_curso))
+            }
+        } catch (error) {
+            console.log('aconteceu um ERRO": disparar um e-mail para Admin')
+        }
+    }
+}
 
