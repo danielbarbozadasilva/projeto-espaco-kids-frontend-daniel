@@ -1,9 +1,10 @@
-import { createServiceUsuario, getServiceAllUsuarios} from '../../services/participante.service';
+import { createServiceUsuario, getServiceAllUsuarios, updateServiceUsuario, getServiceDetalhesUsuarios } from '../../services/participante.service';
 
 export const TYPES = {
     USUARIO_LOADING: "USUARIO_LOADING",
     USUARIO_ALL: "USUARIO_ALL",
     USUARIO_CREATE: "USUARIO_CREATE",
+    USUARIO_DETAILS: "USUARIO_DETAILS",
 }
 
 export const getUsuariosAll = () => {
@@ -25,6 +26,23 @@ export const getUsuariosAll = () => {
     }
 }
 
+export const getUsuarioId = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            const res = await getServiceDetalhesUsuarios(id)
+            console.log(res.data)
+
+            dispatch({
+                type: TYPES.USUARIO_DETAILS,
+                data: res.data
+            })
+        } catch (error) {
+            dispatch({ type: TYPES.USUARIO_LOADING, status: false })
+            console.log(error)
+            console.log("Ocorreu um erro ao exibir os detalhes da oficina");
+        }
+    }
+}
 
 export const createUsuario = (usuario) => {
     return async (dispatch) => {
@@ -40,6 +58,21 @@ export const createUsuario = (usuario) => {
 
     }
 }
+export const updateProfile = ({ id, nameusuario, datanascimentoparticipante, nomeparticipante, cpf, telefone, endereco, email }) => {
+    return async (dispatch) => {
+        try {
+            const data = { nameusuario, datanascimentoparticipante, nomeparticipante, cpf, telefone, endereco, email }
+            const all = await updateServiceUsuario(id, data)
+            dispatch({
+                type: TYPES.STUDEND_ALL,
+                data: all.data
+            })
+        } catch (error) {
+            console.log('aconteceu um ERRO": disparar um e-mail para Admin')
+        }
+    }
+}
+
 
 
 

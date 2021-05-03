@@ -46,11 +46,12 @@ const GerenciarUsuarios = () => {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nome do responsável</th>
-                        <th>Telefone do responsável</th>
-                        <th>E-mail do responsável</th>
-                        <th>Nome do participante</th>
-                        <th>Idade do participante</th>
+                        <th>Nome responsável</th>
+                        <th>Telefone responsável</th>
+                        <th>E-mail responsável</th>
+                        <th>Nome participante</th>
+                        <th>Idade participante</th>
+                        <th>Qtd. Oficinas</th>
                         <th>Ação</th>
 
                     </tr>
@@ -64,7 +65,9 @@ const GerenciarUsuarios = () => {
                             <td>{usuario.email}</td>
                             <td>{usuario.nomeparticipante}</td>
                             <td>{calcularIdade(new Date(usuario.datanascimentoparticipante).toLocaleDateString('pt-BR', { timeZone: 'UTC' }))} anos</td>
+                            <td>{usuario.inscricoes.length}</td>
                             <td>{usuario.inscricoes.length > 0 ? (<div onClick={() => toggle(usuario)} style={{ cursor: 'pointer' }}><BsListTask /></div>) : ""} </td>
+
                         </tr>
                     ))}
 

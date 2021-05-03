@@ -19,19 +19,20 @@ if (getToken()) {
     http.defaults.headers['token'] = getToken();
 }
 
-http.interceptors.response.use(
-    (response) => response,
-    (error) => {
+http.interceptors.response.use((response) =>{ 
+    return response;
+}, function (error){
         switch (error.response.status) {
             case 401:
                 store.dispatch(logoutAction())
                 history.push('/signin')
                 break;
-            default:
-                break;
+            case 500:
+                store.dispatch(logoutAction())
+            break;
         }
-    }
-)
+         return Promise.reject(error.response);
+});
 
 
 

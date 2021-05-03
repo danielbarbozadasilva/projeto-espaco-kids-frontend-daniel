@@ -14,6 +14,10 @@ const reducer = (state = INITIAL_STATE, action) => { // tamara recebe
             state.all = action.data
             state.loading = false
             return state;
+        case TYPES.USUARIO_DETAILS:
+            state.all = action.data
+            state.loading = false
+            return state;
         default:
             return state;
     }
