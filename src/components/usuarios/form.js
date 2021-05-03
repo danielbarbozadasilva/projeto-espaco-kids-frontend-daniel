@@ -85,9 +85,14 @@ const FormUsuario = (props) => {
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="senha">Senha</Label>
-                    <Input type="text" id="senha" value={form.senha || ""} onChange={handleChange}
+                    <Input type="password" id="senha" value={form.senha || ""} onChange={handleChange}
                         name="senha" placeholder="Insira a sua senha"/>
                 </FormGroup>
+                {/* <FormGroup>
+                    <Label htmlFor="senha">Senha</Label>
+                    <Input type="password" id="senha" value={form.senha || ""} onChange={handleChange}
+                        name="senha" placeholder="Repita a sua senha"/>
+                </FormGroup> */}
                 <FormGroup>
                     <Button color="primary" onClick={handleSubmit}>Cadastrar</Button>
                 </FormGroup>

@@ -24,16 +24,48 @@ const GerenciarUsuarios = () => {
     }, [dispatch])
 
 
-    function calcularIdade(aniversario) {
-        var nascimento = aniversario.split("/");
-        var dataNascimento = new Date(parseInt(nascimento[2], 10),
-            parseInt(nascimento[1], 10) - 1,
-            parseInt(nascimento[0], 10));
-
-        var diferenca = Date.now() - dataNascimento.getTime();
-        var idade = new Date(diferenca);
-
-        return Math.abs(idade.getUTCFullYear() - 1970);
+    function calcularIdade(data) {
+        var now = new Date();
+    
+        var yearNow = now.getYear();
+        var monthNow = now.getMonth();
+        var dateNow = now.getDate();
+        var dob = new Date(data.substring(6,10),
+                data.substring(3,5)-1,                    
+                 data.substring(0,2)                
+                );
+    
+        var yearDob = dob.getYear();
+        var monthDob = dob.getMonth();
+        var dateDob = dob.getDate();
+        var age = {};
+        var yearAge = yearNow - yearDob;
+    
+        if (monthNow >= monthDob)
+            var monthAge = monthNow - monthDob;
+        else {
+            yearAge--;
+            var monthAge = 12 + monthNow -monthDob;
+        }
+    
+        if (dateNow >= dateDob)
+            var dateAge = dateNow - dateDob;
+        else {
+            monthAge--;
+            var dateAge = 31 + dateNow - dateDob;
+    
+            if (monthAge < 0) {
+              monthAge = 11;
+              yearAge--;
+            }
+          }
+    
+        age = {
+                years: yearAge,
+                months: monthAge,
+                days: dateAge
+            };
+        return age.years;
     }
 
     return (
@@ -66,7 +98,7 @@ const GerenciarUsuarios = () => {
                             <td>{usuario.nomeparticipante}</td>
                             <td>{calcularIdade(new Date(usuario.datanascimentoparticipante).toLocaleDateString('pt-BR', { timeZone: 'UTC' }))} anos</td>
                             <td>{usuario.inscricoes.length}</td>
-                            <td>{usuario.inscricoes.length > 0 ? (<div onClick={() => toggle(usuario)} style={{ cursor: 'pointer' }}><BsListTask /></div>) : ""} </td>
+                            <td>{usuario.inscricoes.length > 0 ? (<div onClick={() => toggle(usuario)} style={{ cursor: 'pointer' }}> <Button color="primary">Detalhes</Button></div>) : ""} </td>
 
                         </tr>
                     ))}

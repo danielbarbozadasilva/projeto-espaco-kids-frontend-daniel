@@ -11,40 +11,43 @@ const Perfil = () => {
     const perfil = useSelector(state => state.auth.usuario);
 
     const isAdmin = useSelector(state => state.auth.isAdmin)
-    const detalhe = useSelector(state => state.usuario)
+    const informacoes = useSelector(state => state.usuario.detail)
 
-    const [form, setForm] = useState({ ...detalhe });
+    const [form, setForm] = useState({...informacoes});
 
-    console.log({ ...detalhe })
-    const handleChange = (e) => {
+    const handleChange = (props) => {
+        const { value, name } = props.target;
         setForm({
-            ...detalhe,
-            [e.target.name]: e.target.value
-        })
+            ...form,
+            [name]: value,
+
+        });
     }
+
+
+    useEffect(() => {
+        console.log('-----consulta id: '+perfil.id)
+        dispatch(getUsuarioId(perfil.id));
+    }, [dispatch])
 
 
     const updateForm = () => {
         const nform = {
-            ...form,
-            id: form.id,
-            nameusuario: form.nameusuario,
-            datanascimentoparticipante: form.datanascimentoparticipante,
+            id: perfil.id,
+            nomeusuario: form.nomeusuario,
+            datanascimentoparticipante: new Date(form.datanascimentoparticipante).toLocaleDateString("pt-br").replaceAll('-', '/') || "",
             nomeparticipante: !isAdmin ? (form.nomeparticipante) : (form.nomeparticipante = "Administrador"),
             cpf: form.cpf,
+            tipo: form.tipo,
             telefone: form.telefone,
             endereco: form.endereco,
-            email: form.email
+            email: form.email,
+            senha: form.senha
 
         }
         dispatch(updateProfile(nform));
     }
 
-    console.log('perfil',perfil.id) //ok
-
-  useEffect(() => {
-        dispatch(getUsuarioId(perfil.id));
-    }, [dispatch])
     return (
         <>
             <TitlePage>Perfil</TitlePage>
@@ -89,6 +92,12 @@ const Perfil = () => {
                         <Input type="email" id="email" value={form.email || ""} onChange={handleChange}
                             name="email" placeholder="Insira seu email" />
                     </FormGroup>
+                    <FormGroup>
+                        <Label htmlFor="senha">Nova Senha</Label>
+                        <Input type="password" id="senha" value={form.senha || ""} onChange={handleChange}
+                            name="senha" placeholder="Insira sua nova senha" />
+                    </FormGroup>
+               
 
 
                     <FormGroup>

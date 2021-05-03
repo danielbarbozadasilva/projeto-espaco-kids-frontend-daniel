@@ -1,5 +1,7 @@
 import { Table } from 'reactstrap'
 import { BiTrash, BiEdit } from 'react-icons/bi'
+import { Button, Col, Label, Row, FormGroup, Input } from 'reactstrap';
+import './style.css';
 
 const TableList = ( props ) => {
 
@@ -30,8 +32,11 @@ const TableList = ( props ) => {
                         <td>{oficinas.nomemonitor}</td>
 
                         <td>
-                            <BiEdit style={{ cursor: "pointer" }} className="text-info mr-1 font-weight-normal" onClick={() => editarOficina(oficinas.codoficina)} />
-                            <BiTrash style={{ cursor: "pointer" }} className="text-danger font-weight-normal" onClick={() => excluirOficina(oficinas)} />
+                            <Button className="botaoTabela" color="info" style={{ cursor: "pointer" }}>Detalhes</Button>
+                            <Button className="botaoTabela" color="warning" style={{ cursor: "pointer" }} onClick={() => editarOficina(oficinas.codoficina)}>Editar</Button>
+                            <Button className="botaoTabela" color="danger" style={{ cursor: "pointer" }} onClick={() => excluirOficina(oficinas)}>Excluir</Button>
+                            
+
                         </td>
                     </tr>
                 ))}

@@ -2,7 +2,8 @@ import { TYPES } from './participante.action'
 
 const INITIAL_STATE = {
     all: [],
-    loading: false
+    loading: false,
+    detail:{}
 };
 
 const reducer = (state = INITIAL_STATE, action) => { // tamara recebe
@@ -15,7 +16,7 @@ const reducer = (state = INITIAL_STATE, action) => { // tamara recebe
             state.loading = false
             return state;
         case TYPES.USUARIO_DETAILS:
-            state.all = action.data
+            state.detail = action.data
             state.loading = false
             return state;
         default:

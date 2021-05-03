@@ -58,10 +58,10 @@ export const createUsuario = (usuario) => {
 
     }
 }
-export const updateProfile = ({ id, nameusuario, datanascimentoparticipante, nomeparticipante, cpf, telefone, endereco, email }) => {
+export const updateProfile = ({ id, nomeusuario, datanascimentoparticipante, nomeparticipante, cpf, telefone, endereco, email, senha }) => {
     return async (dispatch) => {
         try {
-            const data = { nameusuario, datanascimentoparticipante, nomeparticipante, cpf, telefone, endereco, email }
+            const data = { nomeusuario, datanascimentoparticipante, nomeparticipante, cpf, telefone, endereco, email, senha }
             const all = await updateServiceUsuario(id, data)
             dispatch({
                 type: TYPES.STUDEND_ALL,
