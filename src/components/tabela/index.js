@@ -86,6 +86,8 @@ const Tabela = ({ inscricoes }) => {
                             <Button color="secondary" onClick={toggleModal}>NÃO</Button>
                         </ModalFooter>
                     </Modal>
+
+                
                 </div>
             ) : (
                 <div>Não existem alunos cadastrados</div>

@@ -1,13 +1,23 @@
-import { Table } from 'reactstrap'
-import { BiTrash, BiEdit } from 'react-icons/bi'
-import { Button, Col, Label, Row, FormGroup, Input } from 'reactstrap';
+import { Table, Button, Modal, ModalBody, ModalHeader } from 'reactstrap'
+import {useState, useSelector} from 'react';
 import './style.css';
 
-const TableList = ( props ) => {
+const TableList = (props) => {
 
     const { oficinas, editarOficina, excluirOficina } = props
 
+    // const usuarios = useSelector(state => state.usuario.all)
+    const [modal, setModal] = useState({
+        status: false,
+        data: {}
+    });
 
+    const toggle = (data = {}) => setModal({
+        status: !modal.status,
+        data: data
+    })
+
+    console.log("Console:   ",oficinas)
     return (
         <Table>
             <thead>
@@ -26,16 +36,16 @@ const TableList = ( props ) => {
                     <tr key={i}>
                         <td>{oficinas.nomeoficina}</td>
                         <td>{oficinas.qtd_inscricoes}</td>
-                        <td>{new Date (oficinas.dataoficina).toLocaleDateString('pt-BR', {timeZone: 'UTC'}) }</td>
+                        <td>{new Date(oficinas.dataoficina).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</td>
                         <td>{oficinas.horaoficina}</td>
-                        <td>{'R$'+(oficinas.valoroficina).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}).replace(".", ",")}</td>
+                        <td>{'R$' + (oficinas.valoroficina).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }).replace(".", ",")}</td>
                         <td>{oficinas.nomemonitor}</td>
 
                         <td>
-                            <Button className="botaoTabela" color="info" style={{ cursor: "pointer" }}>Detalhes</Button>
-                            <Button className="botaoTabela" color="warning" style={{ cursor: "pointer" }} onClick={() => editarOficina(oficinas.codoficina)}>Editar</Button>
-                            <Button className="botaoTabela" color="danger" style={{ cursor: "pointer" }} onClick={() => excluirOficina(oficinas)}>Excluir</Button>
-                            
+                            <Button size="sm" className="botaoTabela" color="info" style={{ cursor: "pointer" }} onClick={() => toggle()}>Detalhes</Button>
+                            <Button size="sm" className="botaoTabela" color="warning" style={{ cursor: "pointer" }} onClick={() => editarOficina(oficinas.codoficina)}>Editar</Button>
+                            <Button size="sm" className="botaoTabela" color="danger" style={{ cursor: "pointer" }} onClick={() => excluirOficina(oficinas)}>Excluir</Button>
+                          
 
                         </td>
                     </tr>
@@ -45,5 +55,28 @@ const TableList = ( props ) => {
     )
 
 }
+
+// <Modal isOpen={modal.status} toggle={toggle} >
+//     <ModalHeader toggle={toggle}>Aluno(s) Inscritos</ModalHeader>
+//     <ModalBody>
+//         <Table>
+//             <thead>
+//                 <tr>
+//                     <th>ID</th>
+//                     <th>Nome do Aluno</th>
+//                 </tr>
+//             </thead>
+//             <tbody>
+//                 {modal.data?.usuarios?.map((v, i) => (
+//                     <tr key={i}>
+//                         <td>{i + 1}</td>
+//                         <td>{v.nomeparticipante}</td>
+//                     </tr>
+//                 ))}
+//             </tbody>
+//         </Table>
+//     </ModalBody>
+
+// </Modal>
 
 export default TableList;

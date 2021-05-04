@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
-import { BsListTask } from 'react-icons/bs'
+import { Button, Modal, ModalHeader, ModalBody, Table } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsuariosAll } from '../store/participante/participante.action';
 import { TitlePage } from "../assets/styled";
@@ -98,7 +97,7 @@ const GerenciarUsuarios = () => {
                             <td>{usuario.nomeparticipante}</td>
                             <td>{calcularIdade(new Date(usuario.datanascimentoparticipante).toLocaleDateString('pt-BR', { timeZone: 'UTC' }))} anos</td>
                             <td>{usuario.inscricoes.length}</td>
-                            <td>{usuario.inscricoes.length > 0 ? (<div onClick={() => toggle(usuario)} style={{ cursor: 'pointer' }}> <Button color="primary">Detalhes</Button></div>) : ""} </td>
+                            <td>{usuario.inscricoes.length > 0 ? (<div onClick={() => toggle(usuario)} style={{ cursor: 'pointer' }}> <Button color="primary" size="sm">Detalhes</Button></div>) : ""} </td>
 
                         </tr>
                     ))}

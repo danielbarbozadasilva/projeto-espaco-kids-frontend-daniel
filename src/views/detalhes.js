@@ -87,7 +87,7 @@ const Detalhes = (props) => {
 
     const Menu = () => (
         <SNavbar expand="md mb-4">
-            <Button onClick={() => toogleSubcription(inscricoes)} color={!registered ? "primary" : "secondary"} size="sm">
+            <Button onClick={() => toogleSubcription(inscricoes)} color={!registered ? "primary" : "secondary"} size="md">
                 {!registered ? (<><AiFillCheckSquare /> Inscreva-se </>) : (<><AiFillCloseSquare /> Remover Inscrição</>)}
             </Button>
         </SNavbar>

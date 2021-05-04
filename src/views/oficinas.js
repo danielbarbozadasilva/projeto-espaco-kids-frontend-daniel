@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { TitlePage } from "../assets/styled";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { getOficinasAll, deletarOficina, createOficina, getDetails, updateOficina} from '../store/oficina/oficina.action';
 import TableList from '../components/oficinas/tableList';
@@ -34,6 +34,17 @@ const GerenciarOficinas = () => {
     useEffect(() => {
         dispatch(getOficinasAll());
     }, [dispatch])
+
+
+    const mostraParticipante = (codoficina) => {
+        dispatch(getDetails(codoficina))
+            .then(() => {
+                console.log('----Alunos:: ', form.oficinas.usuarios)
+                setForm({ ...form, codoficina })
+                setUpdate(true)
+                toggle()
+            })
+    }
 
     const editTable = (codoficina) => {
         dispatch(getDetails(codoficina))
@@ -105,10 +116,33 @@ const GerenciarOficinas = () => {
         <React.Fragment>
             <TitlePage>
                 Oficinas
-              <Button onClick={toggle} size="sm" color="info">Cadastrar</Button>
+              <Button onClick={toggle} size="md" color="info">Cadastrar</Button>
             </TitlePage>
 
-            <TableList oficinas={oficinas} editarOficina={editTable} excluirOficina={deleteTable} />
+            <TableList oficinas={oficinas} mostraParticipante={mostraParticipante} editarOficina={editTable} excluirOficina={deleteTable} />
+            
+            <Modal isOpen={modal} toggle={toggle} >
+                <ModalHeader toggle={toggle}>Aluno(s) inscrito(s)</ModalHeader>
+                <ModalBody>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome do Aluno</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {modal.data?.oficinas?.map((v, i) => (
+                                <tr key={i}>
+                                    <td>{v.usuarios.id}</td>
+                                    <td>{v.nomeparticipante}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </Table>
+                </ModalBody>
+
+            </Modal>
 
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader toggle={toggle}>
