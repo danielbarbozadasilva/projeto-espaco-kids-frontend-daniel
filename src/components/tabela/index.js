@@ -16,9 +16,7 @@ const Tabela = ({ inscricoes }) => {
     })
 
     const apagarInscricao = () => {
-        console.log('--------------------------',modal)
         if (modal.data.id) {
-            console.log('---------',modal.data);
             dispatch(deletarParticipanteOficina(modal.data.oficina_id, modal.data.id,modal.data.usuario_id))
                 .then(() => {
                     ReactSwal.fire({
@@ -29,7 +27,7 @@ const Tabela = ({ inscricoes }) => {
                     })
                     toggleModal()
                 })
-                .catch(erro => console.log('deu ruim...'))
+                .catch(erro => console.log('Ocorreu um erro!'))
         }
     }
 

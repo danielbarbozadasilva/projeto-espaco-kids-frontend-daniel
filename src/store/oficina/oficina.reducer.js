@@ -18,6 +18,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         case TYPES.OFICINA_DETAILS:
             state.details = action.data
             state.loading = false
+            
             return state;
         default:
             return state;

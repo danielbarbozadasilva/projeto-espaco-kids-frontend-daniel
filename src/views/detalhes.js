@@ -25,21 +25,21 @@ const Detalhes = (props) => {
     
     const loading = useSelector(state => state.oficina.loading)
     const inscricoes = useSelector(state => state.oficina.details.inscricoes)
-    const perfil = useSelector(state => state.auth.usuario);
 
 
     const toogleSubcription = (inscricoes) => {
+
         if (registered) {
-            dispatch(deletarParticipanteOficina(perfil, inscricoes.id, inscricoes.usuario.id))
+            dispatch(deletarParticipanteOficina(codoficina, inscricoes[0].id))
                 .then(() => {
                     ReactSwal.fire({
                         icon: 'success',
-                        title: `Aluno Removido do Curso`,
+                        title: `Aluno removido da oficina`,
                         showConfirmButton: false,
                         showCloseButton: true,
                     })
                 })
-                .catch(erro => console.log('deu ruim...'))
+                .catch(erro => console.log('Ocorreu um erro!'))
         } else {
             dispatch(inscreverParticipanteNaOficina(codoficina, inscricoes.id))
                 .then(() => {
@@ -50,7 +50,7 @@ const Detalhes = (props) => {
                         showCloseButton: true,
                     })
                 })
-                .catch(erro => console.log('deu ruim...'))
+                .catch(erro => console.log('Ocorreu um erro!'))
         }
 
 
@@ -86,17 +86,17 @@ const Detalhes = (props) => {
 
 
     const Menu = () => (
-        <SNavbar expand="md mb-4">
-            <Button onClick={() => toogleSubcription(inscricoes)} color={!registered ? "primary" : "secondary"} size="md">
+        <Navbar expand="md mb-4">
+            <Button onClick={() => toogleSubcription(inscricoes)} color={!registered ? "primary" : "secondary"} size="sm">
                 {!registered ? (<><AiFillCheckSquare /> Inscreva-se </>) : (<><AiFillCloseSquare /> Remover Inscrição</>)}
             </Button>
-        </SNavbar>
+        </Navbar>
     )
 
     const montarTela = (detalhe) => (
         <div>
             {Detalhamento(detalhe)}
-            {!isAdmin ? Menu() : <TabelaOficinasInscritos inscricoes={detalhe.inscricoes} />}
+            {!isAdmin ? Menu() : <TabelaOficinasInscritos inscritos={detalhe.inscricoes} />}
 
         </div>
     )
@@ -111,6 +111,7 @@ const Detalhes = (props) => {
 
 
 export default Detalhes;
+
 
 
 const SNavbar = styled.div`

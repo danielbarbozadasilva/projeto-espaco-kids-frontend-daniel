@@ -185,8 +185,6 @@ const SignUp = () => {
             setSuccess(true)
             setForm({})
         }
-        console.log(error)
-        console.log(registered)
     }, [error, registered])
 
 

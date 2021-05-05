@@ -27,7 +27,6 @@ const Perfil = () => {
     }
  
     const buscarDadosUsuario = async () =>{
-        // console.log('-----consulta pelo id da autenticação: '+perfil.id)
         var formulario = await getServiceDetalhesUsuarios(perfil.id);
         setForm({...formulario.data});
     }

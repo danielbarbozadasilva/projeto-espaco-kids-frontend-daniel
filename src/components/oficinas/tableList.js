@@ -1,23 +1,10 @@
-import { Table, Button, Modal, ModalBody, ModalHeader } from 'reactstrap'
-import {useState, useSelector} from 'react';
+import { Table, Button } from 'reactstrap'
 import './style.css';
 
 const TableList = (props) => {
 
-    const { oficinas, editarOficina, excluirOficina, mostraParticipante } = props
+    const { oficinas, editarOficina, excluirOficina, mostraParticipante } = props    
 
-    // const usuarios = useSelector(state => state.usuario.all)
-    const [modal, setModal] = useState({
-        status: false,
-        data: {}
-    });
-
-    const toggle = (data = {}) => setModal({
-        status: !modal.status,
-        data: data
-    })
-
-    console.log("Console:   ",oficinas)
     return (
         <Table>
             <thead>

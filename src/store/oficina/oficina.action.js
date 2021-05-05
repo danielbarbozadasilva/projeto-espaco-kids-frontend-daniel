@@ -1,5 +1,5 @@
-import { createServiceOficinas, getServiceAllOficinas, getServiceDetalhes, deleteServiceInscricaoOficina, removeServiceOficina, updateServiceOficina } from "../../services/oficinas.service"
-import {subServiceUsuarios} from "../../services/participante.service";
+import { createServiceOficinas, getServiceAllOficinas, getServiceDetalhes, deleteServiceInscricaoOficina, removeServiceOficina, updateServiceOficina, subServiceOficinas } from "../../services/oficinas.service"
+import { subServiceUsuarios } from "../../services/participante.service";
 
 export const TYPES = {
     OFICINA_LOADING: "OFICINA_LOADING",
@@ -20,8 +20,6 @@ export const getOficinasAll = () => {
                 type: TYPES.OFICINA_ALL,
                 data: all.data
             })
-            console.log('all----------------',all)
-
         } catch (error) {
             dispatch({ type: TYPES.OFICINA_LOADING, status: false })
             console.log('aconteceu um ERRO": disparar um e-mail para Admin')
@@ -51,39 +49,31 @@ export const getDetails = (id) => {
         try {
             const { auth } = getState()
             const res = await getServiceDetalhes(id)
-            console.log(res.data)
-            res.data.registered = res.data?.inscricoes.some(item => item.email === auth.usuario.email);
-  
+
+            res.data.registered = res.data.inscricoes.length > 0;
+
             dispatch({
                 type: TYPES.OFICINA_DETAILS,
                 data: res.data
             })
         } catch (error) {
             dispatch({ type: TYPES.OFICINA_LOADING, status: false })
-            console.log(error)
             console.log("Ocorreu um erro ao exibir os detalhes da oficina");
         }
     }
 }
 
 
-export const deletarParticipanteOficina = (codoficina, id_inscricao, id_usuario) => {
-    return async (dispatch, getState) => {
-
-        dispatch({ type: TYPES.OFICINA_LOADING, status: true })
-
+export const deletarParticipanteOficina = (codoficina, id_inscricao) => {
+    return async (dispatch) => {
         try {
-            const res = await deleteServiceInscricaoOficina(codoficina, id_inscricao, id_usuario)
+            const all = await deleteServiceInscricaoOficina(codoficina, id_inscricao)
 
-            if (res.status === 200) {
+            if (all.data) {
                 dispatch(getDetails(codoficina))
             }
-
-
         } catch (error) {
-            dispatch({ type: TYPES.OFICINA_LOADING, status: false })
-            console.log('aconteceu um ERRO": Erro ao excluir o participante', error)
-
+            console.log('aconteceu um ERRO": disparar um e-mail para Admin')
         }
 
     }
@@ -91,7 +81,7 @@ export const deletarParticipanteOficina = (codoficina, id_inscricao, id_usuario)
 
 
 
-export const updateOficina = ({ codoficina, nomeoficina, urlimagemoficina, dataoficina, horaoficina, valoroficina, nomemonitor, descricaoficina, status}) => {
+export const updateOficina = ({ codoficina, nomeoficina, urlimagemoficina, dataoficina, horaoficina, valoroficina, nomemonitor, descricaoficina, status }) => {
     return async (dispatch) => {
         dispatch({ type: TYPES.OFICINA_LOADING, status: true })
         try {
@@ -129,7 +119,7 @@ export const inscreverParticipanteNaOficina = (id_curso, id_inscricao) => {
     return async (dispatch) => {
 
         try {
-            const all = await subServiceUsuarios(id_curso, id_inscricao)
+            const all = await subServiceOficinas(id_curso, id_inscricao)
             if (all.data) {
                 dispatch(getDetails(id_curso))
             }

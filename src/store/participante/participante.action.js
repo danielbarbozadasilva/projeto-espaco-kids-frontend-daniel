@@ -14,7 +14,6 @@ export const getUsuariosAll = () => {
 
         try {
             const all = await getServiceAllUsuarios()
-            console.log(all)
             dispatch({
                 type: TYPES.USUARIO_ALL,
                 data: all.data
@@ -30,7 +29,6 @@ export const getUsuarioId = (id) => {
     return async (dispatch, getState) => {
         try {
             const res = await getServiceDetalhesUsuarios(id)
-            console.log(res.data)
 
             dispatch({
                 type: TYPES.USUARIO_DETAILS,
@@ -38,7 +36,6 @@ export const getUsuarioId = (id) => {
             })
         } catch (error) {
             dispatch({ type: TYPES.USUARIO_LOADING, status: false })
-            console.log(error)
             console.log("Ocorreu um erro ao exibir os detalhes da oficina");
         }
     }
