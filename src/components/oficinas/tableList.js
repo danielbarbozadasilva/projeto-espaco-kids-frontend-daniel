@@ -4,7 +4,7 @@ import './style.css';
 
 const TableList = (props) => {
 
-    const { oficinas, editarOficina, excluirOficina } = props
+    const { oficinas, editarOficina, excluirOficina, mostraParticipante } = props
 
     // const usuarios = useSelector(state => state.usuario.all)
     const [modal, setModal] = useState({
@@ -42,7 +42,7 @@ const TableList = (props) => {
                         <td>{oficinas.nomemonitor}</td>
 
                         <td>
-                            <Button size="sm" className="botaoTabela" color="info" style={{ cursor: "pointer" }} onClick={() => toggle()}>Detalhes</Button>
+                            <Button size="sm" className="botaoTabela" color="info" style={{ cursor: "pointer" }} onClick={() => mostraParticipante(oficinas.codoficina)}>Detalhes</Button>
                             <Button size="sm" className="botaoTabela" color="warning" style={{ cursor: "pointer" }} onClick={() => editarOficina(oficinas.codoficina)}>Editar</Button>
                             <Button size="sm" className="botaoTabela" color="danger" style={{ cursor: "pointer" }} onClick={() => excluirOficina(oficinas)}>Excluir</Button>
                           
@@ -55,28 +55,5 @@ const TableList = (props) => {
     )
 
 }
-
-// <Modal isOpen={modal.status} toggle={toggle} >
-//     <ModalHeader toggle={toggle}>Aluno(s) Inscritos</ModalHeader>
-//     <ModalBody>
-//         <Table>
-//             <thead>
-//                 <tr>
-//                     <th>ID</th>
-//                     <th>Nome do Aluno</th>
-//                 </tr>
-//             </thead>
-//             <tbody>
-//                 {modal.data?.usuarios?.map((v, i) => (
-//                     <tr key={i}>
-//                         <td>{i + 1}</td>
-//                         <td>{v.nomeparticipante}</td>
-//                     </tr>
-//                 ))}
-//             </tbody>
-//         </Table>
-//     </ModalBody>
-
-// </Modal>
 
 export default TableList;

@@ -14,6 +14,8 @@ const GerenciarOficinas = () => {
 
     const dispatch = useDispatch()
     const [modal, setModal] = useState(false)
+    const [modalAluno, setModalAluno] = useState({isOpen: false, data:{}})
+
     const [isUpdate, setUpdate] = useState(false)
     const stateForm = useState({})
     const [form, setForm] = stateForm
@@ -30,7 +32,10 @@ const GerenciarOficinas = () => {
         }
         setModal(!modal)
     };
-
+    const toggleModalAluno = (hadEvent) => {
+      
+        setModalAluno({...modalAluno, isOpen: !modalAluno.isOpen})
+    };
     useEffect(() => {
         dispatch(getOficinasAll());
     }, [dispatch])
@@ -39,10 +44,13 @@ const GerenciarOficinas = () => {
     const mostraParticipante = (codoficina) => {
         dispatch(getDetails(codoficina))
             .then(() => {
-                console.log('----Alunos:: ', form.oficinas.usuarios)
-                setForm({ ...form, codoficina })
-                setUpdate(true)
-                toggle()
+                
+                setModalAluno({
+                    ...modalAluno, 
+                    data:detalhe,
+                    isOpen:true
+                })
+
             })
     }
 
@@ -121,8 +129,8 @@ const GerenciarOficinas = () => {
 
             <TableList oficinas={oficinas} mostraParticipante={mostraParticipante} editarOficina={editTable} excluirOficina={deleteTable} />
             
-            <Modal isOpen={modal} toggle={toggle} >
-                <ModalHeader toggle={toggle}>Aluno(s) inscrito(s)</ModalHeader>
+            <Modal isOpen={modalAluno.isOpen} toggle={toggleModalAluno} >
+                <ModalHeader toggle={toggleModalAluno}>Aluno(s) inscrito(s)</ModalHeader>
                 <ModalBody>
                     <Table>
                         <thead>
@@ -132,7 +140,7 @@ const GerenciarOficinas = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {modal.data?.oficinas?.map((v, i) => (
+                            {modalAluno.data?.oficinas?.map((v, i) => (
                                 <tr key={i}>
                                     <td>{v.usuarios.id}</td>
                                     <td>{v.nomeparticipante}</td>
