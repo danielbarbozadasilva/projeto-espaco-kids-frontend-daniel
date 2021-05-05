@@ -10,6 +10,10 @@ header{
     height: 50px;
 }
 
+.brDtSZ{
+    width: auto!important;
+}
+
 .coluna1, .coluna2 {
     width: 50%;
     margin: 0px 35px;
@@ -59,7 +63,6 @@ body {
 }
 
 /* TABELA INSCRITOS */
-
 .noparticipants {
     font-size: 25px;
     margin-bottom: 15px;;

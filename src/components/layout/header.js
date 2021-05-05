@@ -70,9 +70,7 @@ const Header = (props) => {
                                                 </NavItem>
                                             </>
                                         ) : ""}
-                                        <NavItem >
-                                            <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/sobre" >Outros</SNavLink>
-                                        </NavItem>
+                                 
                                     </Nav>
                                 </SCollapse>
 
@@ -155,9 +153,7 @@ const Header = (props) => {
                                             </NavItem>
                                         </>
                                     ) : ""}
-                                    <NavItem >
-                                        <SNavLink exact tag={RRDNavLink} activeClassName="active" to="/sobre" >Outros</SNavLink>
-                                    </NavItem>
+                                
                                 </Nav>
                             </SCollapse>
 

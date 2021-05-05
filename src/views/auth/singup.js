@@ -33,27 +33,114 @@ const SignUp = () => {
         setForm({
             ...form,
             [name]: value,
-
         });
-
     };
 
     const formValidarCampo = (nome, valor) => {
         var menssage = "";
         switch (nome) {
             case 'nomeusuario':
-                var nomeregex = /\d/g;;
+                var nomeregex = /\d/g;
                 if (nomeregex.test(valor)) {
-                    menssage += "Não pode conter números "
+                    menssage += "Não pode conter números!"
                 }
                 else if (valor.trim() == "") {
-                    menssage += "Não pode ser vazio "
+                    menssage += "Não pode ser vazio!"
                 }
                 else if (valor.length < 5) {
-                    menssage += "Não ter menos que 5 caracteres "
+                    menssage += "Não ter menos que 5 caracteres!"
                 }
                 break;
+
+            case 'datanascimentoparticipante':
+                var dataAtual = new Date();
+                var dataInformadaConvertida = new Date(valor);
+                var filtroData = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
+                if (!filtroData.test(valor)) {
+                    menssage += "Data inválida!"
+                }
+                else if (dataInformadaConvertida.getTime() >= dataAtual.getTime()) {
+                    menssage += "Data maior que a atual!"
+                }
+                break;
+
+            case 'nomeparticipante':
+                var nomeregex = /\d/g;
+                if (nomeregex.test(valor)) {
+                    menssage += "Nome não pode conter números!"
+                }
+                else if (valor.trim() == "") {
+                    menssage += "Nome não pode ser vazio!"
+                }
+                else if (valor.length < 5) {
+                    menssage += "Não ter menos que 5 caracteres!"
+                }
+                break;
+
+            case 'cpf':
+                // Aceita apenas traço(-), ponto(.) e números (0 a 9)
+                var filtraCpf = /(?:\.|-|[0-9])*/;
+
+                if (filtraCpf.test(valor)) {
+                    menssage += "CPF inválido"
+                }
+                else if (valor.trim() == "") {
+                    menssage += "Não pode ser vazio!"
+                }
+                else if (valor.length < 11) {
+                    menssage += "CPF inválido!"
+                }
+                break;
+
+
+            case 'telefone':
+                // Nenhum DDD iniciado por 0 é aceito, e nenhum número de telefone pode iniciar com 0 ou 1.
+                // +55 (11) 98888-8888 / 9999-9999 / 21 98888-8888 / 5511988888888
+                var filtraTelefone = /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/;
+
+                if (!filtraTelefone.test(valor)) {
+                    menssage += "Número de telefone inválido!"
+
+                }
+                else if (valor.replace(" ", "") == "") {
+                    menssage += "Campo em branco!"
+                }
+                break;
+
+            case 'endereco':
+                if ((valor) === "") {
+                    menssage += "Campo em branco!"
+                }
+                break;
+
+
+            case 'email':
+                var filtraEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+                if (!filtraEmail.test(valor)) {
+                    menssage += "E-mail inválido!"
+
+                } else if (valor.replace(" ", "") == "") {
+                    menssage += "Campo em branco!"
+                }
+
+                if (!filtraTelefone.test(valor)) {
+                    menssage += "Número de telefone inválido"
+                }
+                else if (valor.replace(" ", "") == "") {
+                    menssage += "Campo em branco"
+                }
+                break;
+
+
+            case 'senha':
+                if (valor.length < 5) {
+                    menssage += "Não ter menos que 5 caracteres!"
+                }
+                break;
+
         }
+
         setFormValidate({ ...formValidate, [nome]: menssage })
 
     }

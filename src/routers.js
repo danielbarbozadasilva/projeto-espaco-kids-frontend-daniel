@@ -18,7 +18,7 @@ import Layout from "./components/layout";
 import Inicio from './views/inicio';
 import Oficinas from './views/oficinas';
 import Participantes from './views/participantes';
-import Sobre from './views/sobre';
+import Version from './views/version';
 import Detalhes from './views/detalhes';
 import Error401 from './views/errors/401';
 import Error404 from './views/errors/404';
@@ -59,7 +59,7 @@ const Routers = () => {
                     <AdminRoute exact path='/' component={Inicio} />
                     <AdminRoute exact path='/detalhes/:codoficina' component={Detalhes} />
                     {/* ADMIN */}
-                    <AdminRoute exact path='/sobre' component={Sobre} />
+                    <AdminRoute exact path='/version' component={Version} />
                     <AdminRoute exact path='/perfil' component={Perfil} />
 
                   

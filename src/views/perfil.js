@@ -4,6 +4,9 @@ import { TitlePage } from '../assets/styled';
 import { useSelector, useDispatch} from 'react-redux';
 import styled from "styled-components";
 import { updateProfile, getUsuarioId } from '../store/participante/participante.action';
+import {getServiceDetalhesUsuarios} from '../services/participante.service';
+
+
 const Perfil = () => {
     document.title = "Casa da Dinda";
     const dispatch = useDispatch()
@@ -11,9 +14,8 @@ const Perfil = () => {
     const perfil = useSelector(state => state.auth.usuario);
 
     const isAdmin = useSelector(state => state.auth.isAdmin)
-    const informacoes = useSelector(state => state.usuario.detail)
 
-    const [form, setForm] = useState({...informacoes});
+    const [form, setForm] = useState({});
 
     const handleChange = (props) => {
         const { value, name } = props.target;
@@ -23,12 +25,16 @@ const Perfil = () => {
 
         });
     }
-
+ 
+    const buscarDadosUsuario = async () =>{
+        // console.log('-----consulta pelo id da autenticação: '+perfil.id)
+        var formulario = await getServiceDetalhesUsuarios(perfil.id);
+        setForm({...formulario.data});
+    }
 
     useEffect(() => {
-        console.log('-----consulta id: '+perfil.id)
-        dispatch(getUsuarioId(perfil.id));
-    }, [dispatch])
+        buscarDadosUsuario();
+    }, [])
 
 
     const updateForm = () => {
@@ -38,14 +44,13 @@ const Perfil = () => {
             datanascimentoparticipante: new Date(form.datanascimentoparticipante).toLocaleDateString("pt-br").replaceAll('-', '/') || "",
             nomeparticipante: !isAdmin ? (form.nomeparticipante) : (form.nomeparticipante = "Administrador"),
             cpf: form.cpf,
-            tipo: form.tipo,
+            tipo: !isAdmin ? (form.tipo="2") : (form.tipo = "1"),
             telefone: form.telefone,
             endereco: form.endereco,
-            email: form.email,
-            senha: form.senha
-
+            email: form.email
         }
         dispatch(updateProfile(nform));
+        buscarDadosUsuario();
     }
 
     return (
@@ -92,11 +97,7 @@ const Perfil = () => {
                         <Input type="email" id="email" value={form.email || ""} onChange={handleChange}
                             name="email" placeholder="Insira seu email" />
                     </FormGroup>
-                    <FormGroup>
-                        <Label htmlFor="senha">Nova Senha</Label>
-                        <Input type="password" id="senha" value={form.senha || ""} onChange={handleChange}
-                            name="senha" placeholder="Insira sua nova senha" />
-                    </FormGroup>
+                    
                
 
 

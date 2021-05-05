@@ -41,7 +41,7 @@ const Detalhes = (props) => {
                 })
                 .catch(erro => console.log('deu ruim...'))
         } else {
-            dispatch(inscreverParticipanteNaOficina(inscricoes.id))
+            dispatch(inscreverParticipanteNaOficina(codoficina, inscricoes.id))
                 .then(() => {
                     ReactSwal.fire({
                         icon: 'success',
