@@ -123,13 +123,6 @@ const SignUp = () => {
                 } else if (valor.replace(" ", "") == "") {
                     menssage += "Campo em branco!"
                 }
-
-                if (!filtraTelefone.test(valor)) {
-                    menssage += "Número de telefone inválido"
-                }
-                else if (valor.replace(" ", "") == "") {
-                    menssage += "Campo em branco"
-                }
                 break;
 
 
@@ -201,35 +194,45 @@ const SignUp = () => {
 
                     <FormGroup>
                         <Label htmlFor="datanascimentoparticipante" className="label" >Data de Nascimento:</Label>
-                        <Input disabled={loading} type="date" name="datanascimentoparticipante" id="datanascimentoparticipante" onChange={handleChange} value={form.datanascimentoparticipante || ""} placeholder="Informe o e-mail" />
+                        <Input invalid={formValidate.datanascimentoparticipante ? true : false}  disabled={loading} type="date" name="datanascimentoparticipante" id="datanascimentoparticipante" onChange={handleChange} value={form.datanascimentoparticipante || ""} placeholder="Informe o e-mail" />
+                        <FormFeedback>{formValidate.datanascimentoparticipante || ""}</FormFeedback>
                     </FormGroup>
+
                     <FormGroup>
                         <Label htmlFor="nomeparticipante" className="label">Nome do Participante:</Label>
-                        <Input disabled={loading} type="text" name="nomeparticipante" id="nomeparticipante" onChange={handleChange} value={form.nomeparticipante || ""} placeholder="Informe o nome do participante" />
+                        <Input invalid={formValidate.nomeparticipante ? true : false} disabled={loading} type="text" name="nomeparticipante" id="nomeparticipante" onChange={handleChange} value={form.nomeparticipante || ""} placeholder="Informe o nome do participante" />
+                        <FormFeedback>{formValidate.nomeparticipante || ""}</FormFeedback>
                     </FormGroup>
+
                     <FormGroup>
                         <Label htmlFor="cpf" className="label">Cpf:</Label>
-                        <Input disabled={loading} type="text" name="cpf" id="cpf" onChange={handleChange} value={form.cpf || ""} placeholder="Informe o cpf" />
+                        <Input invalid={formValidate.cpf ? true : false} disabled={loading} type="text" name="cpf" id="cpf" onChange={handleChange} value={form.cpf || ""} placeholder="Informe o cpf" />
+                        <FormFeedback>{formValidate.cpf || ""}</FormFeedback>
                     </FormGroup>
+
                     <FormGroup>
                         <Label htmlFor="telefone" className="label">Telefone:</Label>
-                        <Input disabled={loading} type="text" name="telefone" id="telefone" onChange={handleChange} value={form.telefone || ""} placeholder="Informe o telefone" />
+                        <Input invalid={formValidate.telefone ? true : false} disabled={loading} type="text" name="telefone" id="telefone" onChange={handleChange} value={form.telefone || ""} placeholder="Informe o telefone" />
+                        <FormFeedback>{formValidate.telefone || ""}</FormFeedback>
                     </FormGroup>
                 </div>
                 <div className="coluna2">
                     <FormGroup>
                         <Label htmlFor="endereco" className="label">Endereço:</Label>
-                        <Input disabled={loading} type="text" name="endereco" id="endereco" onChange={handleChange} value={form.endereco || ""} placeholder="Informe o endereço" />
+                        <Input invalid={formValidate.endereco ? true : false} disabled={loading} type="text" name="endereco" id="endereco" onChange={handleChange} value={form.endereco || ""} placeholder="Informe o endereço" />
+                        <FormFeedback>{formValidate.endereco || ""}</FormFeedback>
                     </FormGroup>
 
                     <FormGroup>
                         <Label htmlFor="email" className="label">E-mail:</Label>
-                        <Input disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
+                        <Input invalid={formValidate.email ? true : false} disabled={loading} type="email" name="email" id="email" onChange={handleChange} value={form.email || ""} placeholder="Informe seu E-mail" />
+                        <FormFeedback>{formValidate.email || ""}</FormFeedback>
                     </FormGroup>
 
                     <FormGroup>
                         <Label htmlFor="senha" className="label">Senha:</Label>
-                        <Input disabled={loading} type="password" name="senha" id="senha" onChange={handleChange} value={form.senha || ""} placeholder="Informe sua senha" />
+                        <Input invalid={formValidate.senha ? true : false} disabled={loading} type="password" name="senha" id="senha" onChange={handleChange} value={form.senha || ""} placeholder="Informe sua senha" />
+                        <FormFeedback>{formValidate.senha || ""}</FormFeedback>
                     </FormGroup>
 
                     <Button className="botaoFormulario" color={isNotValid() || loading ? 'secondary' : 'primary'} disabled={isNotValid()} size="md" block onClick={submitForm}>
