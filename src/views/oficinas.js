@@ -140,10 +140,10 @@ const GerenciarOficinas = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {modalAluno.data?.oficinas?.map((v, i) => (
+                            {modalAluno.data?.inscricoes?.map((v, i) => (
                                 <tr key={i}>
                                     <td>{v.usuarios.id}</td>
-                                    <td>{v.nomeparticipante}</td>
+                                    <td>{v.usuarios.nomeparticipante}</td>
                                 </tr>
                             ))}
                         </tbody>
