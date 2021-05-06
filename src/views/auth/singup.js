@@ -79,20 +79,20 @@ const SignUp = () => {
                 }
                 break;
 
-            case 'cpf':
-                // Aceita apenas traço(-), ponto(.) e números (0 a 9)
-                var filtraCpf = /(?:\.|-|[0-9])*/;
+            // case 'cpf':
+            //     // Aceita apenas traço(-), ponto(.) e números (0 a 9)
+            //     var filtraCpf = /(?:\.|-|[0-9])*/;
 
-                if (filtraCpf.test(valor)) {
-                    menssage += "CPF inválido"
-                }
-                else if (valor.trim() == "") {
-                    menssage += "Não pode ser vazio!"
-                }
-                else if (valor.length < 11) {
-                    menssage += "CPF inválido!"
-                }
-                break;
+            //     if (filtraCpf.test(valor)) {
+            //         menssage += "CPF inválido"
+            //     }
+            //     else if (valor.trim() == "") {
+            //         menssage += "Não pode ser vazio!"
+            //     }
+            //     else if (valor.length < 11) {
+            //         menssage += "CPF inválido!"
+            //     }
+            //     break;
 
 
             case 'telefone':
@@ -208,8 +208,7 @@ const SignUp = () => {
 
                     <FormGroup>
                         <Label htmlFor="cpf" className="label">Cpf:</Label>
-                        <Input invalid={formValidate.cpf ? true : false} disabled={loading} type="text" name="cpf" id="cpf" onChange={handleChange} value={form.cpf || ""} placeholder="Informe o cpf" />
-                        <FormFeedback>{formValidate.cpf || ""}</FormFeedback>
+                        <Input  disabled={loading} type="text" name="cpf" id="cpf" onChange={handleChange} value={form.cpf || ""} placeholder="Informe o cpf" />
                     </FormGroup>
 
                     <FormGroup>

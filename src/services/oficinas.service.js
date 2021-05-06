@@ -20,7 +20,7 @@ const removeServiceOficina = (codoficina) => http.delete(`oficinas/${codoficina}
 const subServiceOficinas = (codoficina, data) => http.post(`oficinas/${codoficina}/inscricao`, data);
 
 // Deletar a inscrição na oficina
-const deleteServiceInscricaoOficina = (codoficina, id_inscricao) => http.delete(`/oficinas/${codoficina}/inscricao/${id_inscricao}`);
+const deleteServiceInscricaoOficina = (codoficina, id_inscricao, id_usuario) => http.delete(`/oficinas/${codoficina}/inscricao/${id_inscricao}/usuario/${id_usuario}`);
 
 
 

@@ -117,8 +117,8 @@ const GerenciarUsuarios = () => {
                         <tbody>
                             {modal.data?.inscricoes?.map((v, i) => (
                                 <tr key={i}>
-                                    <td>{v.oficinascod}</td>
-                                    <td>{v.oficinasnome}</td>
+                                    <td>{v.oficinas.oficina_id}</td>
+                                    <td>{v.oficinas.nomeoficina}</td>
                                 </tr>
                             ))}
                         </tbody>

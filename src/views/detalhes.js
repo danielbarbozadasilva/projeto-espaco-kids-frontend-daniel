@@ -58,7 +58,7 @@ const Detalhes = (props) => {
 
     useEffect(() => {
         dispatch(getDetails(codoficina))
-    }, [dispatch, codoficina])
+    }, [codoficina])
 
 
     const Detalhamento = ({ nomeoficina, dataoficina, horaoficina, valoroficina, nomemonitor, descricaoficina  }) => (
@@ -96,8 +96,7 @@ const Detalhes = (props) => {
     const montarTela = (detalhe) => (
         <div>
             {Detalhamento(detalhe)}
-            {!isAdmin ? Menu() : <TabelaOficinasInscritos inscritos={detalhe.inscricoes} />}
-
+            {!isAdmin ? Menu() : <TabelaOficinasInscritos inscricoes={detalhe.inscricoes} />}
         </div>
     )
 

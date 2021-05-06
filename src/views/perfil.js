@@ -182,7 +182,7 @@ const Perfil = () => {
 
                     <FormGroup>
                         <Label htmlFor="datanascimentoparticipante">Data de Nascimento</Label>
-                        <Input invalid={formValidate.datanascimentoparticipante ? true : false} disabled={loading} type="date" id="datanascimentoparticipante" value={moment(form.datanascimentoparticipante).format("YYYY/MM/DD").replaceAll("/", "-") || ""} onChange={handleChange}
+                        <Input invalid={formValidate.datanascimentoparticipante ? true : false} disabled={loading} type="date" id="datanascimentoparticipante" value={form.datanascimentoparticipante ? moment(form.datanascimentoparticipante).format("YYYY/MM/DD").replaceAll("/", "-") : ""} onChange={handleChange}
                             name="datanascimentoparticipante" />
                         <FormFeedback>{formValidate.datanascimentoparticipante || ""}</FormFeedback>
                     </FormGroup>

@@ -64,16 +64,24 @@ export const getDetails = (id) => {
 }
 
 
-export const deletarParticipanteOficina = (codoficina, id_inscricao) => {
-    return async (dispatch) => {
+export const deletarParticipanteOficina = (codoficina, id_inscricao, id_usuario) => {
+    return async (dispatch, getState) => {
         try {
-            const all = await deleteServiceInscricaoOficina(codoficina, id_inscricao)
+            let idUsuario = id_usuario
+
+            const { auth } = getState()
+
+            if(!auth.isAdmin){
+                idUsuario=auth.usuario.id
+            }
+            
+            const all = await deleteServiceInscricaoOficina(codoficina, id_inscricao, idUsuario)
 
             if (all.data) {
                 dispatch(getDetails(codoficina))
             }
         } catch (error) {
-            console.log('aconteceu um ERRO": disparar um e-mail para Admin')
+            console.log(error)
         }
 
     }

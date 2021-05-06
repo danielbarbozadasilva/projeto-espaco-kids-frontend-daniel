@@ -5,7 +5,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import ReactSwal from '../../plugins/swal';
 import { deletarParticipanteOficina } from '../../store/oficina/oficina.action';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Tabela = ({ inscricoes }) => {
     const dispatch = useDispatch()
@@ -17,7 +17,7 @@ const Tabela = ({ inscricoes }) => {
 
     const apagarInscricao = () => {
         if (modal.data.id) {
-            dispatch(deletarParticipanteOficina(modal.data.oficina_id, modal.data.id,modal.data.usuario_id))
+            dispatch(deletarParticipanteOficina(modal.data.oficina_id, modal.data.id, modal.data.usuario_id))
                 .then(() => {
                     ReactSwal.fire({
                         icon: 'success',
@@ -39,12 +39,11 @@ const Tabela = ({ inscricoes }) => {
     }
 
     
-
     return (
         <div>
             {inscricoes && inscricoes.length ? (
                 <div>
-                    {}
+                
                     <STable responsive striped size="sm">
                         <thead>
                             <TableTr>
