@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import * as moment from "moment";
 
 import { signUpAction } from '../../store/auth/auth.action'
 import { useDispatch, useSelector } from 'react-redux';
@@ -52,18 +53,19 @@ const SignUp = () => {
                 }
                 break;
 
-            case 'datanascimentoparticipante':
-                var dataAtual = new Date();
-                var dataInformadaConvertida = new Date(valor);
-                var filtroData = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
-                if (!filtroData.test(valor)) {
-                    menssage += "Data inválida!"
-                }
-                else if (dataInformadaConvertida.getTime() >= dataAtual.getTime()) {
-                    menssage += "Data maior que a atual!"
-                }
-                break;
-
+                case 'datanascimentoparticipante':
+                        const datanasc = valor
+    
+                        const dataAtual = moment().format("DD/MM/YYYY");
+    
+                        if (!moment(datanasc).isValid) {
+                            menssage += "Data inválida!"
+                        }
+                        else if (moment(datanasc).isAfter(dataAtual)) {
+                            menssage += "Data maior que a atual!"
+                        }
+                    
+                    break;
             case 'nomeparticipante':
                 var nomeregex = /\d/g;
                 if (nomeregex.test(valor)) {
