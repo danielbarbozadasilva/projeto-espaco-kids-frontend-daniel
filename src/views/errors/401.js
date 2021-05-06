@@ -3,7 +3,7 @@ const Error401 = () => {
       <div>
           <h1>401</h1>
           <h2>Não Autorizado</h2>
-          <h4>Você não tem permissões de Admistrador !</h4>
+          <h4>Você não tem permissões de Administrador !</h4>
       </div>
   )
 }
