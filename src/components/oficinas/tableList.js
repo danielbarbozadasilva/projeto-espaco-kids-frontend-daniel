@@ -28,13 +28,12 @@ const TableList = (props) => {
                         <td>{'R$' + (oficinas.valoroficina).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }).replace(".", ",")}</td>
                         <td>{oficinas.nomemonitor}</td>
 
-                        <td>
-                            <Button size="sm" className="botaoTabela" color="info" style={{ cursor: "pointer" }} onClick={() => mostraParticipante(oficinas.codoficina)}>Alunos</Button>
+                        <td className="espacoTabela">{oficinas.qtd_inscricoes  > 0 ? (
+                            <Button size="sm" className="botaoTabela" color="info" style={{ cursor: "pointer" }} onClick={() => mostraParticipante(oficinas.codoficina)}>Alunos</Button>) :  <span id="botaoEspaco"></span>} 
                             <Button size="sm" className="botaoTabela" color="warning" style={{ cursor: "pointer" }} onClick={() => editarOficina(oficinas.codoficina)}>Editar</Button>
                             <Button size="sm" className="botaoTabela" color="danger" style={{ cursor: "pointer" }} onClick={() => excluirOficina(oficinas)}>Excluir</Button>
-                          
+                           </td>
 
-                        </td>
                     </tr>
                 ))}
             </tbody>
