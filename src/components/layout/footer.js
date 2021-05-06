@@ -1,8 +1,6 @@
 import React from 'react';
-import '../../assets/fontawesome/css/all.min.css';
-import '../../assets/css/style.css';
 import LogoFooter from '../../assets/img/logo2.png';
-
+import { FaFacebookSquare, FaInstagramSquare, FaWhatsappSquare} from 'react-icons/fa';
 
 const Footer = (props) => {
 
@@ -11,9 +9,9 @@ const Footer = (props) => {
             <div className="redes-sociais">
                 <h3 className="tituloRedesSociais">Redes sociais</h3>
                 <div className="icons-redes-sociais">
-                    <a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><i className="fab fa-facebook-square"></i></a>
-                    <a href="https://www.instagram.com/" target="_blank" rel="noreferrer"><i className="fab fa-instagram-square"></i></a>
-                    <a href="https://api.whatsapp.com/send?phone=+5521992690225" target="_blank" rel="noreferrer"><i className="fab fa-whatsapp-square"></i></a>
+                    <a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><FaFacebookSquare className="iconeFooter"/></a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noreferrer"><FaInstagramSquare className="iconeFooter"/></a>
+                    <a href="https://api.whatsapp.com/send?phone=+5521992690225" target="_blank" rel="noreferrer"><FaWhatsappSquare className="iconeFooter"/></a>
                 </div>
             </div>
       

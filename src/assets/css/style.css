@@ -235,10 +235,9 @@ footer .phone {
     /* espaçamento interno acima do telefone */
 }
 
-/* icones do fontawesome */
-footer i {
+/* icones do react no footer */
+footer .iconeFooter {
     margin-right: 5px;
-    /* espaçamento externo de 5px entre os icones do fontawesome e o texto */
 }
 
 /* caso o usuário passe o cursor nos icones */
