@@ -29,7 +29,7 @@ const TableList = (props) => {
                         <td>{oficinas.nomemonitor}</td>
 
                         <td>
-                            <Button size="sm" className="botaoTabela" color="info" style={{ cursor: "pointer" }} onClick={() => mostraParticipante(oficinas.codoficina)}>Detalhes</Button>
+                            <Button size="sm" className="botaoTabela" color="info" style={{ cursor: "pointer" }} onClick={() => mostraParticipante(oficinas.codoficina)}>Alunos</Button>
                             <Button size="sm" className="botaoTabela" color="warning" style={{ cursor: "pointer" }} onClick={() => editarOficina(oficinas.codoficina)}>Editar</Button>
                             <Button size="sm" className="botaoTabela" color="danger" style={{ cursor: "pointer" }} onClick={() => excluirOficina(oficinas)}>Excluir</Button>
                           

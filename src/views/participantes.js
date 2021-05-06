@@ -97,7 +97,7 @@ const GerenciarUsuarios = () => {
                             <td>{usuario.nomeparticipante}</td>
                             <td>{calcularIdade(new Date(usuario.datanascimentoparticipante).toLocaleDateString('pt-BR', { timeZone: 'UTC' }))} anos</td>
                             <td>{usuario.inscricoes.length}</td>
-                            <td>{usuario.inscricoes.length > 0 ? (<div onClick={() => toggle(usuario)} style={{ cursor: 'pointer' }}> <Button color="primary" size="sm">Detalhes</Button></div>) : ""} </td>
+                            <td>{usuario.inscricoes.length > 0 ? (<div onClick={() => toggle(usuario)} style={{ cursor: 'pointer' }}> <Button color="primary" size="sm">Oficinas</Button></div>) : ""} </td>
 
                         </tr>
                     ))}
@@ -117,8 +117,8 @@ const GerenciarUsuarios = () => {
                         <tbody>
                             {modal.data?.inscricoes?.map((v, i) => (
                                 <tr key={i}>
-                                    <td>{i + 1}</td>
-                                    <td>{v.oficinas}</td>
+                                    <td>{v.oficinascod}</td>
+                                    <td>{v.oficinasnome}</td>
                                 </tr>
                             ))}
                         </tbody>
