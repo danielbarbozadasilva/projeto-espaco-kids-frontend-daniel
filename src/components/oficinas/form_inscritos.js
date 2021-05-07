@@ -19,10 +19,10 @@ const FormInscritos = (props) => {
     return (
         <>
             {oficinas ? (
-                <div className="colunasFormularios">
+                <div className="colunasFormularios" id="divTabela">
                     {/* <h1>Oficinas matriculadas</h1> */}
                     <Table>
-                        <thead>
+                        <thead >
                             <tr>
                                 <th>ID</th>
                                 <th>Nome da oficina</th>
@@ -39,7 +39,8 @@ const FormInscritos = (props) => {
                                             <td>{new Date(item.dataoficina).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</td>
                                             <td>{item.horaoficina}</td>
                                         </tr>
-                                    ): ""
+                                    ): document.getElementById("divTabela").style.display = "none"
+
                                 
                             ))}
                         </tbody>
@@ -49,4 +50,5 @@ const FormInscritos = (props) => {
         </>
     )
 }
+
 export default FormInscritos;
