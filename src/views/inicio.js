@@ -8,7 +8,7 @@ import { getOficinasAll } from '../store/oficina/oficina.action';
 import FormInscritos from '../components/oficinas/form_inscritos';
 
 const Oficinas = () => {
-   
+
     document.title = "Casa da Dinda - Início";
 
     const dispatch = useDispatch();
@@ -28,11 +28,12 @@ const Oficinas = () => {
         </Col>
     ))
 
-    const MapearInscritos = (oficinas) => oficinas.map((item, i) => (
-        <Col md="12" xl="12" sm="8" xs="8" key={i} className="mb-12">
-            <FormInscritos item={{ ...item}} />
+    const MapearInscritos = (oficinas) => {
+        return (<Col md="12" xl="12" sm="8" xs="8" className="mb-12">
+            <FormInscritos item={oficinas} />
         </Col>
-    ))
+        )
+    }
 
     if (loading) {
         return <Loading />
@@ -42,12 +43,12 @@ const Oficinas = () => {
         <>
             <BoxOficinas>
                 {!loading && oficina.length === 0 ? "Não tem Oficinas disponiveis" : MapearOficinas(oficina)}
-                {!isAdmin? MapearInscritos(oficina) : ""}
+                {!isAdmin ? MapearInscritos(oficina) : ""}
             </BoxOficinas>
-            
+
         </>
     )
-    
+
 }
 
 export default Oficinas;

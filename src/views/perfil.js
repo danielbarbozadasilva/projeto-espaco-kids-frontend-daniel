@@ -179,7 +179,7 @@ const Perfil = () => {
                     <FormGroup>
                         <Label htmlFor="name">Nome do Usuário</Label>
                         <Input invalid={formValidate.nomeusuario ? true : false} disabled={loading} type="text" id="nomeusuario" value={form.nomeusuario || ""} onChange={handleChange}
-                            name="nomeusuario" placeholder="Insira seu nome" maxLength="32" />
+                            name="nomeusuario" placeholder="Insira seu nome" minLength="10" maxLength="32" />
                         <FormFeedback>{formValidate.nomeusuario || ""}</FormFeedback>
                     </FormGroup>
 
@@ -195,21 +195,21 @@ const Perfil = () => {
                             <Label htmlFor="nomeparticipante">Nome do Participante</Label>
 
                             <Input invalid={formValidate.nomeparticipante ? true : false} disabled={loading} type="text" id="nomeparticipante" value={form.nomeparticipante || ""} onChange={handleChange}
-                                name="nomeparticipante" placeholder="Insira nome do participante" maxLength="32" />
+                                name="nomeparticipante" placeholder="Insira nome do participante" minLength="10" maxLength="32" />
                             <FormFeedback>{formValidate.nomeparticipante || ""}</FormFeedback>
                         </FormGroup>
                     ) : ""}
 
                     <FormGroup>
                         <Label htmlFor="cpf" className="label">Cpf:</Label>
-                        <Input invalid={formValidate.cpf ? true : false} disabled={loading} type="text" name="cpf" id="cpf" onChange={handleChange} value={form.cpf || ""} placeholder="Informe o cpf (apenas números)" maxLength="11" />
+                        <Input invalid={formValidate.cpf ? true : false} disabled={loading} type="text" name="cpf" id="cpf" onChange={handleChange} value={form.cpf || ""} placeholder="Informe o cpf (apenas números)" minLength="11" maxLength="14" />
                         <FormFeedback>{formValidate.cpf || ""}</FormFeedback>
                     </FormGroup>
 
                     <FormGroup>
                         <Label htmlFor="telefone">Telefone</Label>
                         <Input invalid={formValidate.telefone ? true : false} disabled={loading} type="text" id="telefone" value={form.telefone || ""} onChange={handleChange}
-                            name="telefone" placeholder="Insira o seu telefone" minLength="8" maxLength="25" />
+                            name="telefone" placeholder="Informe o telefone" minLength="8" maxLength="25" />
                         <FormFeedback>{formValidate.telefone || ""}</FormFeedback>
                     </FormGroup>
                 </div>
@@ -217,7 +217,7 @@ const Perfil = () => {
                     <FormGroup>
                         <Label htmlFor="endereco">Endereco</Label>
                         <Input invalid={formValidate.endereco ? true : false} disabled={loading} type="text" id="endereco" value={form.endereco || ""} onChange={handleChange}
-                            name="endereco" placeholder="Insira o seu endereco" minLength="8" maxLength="40" />
+                            name="endereco" placeholder="Informe o endereço" minLength="8" maxLength="40" />
                         <FormFeedback>{formValidate.endereco || ""}</FormFeedback>
                     </FormGroup>
                     <FormGroup>

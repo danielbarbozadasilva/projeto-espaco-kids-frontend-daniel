@@ -1,6 +1,6 @@
 import { BsListTask } from 'react-icons/bs'
-import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
+import React from 'react';
+import { Table } from 'reactstrap';
 
     const TableList = ({ usuarios }) => {
         return (
@@ -13,7 +13,6 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'react
                             <th>E-mail do responsável</th>
                             <th>Nome do participante</th>
                             <th>Idade do participante</th>
-
                         </tr>
                     </thead>
                     <tbody>

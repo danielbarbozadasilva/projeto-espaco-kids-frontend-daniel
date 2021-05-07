@@ -131,13 +131,13 @@ const GerenciarOficinas = () => {
             <TableList oficinas={oficinas} mostraParticipante={mostraParticipante} editarOficina={editTable} excluirOficina={deleteTable} />
 
             <Modal isOpen={modalAluno.isOpen} toggle={toggleModalAluno} >
-                <ModalHeader toggle={toggleModalAluno}>Aluno(s) inscrito(s)</ModalHeader>
+                <ModalHeader toggle={toggleModalAluno}>Participante(s) inscrito(s)</ModalHeader>
                 <ModalBody>
                     <Table>
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nome do Aluno</th>
+                                <th>Nome do participante</th>
                             </tr>
                         </thead>
                         <tbody>

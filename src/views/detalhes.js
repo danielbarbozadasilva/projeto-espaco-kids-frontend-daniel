@@ -30,7 +30,7 @@ const Detalhes = (props) => {
                 .then(() => {
                     ReactSwal.fire({
                         icon: 'success',
-                        title: `Aluno removido da oficina`,
+                        title: `Removido da oficina com sucesso!`,
                         showConfirmButton: false,
                         showCloseButton: true,
                     })
@@ -41,7 +41,7 @@ const Detalhes = (props) => {
                 .then(() => {
                     ReactSwal.fire({
                         icon: 'success',
-                        title: `Aluno Cadastrado com sucesso !`,
+                        title: `Cadastrado com sucesso na oficina!`,
                         showConfirmButton: false,
                         showCloseButton: true,
                     })
@@ -71,7 +71,7 @@ const Detalhes = (props) => {
                         <Button onClick={() => toogleSubcription(inscricoes)} className={!registered ? "estilo-botao-details estiloBotaoDetails" : "estilo-botao-details-disable estiloBotaoDetails"} size="md">
                             {!registered ? (<><AiFillCheckSquare size="25" /> Inscreva-se </>) : (<><AiFillCloseSquare size="25" /> Remover Inscrição</>)}
                         </Button>
-                    : ""}
+                        : ""}
                 </div>
                 <div className="colunadetalhe2">
                     <p className="info_oficina">
@@ -95,7 +95,7 @@ const Detalhes = (props) => {
     const montarTela = (detalhe) => (
         <div>
             {Detalhamento(detalhe)}
-            {isAdmin ?  <TabelaOficinasInscritos inscricoes={detalhe.inscricoes} /> : "" }
+            {isAdmin ? <TabelaOficinasInscritos inscricoes={detalhe.inscricoes} /> : ""}
         </div>
     )
 

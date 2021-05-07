@@ -16,27 +16,32 @@ const FormInscritos = (props) => {
 
     // store
 
-return (
-    <>
-        {inscrito ? (
-            <div className="colunasFormularios">
-                {/* <h1>Oficinas matriculadas</h1> */}
-                <Table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome da oficina</th>
-                            <th>Data</th>
-                            <th>Hora</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{codoficina}</td>
-                            <td>{nomeoficina}</td>
-                            <td>{moment(dataoficina).format('DD/MM/YYYY')}</td>
-                            <td>{horaoficina}</td>
-                        </tr>
+    return (
+        <>
+            {oficinas ? (
+                <div className="colunasFormularios">
+                    {/* <h1>Oficinas matriculadas</h1> */}
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome da oficina</th>
+                                <th>Data</th>
+                                <th>Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {oficinas.map((item, i) => (
+                                item.inscrito ? (
+                                        <tr>
+                                            <td>{item.codoficina}</td>
+                                            <td>{item.nomeoficina}</td>
+                                            <td>{new Date(item.dataoficina).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</td>
+                                            <td>{item.horaoficina}</td>
+                                        </tr>
+                                    ):""
+                                
+                            ))}
                         </tbody>
                     </Table>
                 </div>

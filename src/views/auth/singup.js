@@ -52,19 +52,19 @@ const SignUp = () => {
                 }
                 break;
 
-                case 'datanascimentoparticipante':
-                        const datanasc = valor.replaceAll("-","/")
-    
-                        const dataAtual = moment().format("YYYY/MM/DD");
-                     
-                        if (!moment(datanasc).isValid) {
-                            menssage += "Data inválida!"
-                        }
-                        else if (moment(datanasc).isAfter(dataAtual)) {
-                            menssage += "Data maior que a atual!"
-                        }
-                    
-                    break;
+            case 'datanascimentoparticipante':
+                const datanasc = valor.replaceAll("-", "/")
+
+                const dataAtual = moment().format("YYYY/MM/DD");
+
+                if (!moment(datanasc).isValid) {
+                    menssage += "Data inválida!"
+                }
+                else if (moment(datanasc).isAfter(dataAtual)) {
+                    menssage += "Data maior que a atual!"
+                }
+
+                break;
 
             case 'nomeparticipante':
                 var nomeregex = /\d/g;
@@ -112,7 +112,7 @@ const SignUp = () => {
             case 'endereco':
                 if ((valor) === "") {
                     menssage += "Campo em branco!"
-                } 
+                }
                 else if (valor.length < 8) {
                     menssage += "Endereço precisa ter mais que 8 caracteres!"
                 }
@@ -193,25 +193,26 @@ const SignUp = () => {
                     <h2 tag="h4" className="text-cadastro">Cadastre-se</h2>
                     <FormGroup>
                         <Label htmlFor="nomeusuario" className="label" >Nome do Usuário:</Label>
-                        <Input invalid={formValidate.nomeusuario ? true : false} disabled={loading} type="text" name="nomeusuario" id="nomeusuario" onChange={handleChange} value={form.nomeusuario || ""} placeholder="Informe o nome do usuário" maxLength="32"/>
+                        <Input invalid={formValidate.nomeusuario ? true : false} disabled={loading} type="text" name="nomeusuario" id="nomeusuario" onChange={handleChange} value={form.nomeusuario || ""} placeholder="Informe o nome do usuário" minLength="10" maxLength="32" />
                         <FormFeedback>{formValidate.nomeusuario || ""}</FormFeedback>
                     </FormGroup>
 
                     <FormGroup>
                         <Label htmlFor="datanascimentoparticipante" className="label" >Data de Nascimento:</Label>
-                        <Input invalid={formValidate.datanascimentoparticipante ? true : false}  disabled={loading} type="date" name="datanascimentoparticipante" id="datanascimentoparticipante" onChange={handleChange} value={form.datanascimentoparticipante || ""} />
+                        <Input invalid={formValidate.datanascimentoparticipante ? true : false} disabled={loading} type="date" name="datanascimentoparticipante" id="datanascimentoparticipante" onChange={handleChange} value={form.datanascimentoparticipante || ""} />
                         <FormFeedback>{formValidate.datanascimentoparticipante || ""}</FormFeedback>
                     </FormGroup>
 
                     <FormGroup>
                         <Label htmlFor="nomeparticipante" className="label">Nome do Participante:</Label>
-                        <Input invalid={formValidate.nomeparticipante ? true : false} disabled={loading} type="text" name="nomeparticipante" id="nomeparticipante" onChange={handleChange} value={form.nomeparticipante || ""} placeholder="Informe o nome do participante" maxLength="32"/>
+                        <Input invalid={formValidate.nomeparticipante ? true : false} disabled={loading} type="text" name="nomeparticipante" id="nomeparticipante" onChange={handleChange} value={form.nomeparticipante || ""} placeholder="Informe o nome do participante" minLength="10" maxLength="32" />
                         <FormFeedback>{formValidate.nomeparticipante || ""}</FormFeedback>
                     </FormGroup>
 
                     <FormGroup>
                         <Label htmlFor="cpf" className="label">Cpf:</Label>
-                        <Input invalid={formValidate.cpf ? true : false} disabled={loading} type="text" name="cpf" id="cpf" onChange={handleChange} value={form.cpf || ""} placeholder="Informe o cpf (apenas números)" minLength="11" maxLength="14"/>
+                        <Input invalid={formValidate.cpf ? true : false} disabled={loading} type="text" name="cpf" id="cpf" onChange={handleChange} value={form.cpf || ""} placeholder="Informe o cpf (apenas números)" minLength="11" maxLength="14" />
+                        {/* 11 digitos - sem caracteres ou 14 digitos com traços(-) e ponto(.) */}
                         <FormFeedback>{formValidate.cpf || ""}</FormFeedback>
                     </FormGroup>
 
@@ -224,7 +225,7 @@ const SignUp = () => {
                 <div className="coluna2">
                     <FormGroup>
                         <Label htmlFor="endereco" className="label">Endereço:</Label>
-                        <Input invalid={formValidate.endereco ? true : false} disabled={loading} type="text" name="endereco" id="endereco" onChange={handleChange} value={form.endereco || ""} placeholder="Informe o endereço" minLength="8" maxLength="40"  />
+                        <Input invalid={formValidate.endereco ? true : false} disabled={loading} type="text" name="endereco" id="endereco" onChange={handleChange} value={form.endereco || ""} placeholder="Informe o endereço" minLength="8" maxLength="40" />
                         <FormFeedback>{formValidate.endereco || ""}</FormFeedback>
                     </FormGroup>
 
@@ -236,7 +237,7 @@ const SignUp = () => {
 
                     <FormGroup>
                         <Label htmlFor="senha" className="label">Senha:</Label>
-                        <Input invalid={formValidate.senha ? true : false} disabled={loading} type="password" name="senha" id="senha" onChange={handleChange} value={form.senha || ""} placeholder="Informe sua senha" minLength="6" maxLength="10"/>
+                        <Input invalid={formValidate.senha ? true : false} disabled={loading} type="password" name="senha" id="senha" onChange={handleChange} value={form.senha || ""} placeholder="Informe sua senha" minLength="6" maxLength="10" />
                         <FormFeedback>{formValidate.senha || ""}</FormFeedback>
                     </FormGroup>
 
