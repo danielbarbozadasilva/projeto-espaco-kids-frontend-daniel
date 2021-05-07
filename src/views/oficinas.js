@@ -17,6 +17,9 @@ const GerenciarOficinas = () => {
 
     const [isUpdate, setUpdate] = useState(false)
     const stateForm = useState({})
+    const [isValido, setIsValido] = useState(true)
+
+
     const [form, setForm] = stateForm
 
     // store
@@ -158,10 +161,10 @@ const GerenciarOficinas = () => {
                     {isUpdate ? "Atualizar" : "Cadastrar"} Oficina
                 </ModalHeader>
                 <ModalBody>
-                    <FormOficina state={stateForm} />
+                    <FormOficina setIsValido={setIsValido} state={stateForm} />
                 </ModalBody>
                 <ModalFooter>
-                    <Button className="estilo-botao" onClick={submitForm}>
+                    <Button className="estilo-botao" disabled={isValido} onClick={submitForm}>
                         {isUpdate ? "Atualizar" : "Cadastrar"}
                     </Button>
                 </ModalFooter>

@@ -6,7 +6,7 @@ import { Col, Row } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOficinasAll } from '../store/oficina/oficina.action';
 import FormInscritos from '../components/oficinas/form_inscritos';
-
+import '../assets/css/style.css';
 const Oficinas = () => {
 
     document.title = "Casa da Dinda - Início";
@@ -29,7 +29,11 @@ const Oficinas = () => {
     ))
 
     const MapearInscritos = (oficinas) => {
-        return (<Col md="12" xl="12" sm="8" xs="8" className="mb-12">
+        return (
+        <Col md="12" xl="12" sm="8" xs="8" className="mb-12">
+            <div className="tituloFormIntro">
+                <h3>Oficinas inscritas</h3>
+            </div>
             <FormInscritos item={oficinas} />
         </Col>
         )

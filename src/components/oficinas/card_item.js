@@ -12,13 +12,13 @@ import '../../assets/css/style.css'
 
 const CardItem = (props) => {
 
-    const { codoficina, nomeoficina, urlimagemoficina, dataoficina, valoroficina} = props.item;
+    const { codoficina, nomeoficina, urlimagemoficina, dataoficina, valoroficina, inscrito} = props.item;
 
 
   return (
     <div>
        
-      <SCard> 
+      <SCard Style={inscrito ? 'background-color:rgb(252, 245, 255)' : ''}> 
         <CardImg className="cardimg" src={urlimagemoficina} alt="oficinas"/>
 
         <CardBody>
@@ -27,9 +27,7 @@ const CardItem = (props) => {
             <CardTitle><strong>Data: </strong> { new Date(dataoficina).toLocaleDateString('pt-BR', {timeZone: 'UTC'}) }</CardTitle>
             <CardTitle><strong>Valor: R$ </strong> {String(valoroficina).replace('.',',')} </CardTitle>
           
-            <Button className="estilo-botao" text="center" size="md"
-                tag={Link} to={`/detalhes/${codoficina}`}>Informações
-            </Button>
+            <Button className={!inscrito ? "estilo-botao estiloBotaoDetails" : "estilo-botao-inscrito estiloBotaoDetails"} text="center" size="md" tag={Link} to={`/detalhes/${codoficina}`}>Informações</Button>
         </CardBody>
 
     </SCard>

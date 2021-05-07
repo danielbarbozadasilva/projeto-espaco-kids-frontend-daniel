@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Button, Row, FormGroup, Label, Input, FormFeedback } from 'reactstrap';
+import { Button, Row, FormGroup, Label, Input, FormFeedback, Spinner } from 'reactstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from "styled-components";
 import { updateProfile } from '../store/participante/participante.action';
@@ -21,13 +21,27 @@ const Perfil = () => {
     const [formValidate, setFormValidate] = useState({});
     const [form, setForm] = useState({});
 
+    const [desableInit, setDesableInit] = useState(true);
+
+
+
     const handleChange = (props) => {
+        setDesableInit(false);
         const { value, name } = props.target;
         formValidarCampo(name, value);
         setForm({
             ...form,
             [name]: value,
         });
+    }
+    const isNotValid = () => {
+        const inputs = ['nomeusuario', 'datanascimentoparticipante', 'nomeparticipante', 'cpf', 'telefone', 'endereco', 'email']
+        const invalid = (label) => !Object.keys(form).includes(label) || form[label].length === 0
+
+        const validacoes = Object.values(formValidate).filter(item => item !== "").length > 0
+
+        return inputs.some(item => invalid(item)) || validacoes
+
     }
 
     const formValidarCampo = (nome, valor) => {
@@ -74,10 +88,8 @@ const Perfil = () => {
                 break;
 
             case 'cpf':
-                // Aceita apenas traço(-), ponto(.) e números (0 a 9)
-                var filtraCpf = /(?:\.|-|[0-9])*/;
-
-                if (!filtraCpf.test(valor)) {
+                var filtraCpf = /[^0-9.]/;
+                if (filtraCpf.test(valor)) {
                     menssage += "CPF inválido"
                 }
                 else if (valor.trim() == "") {
@@ -154,22 +166,23 @@ const Perfil = () => {
             email: form.email
         }
 
-        if(isAuthenticated()){
-             dispatch(updateProfile(nform)) .then(() => {
+        if (isAuthenticated()) {
+            dispatch(updateProfile(nform)).then(() => {
                 ReactSwal.fire({
                     icon: 'success',
                     title: `Dados atualizados com sucesso !`,
                     showConfirmButton: false,
                     showCloseButton: true,
                 })
+                setDesableInit(true);
             })
-          
-        buscarDadosUsuario();
-    }else{
-        <Redirect to="/signin" />
-    } 
+
+            buscarDadosUsuario();
+        } else {
+            <Redirect to="/signin" />
+        }
     }
-    
+
 
     return (
         <>
@@ -206,14 +219,15 @@ const Perfil = () => {
                         <FormFeedback>{formValidate.cpf || ""}</FormFeedback>
                     </FormGroup>
 
+
+                </div>
+                <div className="coluna2">
                     <FormGroup>
                         <Label htmlFor="telefone">Telefone</Label>
                         <Input invalid={formValidate.telefone ? true : false} disabled={loading} type="text" id="telefone" value={form.telefone || ""} onChange={handleChange}
                             name="telefone" placeholder="Informe o telefone" minLength="8" maxLength="25" />
                         <FormFeedback>{formValidate.telefone || ""}</FormFeedback>
                     </FormGroup>
-                </div>
-                <div className="coluna2">
                     <FormGroup>
                         <Label htmlFor="endereco">Endereco</Label>
                         <Input invalid={formValidate.endereco ? true : false} disabled={loading} type="text" id="endereco" value={form.endereco || ""} onChange={handleChange}
@@ -227,9 +241,9 @@ const Perfil = () => {
                         <FormFeedback>{formValidate.email || ""}</FormFeedback>
                     </FormGroup>
 
-                    <FormGroup>
-                        <Button className={loading ? 'estilo-botao-desable' : 'estilo-botao'} size="md" block onClick={updateForm}>Alterar</Button>
-                    </FormGroup>
+                    <Button className="botaoFormulario" className={isNotValid() || loading ? 'estilo-botao-desable' : 'estilo-botao'} disabled={isNotValid() || desableInit} size="md" block onClick={updateForm}>
+                        {loading ? (<><Spinner size="sm" color="light" /> Carregando...</>) : "Atualizar"}
+                    </Button>
                 </div>
             </div>
 

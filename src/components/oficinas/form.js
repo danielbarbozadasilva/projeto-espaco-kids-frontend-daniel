@@ -7,7 +7,7 @@ import { FormGroup, Label, Input, Alert, Col, Row, Button, Spinner, FormFeedback
 import '../../assets/css/style.css'
 
 
-const FormOficina = ({ state }) => {
+const FormOficina = ({ state, setIsValido}) => {
     const [hasError, setHasError] = useState(false)
     const [success, setSuccess] = useState(false)
     const dispatch = useDispatch();
@@ -21,21 +21,24 @@ const FormOficina = ({ state }) => {
 
     const handleChange = (props) => {
         const { value, name } = props.target;
-        formValidarCampo(name, value);
-        setForm({
-            ...form,
-            [name]: value,
-        });
+        var validarResult = formValidarCampo(name, value);
+        var validarCampos = {...form, [name]: value}
+
+        setForm(validarCampos);
+
+        isNotValid(validarResult, validarCampos);
     }
-    const isNotValid = () => {
+    const isNotValid = (validarResult, validarCampos) => {
         const inputs = ['nomeoficina', 'urlimagemoficina', 'dataoficina', 'horaoficina', 'valoroficina', 'nomemonitor', 'descricaoficina']
-        const invalid = (label) => !Object.keys(form).includes(label) || form[label].length === 0
+        const invalid = (label) => !Object.keys(validarCampos).includes(label) || validarCampos[label].length === 0
 
-        const validacoes = Object.values(formValidate).filter(item => item !== "").length > 0
+        const validacoes = Object.values(validarResult).filter(item => item !== "").length > 0
 
-        return inputs.some(item => invalid(item)) || validacoes
+        const valor =  inputs.some(item => invalid(item)) || validacoes
 
+        setIsValido(valor);
     }
+
     const formValidarCampo = (nome, valor) => {
         var menssage = "";
         switch (nome) {
@@ -47,7 +50,7 @@ const FormOficina = ({ state }) => {
                 else if (valor.trim() == "") {
                     menssage += "Não pode ser vazio!"
                 }
-                else if (valor.length <= 5) {
+                else if (valor.length < 5) {
                     menssage += "Precisa ter mais que 5 caracteres!"
                 }
                 else if (valor.length > 30) {
@@ -57,9 +60,9 @@ const FormOficina = ({ state }) => {
 
             case 'urlimagemoficina':
                 if (valor.trim() == "") {
-                    menssage += "Nome não pode ser vazio!"
+                    menssage += "URL não pode ser vazia!"
                 }
-                else if (valor.length <= 5) {
+                else if (valor.length < 5) {
                     menssage += "Precisa ter mais que 5 caracteres!"
                 }
                 break;
@@ -86,12 +89,10 @@ const FormOficina = ({ state }) => {
 
 
             case 'valoroficina':
-                var filtraValor = /(?:\.|-|[0-9])*/;
+                var invalido = /\d/g;
 
-
-                if (!filtraValor.test(valor)) {
+                if (!invalido.test(valor)) {
                     menssage += "O valor da oficina é inválido!"
-
                 }
                 else if (valor.replace(" ", "") == "") {
                     menssage += "Campo em branco!"
@@ -99,33 +100,41 @@ const FormOficina = ({ state }) => {
                 break;
 
             case 'nomemonitor':
-                if ((valor) === "") {
+                var nomeregex = /\d/g;
+                if (nomeregex.test(valor)) {
+                    menssage += "Não pode conter números!"
+                }
+                else if ((valor) === "") {
                     menssage += "Campo em branco!"
                 }
                 else if (valor.length < 5) {
                     menssage += "Nome precisa ter mais que 5 caracteres!"
                 }
-                else if (valor.length > 5) {
-                    menssage += "Nome precisa ter mais que 12 caracteres!"
+                else if (valor.length > 12) {
+                    menssage += "Nome precisa ter menos que 12 caracteres!"
                 }
                 break;
 
 
             case 'descricaoficina':
-                var filtraEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-                if (!filtraEmail.test(valor)) {
-                    menssage += "E-mail inválido!"
-
-                } else if (valor.replace(" ", "") == "") {
+                if (valor.replace(" ", "") == "") {
                     menssage += "Campo em branco!"
+                }
+                else if (valor.length < 16) {
+                    menssage += "A descrição precisa ter mais que 16 caracteres!"
+                }
+                else if (valor.length > 300) {
+                    menssage += "Nome precisa ter menos que 300 caracteres!"
                 }
                 break;
 
 
         }
-
-        setFormValidate({ ...formValidate, [nome]: menssage })
+        var validacao = { ...formValidate, [nome]: menssage }
+        setFormValidate(validacao)
+        
+        return validacao;
 
     }
 
@@ -139,37 +148,44 @@ const FormOficina = ({ state }) => {
                 <FormGroup>
                     <Label htmlFor="nomeoficina">Nome da oficina</Label>
                     <Input type="text" id="nomeoficina" value={form.nomeoficina || ""} onChange={handleChange}
-                        name="nomeoficina" placeholder="Insira o nome da oficina" minLength="5" maxLength="30" />
+                        name="nomeoficina" placeholder="Insira o nome da oficina" minLength="5" maxLength="30" invalid={formValidate.nomeoficina ? true : false} disabled={loading}/>
+                    <FormFeedback>{formValidate.nomeoficina || ""}</FormFeedback>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="urlimagemoficina">URL da imagem</Label>
                     <Input type="text" id="urlimagemoficina" value={form.urlimagemoficina || ""} onChange={handleChange}
-                        name="urlimagemoficina" placeholder="Insira url da imagem" />
+                        name="urlimagemoficina" placeholder="Insira url da imagem" invalid={formValidate.urlimagemoficina ? true : false} disabled={loading}/>
+                    <FormFeedback>{formValidate.urlimagemoficina || ""}</FormFeedback>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="dataoficina">Data da oficina</Label>
                     <Input type="date" id="dataoficina" value={form.dataoficina || ""} onChange={handleChange}
-                        name="dataoficina" />
+                        name="dataoficina" invalid={formValidate.dataoficina ? true : false} disabled={loading}/>
+                    <FormFeedback>{formValidate.dataoficina || ""}</FormFeedback>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="horaoficina">Horário da oficina</Label>
                     <Input type="text" id="horaoficina" value={form.horaoficina || ""} onChange={handleChange}
-                        name="horaoficina" placeholder="Insira a hora da oficina" />
+                        name="horaoficina" placeholder="Insira a hora da oficina" invalid={formValidate.horaoficina ? true : false} disabled={loading}/>
+                    <FormFeedback>{formValidate.horaoficina || ""}</FormFeedback>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="name">Preço da oficina</Label>
                     <Input type="text" id="valoroficina" value={form.valoroficina || ""} onChange={handleChange}
-                        name="valoroficina" placeholder="Insira o valor" />
+                        name="valoroficina" placeholder="Insira o valor" invalid={formValidate.valoroficina ? true : false} disabled={loading}/>
+                    <FormFeedback>{formValidate.valoroficina || ""}</FormFeedback>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="nomemonitor">Nome do monitor</Label>
                     <Input type="text" id="nomemonitor" value={form.nomemonitor || ""} onChange={handleChange}
-                        name="nomemonitor" placeholder="Insira o nome do monitor" minLength="5" maxLength="12" />
+                        name="nomemonitor" placeholder="Insira o nome do monitor" minLength="5" maxLength="12" invalid={formValidate.nomemonitor ? true : false} disabled={loading}/>
+                    <FormFeedback>{formValidate.nomemonitor || ""}</FormFeedback>
                 </FormGroup>
                 <FormGroup>
                     <Label htmlFor="name">Descrição da oficina</Label>
                     <Input type="text" id="descricaoficina" value={form.descricaoficina || ""} onChange={handleChange}
-                        name="descricaoficina" placeholder="Insira a descrição da oficina" minLength="16" maxLength="300" />
+                        name="descricaoficina" placeholder="Insira a descrição da oficina" minLength="16" maxLength="300" invalid={formValidate.descricaoficina ? true : false} disabled={loading}/>
+                    <FormFeedback>{formValidate.descricaoficina || ""}</FormFeedback>
                 </FormGroup>
             </Col>
         </BoxInscricao>
