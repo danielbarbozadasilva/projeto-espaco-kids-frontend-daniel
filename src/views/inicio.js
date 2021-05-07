@@ -46,7 +46,7 @@ const Oficinas = () => {
     return (
         <>
             <BoxOficinas>
-                {!loading && oficina.length === 0 ? "Não tem Oficinas disponiveis" : MapearOficinas(oficina)}
+                {!loading && oficina.length === 0 ? <h3 className="nenhumaOficinaCadastrada">Não existem oficinas cadastradas.</h3> : MapearOficinas(oficina)}
                 {!isAdmin ? MapearInscritos(oficina) : ""}
             </BoxOficinas>
 
