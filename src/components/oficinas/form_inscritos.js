@@ -1,49 +1,47 @@
 
-// import React, { useEffect, useState } from 'react';
-// import { Table } from 'reactstrap';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { getDetails } from '../store/oficina/oficina.action';
+import React, { useEffect, useState } from 'react';
+
+import { Table } from 'reactstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment';
 
 
-// const FormInscritos = (props) => {
+const FormInscritos = (props) => {
 
-//     const isAdmin = useSelector(state => state.auth.isAdmin)
-//     const inscricoes = useSelector(state => state.oficina.details.inscricoes)
-//     const dispatch = useDispatch()
+    const oficinas = useSelector(state => state.oficina.all)
+    const perfil = useSelector(state => state.auth.usuario);
+    const { codoficina, nomeoficina, inscrito, dataoficina, horaoficina } = props.item;
 
+    const stateForm = useState({})
 
-//     useEffect(() => {
-//         dispatch(getDetails(inscricao_id))
-//     }, [dispatch, inscricao_id])
+    // store
 
-
-
-
-//     return (
-
-//         <>
-//             <Table>
-//                 <div>Você está inscrito nestas oficinas:</div>
-//                 <thead>
-//                     <tr>
-//                         <th>ID</th>
-//                         <th>Nome da oficina</th>
-//                         <th>Data e hora</th>
-//                     </tr>
-//                 </thead>
-//                 <tbody>
-//                     {inscricoes?.map((v, i) => (
-//                         <tr key={i}>
-//                             <td>{i}</td>
-//                             <td>{v.inscricoes.oficinas.codoficina}</td>
-//                             <td>{v.inscricoes.oficinas.nomeoficina}</td>
-//                             <td>{v.inscricoes.oficinas.dataoficina}</td>
-//                             <td>{v.inscricoes.oficinas.horaoficina}</td>
-//                         </tr>
-//                     ))}
-//                 </tbody>
-//             </Table>
-//         </>
-//     )
-// }
-// export default FormInscritos;
+return (
+    <>
+        {inscrito ? (
+            <div className="colunasFormularios">
+                {/* <h1>Oficinas matriculadas</h1> */}
+                <Table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome da oficina</th>
+                            <th>Data</th>
+                            <th>Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{codoficina}</td>
+                            <td>{nomeoficina}</td>
+                            <td>{moment(dataoficina).format('DD/MM/YYYY')}</td>
+                            <td>{horaoficina}</td>
+                        </tr>
+                        </tbody>
+                    </Table>
+                </div>
+            ) : ""}
+        </>
+    )
+}
+export default FormInscritos;

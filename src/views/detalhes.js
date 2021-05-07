@@ -2,17 +2,13 @@
 import { useEffect } from "react";
 import { useParams } from "react-router";
 import Loading from '../components/loading';
-import { Jumbotron, 
-         Navbar,
-         Button } from 'reactstrap';
-import styled from 'styled-components';
+import { Navbar, Button } from 'reactstrap';
 import { AiFillCloseSquare, AiFillCheckSquare } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetails, deletarParticipanteOficina, inscreverParticipanteNaOficina } from "../store/oficina/oficina.action";
 import TabelaOficinasInscritos from '../components/tabela'
 import ReactSwal from "../plugins/swal";
-
-
+import '../assets/css/style.css';
 
 const Detalhes = (props) => {
     const { codoficina } = useParams();
@@ -22,7 +18,7 @@ const Detalhes = (props) => {
     const isAdmin = useSelector(state => state.auth.isAdmin)
     const detalhe = useSelector(state => state.oficina.details)
     const registered = useSelector(state => state.oficina.details.registered)
-    
+
     const loading = useSelector(state => state.oficina.loading)
     const inscricoes = useSelector(state => state.oficina.details.inscricoes)
 
@@ -61,42 +57,45 @@ const Detalhes = (props) => {
     }, [codoficina])
 
 
-    const Detalhamento = ({ nomeoficina, dataoficina, horaoficina, valoroficina, nomemonitor, descricaoficina  }) => (
-        <Jumbotron style={{ backgroundColor: registered && !isAdmin ? '#D4EDDA' : '#eee' }}>
-            <div className="container">
-                <p className="nomeoficina">{nomeoficina}</p>
-                <p className="info_oficina">
-                <strong> Data: </strong> { new Date(dataoficina).toLocaleDateString('pt-BR', {timeZone: 'UTC'}) }
-                </p>
-                <p className="info_oficina">
-                <strong>Horário: </strong> {horaoficina}
-                </p>
-                <p className="info_oficina">
-                <strong> Valor: R$ </strong> {String(valoroficina).replace('.',',')}
-                </p>
-                <p className="info_oficina">
-                <strong> Monitor: </strong> {nomemonitor}
-                </p>
-                <p className="info_oficina">
-                <strong> Descrição: </strong> {descricaoficina}
-                </p>
+    const Detalhamento = ({ nomeoficina, dataoficina, horaoficina, valoroficina, nomemonitor, descricaoficina }) => (
+
+        <div>
+            <div className="colunasFormularios">
+                <div className="colunadetalhe1">
+                    <h2 tag="h4" className="text-cadastro">Dados da oficina</h2>
+                    <p className="info_oficina"><strong>Nome:</strong> {nomeoficina}</p>
+                    <p className="info_oficina">
+                        <strong> Data: </strong> {new Date(dataoficina).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}
+                    </p>
+                    {!isAdmin ?
+                        <Button onClick={() => toogleSubcription(inscricoes)} className={!registered ? "estilo-botao-details estiloBotaoDetails" : "estilo-botao-details-disable estiloBotaoDetails"} size="md">
+                            {!registered ? (<><AiFillCheckSquare size="25" /> Inscreva-se </>) : (<><AiFillCloseSquare size="25" /> Remover Inscrição</>)}
+                        </Button>
+                    : ""}
+                </div>
+                <div className="colunadetalhe2">
+                    <p className="info_oficina">
+                        <strong>Horário: </strong> {horaoficina}
+                    </p>
+                    <p className="info_oficina">
+                        <strong> Valor: R$ </strong> {String(valoroficina).replace('.', ',')}
+                    </p>
+                    <p className="info_oficina">
+                        <strong> Monitor: </strong> {nomemonitor}
+                    </p>
+                    <p className="info_oficina">
+                        <strong> Descrição: </strong> {descricaoficina}
+                    </p>
+                </div>
             </div>
-        </Jumbotron>
+        </div>
     )
 
-
-    const Menu = () => (
-        <Navbar expand="md mb-4">
-            <Button onClick={() => toogleSubcription(inscricoes)} color={!registered ? "primary" : "secondary"} size="sm">
-                {!registered ? (<><AiFillCheckSquare /> Inscreva-se </>) : (<><AiFillCloseSquare /> Remover Inscrição</>)}
-            </Button>
-        </Navbar>
-    )
 
     const montarTela = (detalhe) => (
         <div>
             {Detalhamento(detalhe)}
-            {!isAdmin ? Menu() : <TabelaOficinasInscritos inscricoes={detalhe.inscricoes} />}
+            {isAdmin ?  <TabelaOficinasInscritos inscricoes={detalhe.inscricoes} /> : "" }
         </div>
     )
 
@@ -110,18 +109,4 @@ const Detalhes = (props) => {
 
 
 export default Detalhes;
-
-
-
-const SNavbar = styled.div`
-    background-color:none !important;
-    margin: 10px 0 20px;
-    padding: 10px 0;
-    border-bottom: thin dotted #4446;
-    display:flex;
-    
-    .info {
-        flex:1;
-    }
-`
 

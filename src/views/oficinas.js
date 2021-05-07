@@ -7,7 +7,6 @@ import TableList from '../components/oficinas/tableList';
 import FormOficina from '../components/oficinas/form';
 import ReactSwal from '../plugins/swal';
 import moment from 'moment';
-import FormInscritos from '../components/oficinas/form_inscritos';
 
 const GerenciarOficinas = () => {
     document.title = "Casa da Dinda";
@@ -124,13 +123,11 @@ const GerenciarOficinas = () => {
         <React.Fragment>
             <TitlePage>
                 Oficinas
-              <Button onClick={toggle} size="md" color="info">Cadastrar</Button>
+              <Button onClick={toggle} size="md" className="estilo-botao">Cadastrar</Button>
             </TitlePage>
 
+           
 
-                {/* <FormInscritos /> */}
-
-         
             <TableList oficinas={oficinas} mostraParticipante={mostraParticipante} editarOficina={editTable} excluirOficina={deleteTable} />
 
             <Modal isOpen={modalAluno.isOpen} toggle={toggleModalAluno} >
@@ -164,7 +161,7 @@ const GerenciarOficinas = () => {
                     <FormOficina state={stateForm} />
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={submitForm}>
+                    <Button className="estilo-botao" onClick={submitForm}>
                         {isUpdate ? "Atualizar" : "Cadastrar"}
                     </Button>
                 </ModalFooter>

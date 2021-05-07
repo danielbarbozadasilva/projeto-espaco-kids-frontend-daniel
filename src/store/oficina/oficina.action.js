@@ -1,5 +1,4 @@
 import { createServiceOficinas, getServiceAllOficinas, getServiceDetalhes, deleteServiceInscricaoOficina, removeServiceOficina, updateServiceOficina, subServiceOficinas } from "../../services/oficinas.service"
-import { subServiceUsuarios } from "../../services/participante.service";
 
 export const TYPES = {
     OFICINA_LOADING: "OFICINA_LOADING",

@@ -38,40 +38,40 @@ const Tabela = ({ inscricoes }) => {
         })
     }
 
-    
+
     return (
         <div>
             {inscricoes && inscricoes.length ? (
-                <div>
-                
-                    <STable responsive striped size="sm">
+                <div className="colunasFormularios">
+
+                    <Table> 
                         <thead>
-                            <TableTr>
+                            <tr>
                                 <th>Nome do Participante</th>
                                 <th>Nascimento</th>
                                 <th>Email</th>
                                 <th>Responsável</th>
                                 <th>Telefone</th>
                                 <th>Ações</th>
-                            </TableTr>
+
+                            </tr>
                         </thead>
                         <tbody>
                             {inscricoes && inscricoes.map((v, i) => (
-                                <TableTr key={i}>
+                                <tr key={i}>
                                     <td>{v.usuarios.nomeparticipante}</td>
                                     <td>{new Date(v.usuarios.datanascimentoparticipante).toLocaleDateString()}</td>
                                     <td>{v.usuarios.email}</td>
                                     <td>{v.usuarios.nomeusuario}</td>
                                     <td>{v.usuarios.telefone}</td>
                                     <td>
-                                        <Button alt='Excluir usuário' size="sm" className="text-danger" color="link"
-                                            onClick={() => toggleModal(v)} ><BiTrash size="20" /></Button>
+                                        <Button alt='Excluir usuário' size="sm" className="estilo-botao"
+                                            onClick={() => toggleModal(v)} >Excluir</Button>
                                     </td>
-                                </TableTr>
+                                </tr>
                             ))}
                         </tbody>
-                    </STable>
-
+                    </Table>
                     <Modal isOpen={modal.isOpen} toggle={toggleModal}>
                         <ModalHeader toggle={toggleModal}>Excluir Participante</ModalHeader>
                         <ModalBody>
@@ -84,10 +84,10 @@ const Tabela = ({ inscricoes }) => {
                         </ModalFooter>
                     </Modal>
 
-                
+
                 </div>
             ) : (
-                <div>Não existem alunos cadastrados</div>
+                <div id="semAlunos" className="colunasFormularios">Não existem alunos cadastrados</div>
             )}
         </div>
     )
@@ -95,29 +95,3 @@ const Tabela = ({ inscricoes }) => {
 
 export default Tabela;
 
-
-const STable = styled(Table)`
-    overflow:hidden;
-    border-radius: 4px;
-    font-size:14px;
-`
-const TableTr = styled.tr`
-
-    th{
-        background-color:#666;
-        color: #fff;
-        :nth-child(n){ min-width: 200px;}
-        :nth-child(1){ min-width: 400px;}
-        :nth-child(4){ min-width: 100px;text-align: center;}
-    }
-    
-    
-    
-
-    td{
-        :nth-child(1){ text-transform: uppercase;}
-        :nth-child(3){ text-transform: lowercase;}
-        :nth-child(4){ text-align: center;  }
-    }
-
-`

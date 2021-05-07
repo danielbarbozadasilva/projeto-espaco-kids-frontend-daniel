@@ -18,12 +18,4 @@
     font-weight: 100;
 }
 
-.colunasFormularios{
-    display: flex;
-    /* flex container, transforma os filhos em flex itens */
-    margin-left: 25px;
-    /* espaçamento externo, para alinhar */
-    box-shadow: 0px 2px 15px 6px rgba(0,0,0,0.11);
-    padding: 30px;
-    
-}
+

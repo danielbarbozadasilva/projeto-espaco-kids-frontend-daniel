@@ -27,7 +27,7 @@ const CardItem = (props) => {
             <CardTitle><strong>Data: </strong> { new Date(dataoficina).toLocaleDateString('pt-BR', {timeZone: 'UTC'}) }</CardTitle>
             <CardTitle><strong>Valor: R$ </strong> {String(valoroficina).replace('.',',')} </CardTitle>
           
-            <Button className="estilo-botao" text="center" size="lg"
+            <Button className="estilo-botao" text="center" size="md"
                 tag={Link} to={`/detalhes/${codoficina}`}>Informações
             </Button>
         </CardBody>

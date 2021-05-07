@@ -1,5 +1,13 @@
 .botaoTabela{
-    margin-left: 10px;
+    margin-left: 10px;   
+     font-weight: 700;
+     color: #fff;
+}
+.botaoTabela:hover{
+    margin-left: 10px;   
+     font-weight: 700;
+     color: #fff;
+     background-color: rgb(177, 120, 120);
 }
 #botaoEspaco{
     padding-left: 70px;

@@ -4,8 +4,7 @@ import * as moment from "moment";
 import { signUpAction } from '../../store/auth/auth.action'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import '../../assets/css/style.css';
-
+import '../../assets/css/style.css'
 import { FormGroup, Label, Input, Alert, Button, Spinner, FormFeedback } from 'reactstrap';
 
 const SignUp = () => {
@@ -48,16 +47,16 @@ const SignUp = () => {
                 else if (valor.trim() == "") {
                     menssage += "Não pode ser vazio!"
                 }
-                else if (valor.length < 5) {
-                    menssage += "Não ter menos que 5 caracteres!"
+                else if (valor.length <= 10) {
+                    menssage += "Precisa ter mais que 10 caracteres!"
                 }
                 break;
 
                 case 'datanascimentoparticipante':
-                        const datanasc = valor
+                        const datanasc = valor.replaceAll("-","/")
     
-                        const dataAtual = moment().format("DD/MM/YYYY");
-    
+                        const dataAtual = moment().format("YYYY/MM/DD");
+                     
                         if (!moment(datanasc).isValid) {
                             menssage += "Data inválida!"
                         }
@@ -66,6 +65,7 @@ const SignUp = () => {
                         }
                     
                     break;
+
             case 'nomeparticipante':
                 var nomeregex = /\d/g;
                 if (nomeregex.test(valor)) {
@@ -74,25 +74,25 @@ const SignUp = () => {
                 else if (valor.trim() == "") {
                     menssage += "Nome não pode ser vazio!"
                 }
-                else if (valor.length < 5) {
-                    menssage += "Não ter menos que 5 caracteres!"
+                else if (valor.length <= 10) {
+                    menssage += "Precisa ter mais que 10 caracteres!"
                 }
                 break;
 
-            // case 'cpf':
-            //     // Aceita apenas traço(-), ponto(.) e números (0 a 9)
-            //     var filtraCpf = /(?:\.|-|[0-9])*/;
+            case 'cpf':
+                // Aceita apenas traço(-), ponto(.) e números (0 a 9)
+                var filtraCpf = /(?:\.|-|[0-9])*/;
 
-            //     if (filtraCpf.test(valor)) {
-            //         menssage += "CPF inválido"
-            //     }
-            //     else if (valor.trim() == "") {
-            //         menssage += "Não pode ser vazio!"
-            //     }
-            //     else if (valor.length < 11) {
-            //         menssage += "CPF inválido!"
-            //     }
-            //     break;
+                if (!filtraCpf.test(valor)) {
+                    menssage += "CPF inválido"
+                }
+                else if (valor.trim() == "") {
+                    menssage += "Não pode ser vazio!"
+                }
+                else if (valor.length < 11 && valor.length > 14) {
+                    menssage += "CPF inválido!"
+                }
+                break;
 
 
             case 'telefone':
@@ -112,6 +112,9 @@ const SignUp = () => {
             case 'endereco':
                 if ((valor) === "") {
                     menssage += "Campo em branco!"
+                } 
+                else if (valor.length < 8) {
+                    menssage += "Endereço precisa ter mais que 8 caracteres!"
                 }
                 break;
 
@@ -129,8 +132,8 @@ const SignUp = () => {
 
 
             case 'senha':
-                if (valor.length < 5) {
-                    menssage += "Não ter menos que 5 caracteres!"
+                if (valor.length < 6) {
+                    menssage += "Não ter menos que 6 caracteres!"
                 }
                 break;
 
@@ -190,37 +193,38 @@ const SignUp = () => {
                     <h2 tag="h4" className="text-cadastro">Cadastre-se</h2>
                     <FormGroup>
                         <Label htmlFor="nomeusuario" className="label" >Nome do Usuário:</Label>
-                        <Input invalid={formValidate.nomeusuario ? true : false} disabled={loading} type="text" name="nomeusuario" id="nomeusuario" onChange={handleChange} value={form.nomeusuario || ""} placeholder="Informe o nome do usuário" />
+                        <Input invalid={formValidate.nomeusuario ? true : false} disabled={loading} type="text" name="nomeusuario" id="nomeusuario" onChange={handleChange} value={form.nomeusuario || ""} placeholder="Informe o nome do usuário" maxLength="32"/>
                         <FormFeedback>{formValidate.nomeusuario || ""}</FormFeedback>
                     </FormGroup>
 
                     <FormGroup>
                         <Label htmlFor="datanascimentoparticipante" className="label" >Data de Nascimento:</Label>
-                        <Input invalid={formValidate.datanascimentoparticipante ? true : false}  disabled={loading} type="date" name="datanascimentoparticipante" id="datanascimentoparticipante" onChange={handleChange} value={form.datanascimentoparticipante || ""} placeholder="Informe o e-mail" />
+                        <Input invalid={formValidate.datanascimentoparticipante ? true : false}  disabled={loading} type="date" name="datanascimentoparticipante" id="datanascimentoparticipante" onChange={handleChange} value={form.datanascimentoparticipante || ""} />
                         <FormFeedback>{formValidate.datanascimentoparticipante || ""}</FormFeedback>
                     </FormGroup>
 
                     <FormGroup>
                         <Label htmlFor="nomeparticipante" className="label">Nome do Participante:</Label>
-                        <Input invalid={formValidate.nomeparticipante ? true : false} disabled={loading} type="text" name="nomeparticipante" id="nomeparticipante" onChange={handleChange} value={form.nomeparticipante || ""} placeholder="Informe o nome do participante" />
+                        <Input invalid={formValidate.nomeparticipante ? true : false} disabled={loading} type="text" name="nomeparticipante" id="nomeparticipante" onChange={handleChange} value={form.nomeparticipante || ""} placeholder="Informe o nome do participante" maxLength="32"/>
                         <FormFeedback>{formValidate.nomeparticipante || ""}</FormFeedback>
                     </FormGroup>
 
                     <FormGroup>
                         <Label htmlFor="cpf" className="label">Cpf:</Label>
-                        <Input  disabled={loading} type="text" name="cpf" id="cpf" onChange={handleChange} value={form.cpf || ""} placeholder="Informe o cpf" />
+                        <Input invalid={formValidate.cpf ? true : false} disabled={loading} type="text" name="cpf" id="cpf" onChange={handleChange} value={form.cpf || ""} placeholder="Informe o cpf (apenas números)" minLength="11" maxLength="14"/>
+                        <FormFeedback>{formValidate.cpf || ""}</FormFeedback>
                     </FormGroup>
 
                     <FormGroup>
                         <Label htmlFor="telefone" className="label">Telefone:</Label>
-                        <Input invalid={formValidate.telefone ? true : false} disabled={loading} type="text" name="telefone" id="telefone" onChange={handleChange} value={form.telefone || ""} placeholder="Informe o telefone" />
+                        <Input invalid={formValidate.telefone ? true : false} disabled={loading} type="text" name="telefone" id="telefone" onChange={handleChange} value={form.telefone || ""} placeholder="Informe o telefone" minLength="8" maxLength="25" />
                         <FormFeedback>{formValidate.telefone || ""}</FormFeedback>
                     </FormGroup>
                 </div>
                 <div className="coluna2">
                     <FormGroup>
                         <Label htmlFor="endereco" className="label">Endereço:</Label>
-                        <Input invalid={formValidate.endereco ? true : false} disabled={loading} type="text" name="endereco" id="endereco" onChange={handleChange} value={form.endereco || ""} placeholder="Informe o endereço" />
+                        <Input invalid={formValidate.endereco ? true : false} disabled={loading} type="text" name="endereco" id="endereco" onChange={handleChange} value={form.endereco || ""} placeholder="Informe o endereço" minLength="8" maxLength="40"  />
                         <FormFeedback>{formValidate.endereco || ""}</FormFeedback>
                     </FormGroup>
 
@@ -232,11 +236,11 @@ const SignUp = () => {
 
                     <FormGroup>
                         <Label htmlFor="senha" className="label">Senha:</Label>
-                        <Input invalid={formValidate.senha ? true : false} disabled={loading} type="password" name="senha" id="senha" onChange={handleChange} value={form.senha || ""} placeholder="Informe sua senha" />
+                        <Input invalid={formValidate.senha ? true : false} disabled={loading} type="password" name="senha" id="senha" onChange={handleChange} value={form.senha || ""} placeholder="Informe sua senha" minLength="6" maxLength="10"/>
                         <FormFeedback>{formValidate.senha || ""}</FormFeedback>
                     </FormGroup>
 
-                    <Button className="botaoFormulario" color={isNotValid() || loading ? 'secondary' : 'primary'} disabled={isNotValid()} size="md" block onClick={submitForm}>
+                    <Button className="botaoFormulario" className={isNotValid() || loading ? 'estilo-botao-desable' : 'estilo-botao'} disabled={isNotValid()} size="md" block onClick={submitForm}>
                         {loading ? (<><Spinner size="sm" color="light" /> Carregando...</>) : "Cadastrar"}
                     </Button>
                     <Alert color="success" isOpen={success} toggle={() => setSuccess(!success)}>

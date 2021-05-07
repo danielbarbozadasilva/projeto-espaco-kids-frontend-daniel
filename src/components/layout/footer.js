@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoFooter from '../../assets/img/logo2.png';
+import LogoFooter from '../../assets/img/logo03footer.png';
 import { FaFacebookSquare, FaInstagramSquare, FaWhatsappSquare} from 'react-icons/fa';
 
 const Footer = (props) => {
