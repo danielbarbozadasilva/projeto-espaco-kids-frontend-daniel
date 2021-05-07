@@ -39,7 +39,7 @@ const FormInscritos = (props) => {
                                             <td>{new Date(item.dataoficina).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</td>
                                             <td>{item.horaoficina}</td>
                                         </tr>
-                                    ): document.getElementById("divTabela").style.display = "none"
+                                    ): ""
 
                                 
                             ))}
