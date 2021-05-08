@@ -251,7 +251,7 @@ const SignUp = () => {
                     </Alert>
                     <Alert color="danger" isOpen={hasError} toggle={closeError}>
                         <div><strong>OPS !!! </strong> Aconteceu um erro.</div>
-                        <small>Verifique usuário e senha</small>
+                        <small>Verifique seus dados.</small>
                     </Alert>
 
                 </div>

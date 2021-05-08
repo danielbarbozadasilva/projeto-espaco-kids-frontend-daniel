@@ -1,9 +1,8 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { Table } from 'reactstrap';
-import { useSelector, useDispatch } from 'react-redux';
-import moment from 'moment';
+import { useSelector } from 'react-redux';
 
 
 const FormInscritos = (props) => {
@@ -40,8 +39,6 @@ const FormInscritos = (props) => {
                                             <td>{item.horaoficina}</td>
                                         </tr>
                                     ): ""
-
-                                
                             ))}
                         </tbody>
                     </Table>
