@@ -8,7 +8,7 @@ const Layout = (props) => {
     document.title = props.nomeDaPagina;
     return (
         <>
-            <Header className="container-fluid" titulo={props.nomeDaPagina} />
+            <Header titulo={props.nomeDaPagina} />
             <Main className="container-fluid">
                 {props.children}
             </Main>

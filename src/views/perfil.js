@@ -190,7 +190,7 @@ const Perfil = () => {
                 <div className="coluna1">
                     <h2 tag="h4" className="text-cadastro">Atualizar cadastro</h2>
                     <FormGroup>
-                        <Label htmlFor="name">Nome do Usuário</Label>
+                        <Label htmlFor="name">Nome do Responsável</Label>
                         <Input invalid={formValidate.nomeusuario ? true : false} disabled={loading} type="text" id="nomeusuario" value={form.nomeusuario || ""} onChange={handleChange}
                             name="nomeusuario" placeholder="Insira seu nome" minLength="10" maxLength="32" />
                         <FormFeedback>{formValidate.nomeusuario || ""}</FormFeedback>

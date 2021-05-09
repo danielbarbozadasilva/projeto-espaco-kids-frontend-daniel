@@ -192,7 +192,7 @@ const SignUp = () => {
                 <div className="coluna1">
                     <h2 tag="h4" className="text-cadastro">Cadastre-se</h2>
                     <FormGroup>
-                        <Label htmlFor="nomeusuario" className="label" >Nome do Usuário:</Label>
+                        <Label htmlFor="nomeusuario" className="label" >Nome do Responsável:</Label>
                         <Input invalid={formValidate.nomeusuario ? true : false} disabled={loading} type="text" name="nomeusuario" id="nomeusuario" onChange={handleChange} value={form.nomeusuario || ""} placeholder="Informe o nome do usuário" minLength="10" maxLength="32" />
                         <FormFeedback>{formValidate.nomeusuario || ""}</FormFeedback>
                     </FormGroup>

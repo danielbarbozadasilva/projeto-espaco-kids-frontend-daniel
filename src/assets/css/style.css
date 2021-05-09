@@ -5,12 +5,13 @@ header{
     margin-bottom: 60px;
 }
 
-.logo-img{
+header .logo-img{
     width: 160px;
     height: 50px;
+    margin-left: 50px;
 }
 
-.brDtSZ{
+header .brDtSZ{
     width: auto!important;
 }
 
@@ -61,12 +62,7 @@ header{
     background-color: #FFFDE7;
 }
 
-.logo {
-    display: block;
-    max-width: 100%;
-    margin: 0 auto;  
-    padding: 20px 0;
-}
+
 
 body {
     min-height: 100vh;
@@ -74,20 +70,12 @@ body {
 }
 
 
-@media (max-width: 768px) {
-
-}
-
-@media (max-width: 768px) {
-
- 
-}
 
 
 /* TABELA INSCRITOS */
 .noparticipants {
     font-size: 25px;
-    margin-bottom: 15px;;
+    margin-bottom: 15px;
 }
 
 .bg-gradient-l-primary-gradient {
@@ -191,11 +179,11 @@ body {
 
 /* FOOTER */
 footer {
-    
+     position: center;        
+    text-align: center;
     font-size: 24px;
     /* altera o tamanho da fonte para 24px */
     display: flex;
-    justify-content: space-between;
     margin-top: 60px;
     flex-wrap: wrap;
     background-image: linear-gradient(to left, #ff425b, #c42252);
@@ -205,16 +193,16 @@ footer {
 
 /* conteudo redes sociais */
 footer .redes-sociais {
-    padding-left: 50px;
     /* expaçamento interno */
     margin-top: 63px;
     /* expaçamento externo, ajusta em relação ao título */
-    margin-bottom: 50px;
-    /* expaçamento externo */
+    position: left;        
+    text-align: left;
 }
 
 /* título redes sociais */
 footer .tituloRedesSociais {
+    margin-left: 35px;
     margin-bottom: 15px;
     /* expaçamento externo */
     text-transform: uppercase;
@@ -225,23 +213,20 @@ footer .tituloRedesSociais {
     letter-spacing: 3px;
     /* espaçamento entre as letras */
     color: white;
-    padding-left: 10px;
     border-left: 5px solid #fff;
-    /* borda vertical a esquerda do título */
+    padding-left: 30px;
 }
 
 footer .icons-redes-sociais a {
     font-size: 40px;
-    padding-right: 20px;
+    padding-left: 37px;
     color: #fff;
-    /* expaçamento interno entre os icones */
 }
 
 /* meu nome centralizado */
 footer .nome-footer {
     padding-top: 10px;
     margin-top: 10px;
-    padding-left: 60px;
     /* expaçamento externo, deixar o nome embaixo */
     font-size: 14px;
     text-transform: uppercase;
@@ -250,19 +235,21 @@ footer .nome-footer {
     /* fonte mais pesada */
     letter-spacing: 3px;
    /* espaçamento entre as letras */
+   text-align: center;
 }
 
 footer .imagemFooter {
+    margin-top: 80px;
     width: 160px;
     height: 75px;
-    margin-top: 80px;
-    margin-left: 230px;
-    margin-bottom: 10px;
+    position: center;        
+    text-align: center;
+    margin-left: 95px;
 }
 
 footer .infomacoes {
-    padding-top: 57px;
-    padding-right: 55px;
+    padding-top: 50px;
+    text-align: center;
 }
 
 /* Aplica o espaçamento entre os icones e textos */
@@ -282,7 +269,7 @@ footer .phone {
 }
 
 /* icones do react no footer */
-footer .iconeFooter {
+footer .iconeInfoRodape {
     margin-right: 5px;
 }
 
@@ -290,4 +277,70 @@ footer .iconeFooter {
 footer i:hover {
     /* altera a cor */
     color: #c7b7ba;
+}
+
+
+@media (max-width: 500px) {
+
+    header .logo-img{
+        width: 160px;
+        height: 50px;
+        margin: 0px;
+        padding: 0px;
+    }
+
+}
+
+
+@media (max-width: 775px) {
+
+/* conteudo redes sociais */
+footer .redes-sociais {
+    margin-top: 63px;
+    text-align: center;
+}
+
+/* título redes sociais */
+footer .tituloRedesSociais {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    /* espaçamento entre as letras */
+    color: white;
+    border: none;
+    margin: 0px;
+    padding-bottom: 15px;
+}
+footer .infomacoes {
+    padding-bottom: 45px;
+    text-align: center;
+}
+
+footer .imagemFooter {
+    margin-top: 60px!important;
+}
+ 
+}
+
+
+@media (max-width: 995px) {
+    footer .imagemFooter {
+        margin-top: 80px;
+        width: 160px;
+        height: 75px;
+        position: center;        
+        text-align: center;
+        margin-left: 15px;
+    }
+}
+
+
+
+@media (max-width: 1060px) {
+    footer .icons-redes-sociais a {
+        font-size: 40px;
+        padding-left: 20px;
+        color: #fff;
+    }
 }

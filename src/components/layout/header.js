@@ -44,7 +44,7 @@ const Header = (props) => {
 
         return (
             <header>
-                <SNavbar className="barraHeader" color="dark" dark expand="md">
+                <SNavbar className="barraHeader" color="dark" dark expand="lg">
                     <Container>
 
                         <NavbarBrand tag={RRDNavLink} to="/" id="logoMain">
@@ -157,7 +157,6 @@ const Header = (props) => {
                                 </Nav>
                             </SCollapse>
 
-                            <Nav >
                                 <UncontrolledDropdown nav inNavbar>
                                     <SDropdownToggle nav caret>
                                         {usuario.nomeusuario}
@@ -168,7 +167,6 @@ const Header = (props) => {
                                         <DropdownItem onClick={logout}>Sair</DropdownItem>
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
-                            </Nav>
                         </React.Fragment>
                     ) : ""}
                     {isAdmin ? (
@@ -196,18 +194,17 @@ const SNavbar = styled(Navbar)`
     font-weight: 600;
     border-style: none;
 
-
 `
 
 const SNavLink = styled(NavLink)`
-    margin-left: 70px;
     border-radius: 5px;        
-
+    text-align: center;
+    margin: 0px 40px;
 
 
     &.active {
         color: white!important;
-        margin-left: 80px!important;
+        text-align: center;
     }
 
     @media (max-width: 767.98px) {
@@ -217,7 +214,7 @@ const SNavLink = styled(NavLink)`
 
 `
 const SCollapse = styled(Collapse)`
-    /* flex-grow: 0; */
+   
 `
 
 
@@ -228,5 +225,6 @@ const SNavbarBrand = styled(NavbarBrand)`
 `
 const SDropdownToggle = styled(DropdownToggle)`
     color:white!important;
+    padding: 0px 10px;
 
 `
