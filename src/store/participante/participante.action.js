@@ -65,7 +65,6 @@ export const updateProfile = ({ id, nomeusuario, datanascimentoparticipante, nom
                 data: all.data
             })
         } catch (error) {
-            console.log('aconteceu um ERRO": disparar um e-mail para Admin')
         }
     }
 }

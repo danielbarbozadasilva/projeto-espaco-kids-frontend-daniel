@@ -35,7 +35,7 @@ const Perfil = () => {
         });
     }
     const isNotValid = () => {
-        const inputs = ['nomeusuario', 'datanascimentoparticipante', 'nomeparticipante', 'cpf', 'telefone', 'endereco', 'email']
+        const inputs = ['nomeusuario', 'datanascimentoparticipante', 'cpf', 'telefone', 'endereco', 'email']
         const invalid = (label) => !Object.keys(form).includes(label) || form[label].length === 0
 
         const validacoes = Object.values(formValidate).filter(item => item !== "").length > 0

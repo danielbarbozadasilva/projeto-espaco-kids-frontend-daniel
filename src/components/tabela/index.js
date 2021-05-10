@@ -1,8 +1,6 @@
 
 import { Table, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { BiTrash } from 'react-icons/bi'
 import { useState } from 'react';
-import styled from 'styled-components';
 import ReactSwal from '../../plugins/swal';
 import { deletarParticipanteOficina } from '../../store/oficina/oficina.action';
 import { useDispatch, useSelector } from 'react-redux';
