@@ -44,12 +44,12 @@ const Tabela = ({ inscricoes }) => {
             {inscricoes && inscricoes.length ? (
                 <div className="colunasFormularios">
 
-                    <Table> 
+                    <Table className="tabela"> 
                         <thead>
                             <tr>
                                 <th>Nome do Participante</th>
                                 <th>Nascimento</th>
-                                <th>Email</th>
+                                <th>E-mail</th>
                                 <th>Responsável</th>
                                 <th>Telefone</th>
                                 <th>Ações</th>
@@ -58,13 +58,13 @@ const Tabela = ({ inscricoes }) => {
                         </thead>
                         <tbody>
                             {inscricoes && inscricoes.map((v, i) => (
-                                <tr key={i}>
-                                    <td>{v.usuarios.nomeparticipante}</td>
-                                    <td>{new Date(v.usuarios.datanascimentoparticipante).toLocaleDateString()}</td>
-                                    <td>{v.usuarios.email}</td>
-                                    <td>{v.usuarios.nomeusuario}</td>
-                                    <td>{v.usuarios.telefone}</td>
-                                    <td>
+                                <tr className="tabelaParticipante" key={i}>
+                                    <td data-label="Nome do Participante">{v.usuarios.nomeparticipante}</td>
+                                    <td data-label="Nascimento">{new Date(v.usuarios.datanascimentoparticipante).toLocaleDateString()}</td>
+                                    <td data-label="E-mail">{v.usuarios.email}</td>
+                                    <td data-label="Responsável">{v.usuarios.nomeusuario}</td>
+                                    <td data-label="Telefone">{v.usuarios.telefone}</td>
+                                    <td data-label="Ações">
                                         <Button alt='Excluir usuário' size="sm" className="estilo-botao"
                                             onClick={() => toggleModal(v)} >Excluir</Button>
                                     </td>

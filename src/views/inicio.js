@@ -23,14 +23,14 @@ const Oficinas = () => {
     }, [dispatch])
 
     const MapearOficinas = (oficinas) => oficinas.map((item, i) => (
-        <Col md="4" xl="4" sm="8" xs="8" key={i} className="mb-4">
+        <Col className="cardsTelaInicial" md="6" xl="4" sm="12" xs="12" key={i}>
             <CardItem item={{ ...item, status: true }} />
         </Col>
     ))
 
     const MapearInscritos = (oficinas) => {
         return (
-        <Col md="12" xl="12" sm="8" xs="8" className="mb-12">
+        <Col md="12" xl="12" sm="12" xs="12" className="mb-12">
             <div className="tituloFormIntro">
                 <h3>Oficinas inscritas</h3>
             </div>

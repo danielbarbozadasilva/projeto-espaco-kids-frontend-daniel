@@ -70,7 +70,7 @@ const Header = (props) => {
                                                 </NavItem>
                                             </>
                                         ) : ""}
-                                 
+
                                     </Nav>
                                 </SCollapse>
 
@@ -127,7 +127,7 @@ const Header = (props) => {
     }
     return (
         <header>
-            <SNavbar className="barraHeader" color="dark" dark expand="md">
+            <SNavbar className="barraHeader" color="dark" dark expand="lg">
                 <Container>
 
                     <NavbarBrand tag={RRDNavLink} to="/" id="logoMain">
@@ -153,9 +153,11 @@ const Header = (props) => {
                                             </NavItem>
                                         </>
                                     ) : ""}
-                                
+
                                 </Nav>
                             </SCollapse>
+
+                            <Nav >
 
                                 <UncontrolledDropdown nav inNavbar>
                                     <SDropdownToggle nav caret>
@@ -167,6 +169,8 @@ const Header = (props) => {
                                         <DropdownItem onClick={logout}>Sair</DropdownItem>
                                     </DropdownMenu>
                                 </UncontrolledDropdown>
+                            </Nav>
+
                         </React.Fragment>
                     ) : ""}
                     {isAdmin ? (

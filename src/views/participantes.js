@@ -73,7 +73,7 @@ const GerenciarUsuarios = () => {
                 Participantes
             </TitlePage>
 
-            <Table>
+            <Table className="tabela">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -89,15 +89,15 @@ const GerenciarUsuarios = () => {
                 </thead>
                 <tbody>
                     {usuarios?.map((usuario, i) => (
-                        <tr key={i}>
-                            <td>{usuario.id}</td>
-                            <td>{usuario.nomeusuario}</td>
-                            <td>{usuario.telefone}</td>
-                            <td>{usuario.email}</td>
-                            <td>{usuario.nomeparticipante}</td>
-                            <td>{calcularIdade(new Date(usuario.datanascimentoparticipante).toLocaleDateString('pt-BR', { timeZone: 'UTC' }))} anos</td>
-                            <td>{usuario.inscricoes.length}</td>
-                            <td>{usuario.inscricoes.length > 0 ? (<div onClick={() => toggle(usuario)} style={{ cursor: 'pointer' }}> <Button className="estilo-botao-details" size="sm">Oficinas</Button></div>) : ""} </td>
+                        <tr className="tabelaParticipante" key={i}>
+                            <td data-label="ID">{usuario.id}</td>
+                            <td data-label="Nome responsável">{usuario.nomeusuario}</td>
+                            <td data-label="Telefone responsável">{usuario.telefone}</td>
+                            <td data-label="E-mail responsável">{usuario.email}</td>
+                            <td data-label="Nome participante">{usuario.nomeparticipante}</td>
+                            <td data-label="Idade participante">{calcularIdade(new Date(usuario.datanascimentoparticipante).toLocaleDateString('pt-BR', { timeZone: 'UTC' }))} anos</td>
+                            <td data-label="Qtd. Oficinas">{usuario.inscricoes.length}</td>
+                            <td data-label="Ação">{usuario.inscricoes.length > 0 ? (<div onClick={() => toggle(usuario)} style={{ cursor: 'pointer' }}> <Button className="estilo-botao-details" size="sm">Oficinas</Button></div>) : ""} </td>
 
                         </tr>
                     ))}

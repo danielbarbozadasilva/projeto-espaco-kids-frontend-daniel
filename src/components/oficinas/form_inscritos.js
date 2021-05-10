@@ -20,7 +20,7 @@ const FormInscritos = (props) => {
             {oficinas ? (
                 <div className="colunasFormularios" id="divTabela">
                     {/* <h1>Oficinas matriculadas</h1> */}
-                    <Table>
+                    <Table className="tabela">
                         <thead >
                             <tr>
                                 <th>ID</th>
@@ -32,11 +32,11 @@ const FormInscritos = (props) => {
                         <tbody>
                             {oficinas.map((item, i) => (
                                 item.inscrito ? (
-                                        <tr>
-                                            <td>{item.codoficina}</td>
-                                            <td>{item.nomeoficina}</td>
-                                            <td>{new Date(item.dataoficina).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</td>
-                                            <td>{item.horaoficina}</td>
+                                    <tr className="tabelaInscritos">
+                                    <td data-label="ID">{item.codoficina}</td>
+                                            <td data-label="Nome da oficina">{item.nomeoficina}</td>
+                                            <td data-label="Data">{new Date(item.dataoficina).toLocaleDateString('pt-BR', { timeZone: 'UTC' })}</td>
+                                            <td data-label="Hora">{item.horaoficina}</td>
                                         </tr>
                                     ): ""
                             ))}

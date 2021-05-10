@@ -1,14 +1,22 @@
+
+/* Configurações da tabela de oficinas */
+
+/* Botão */
 .botaoTabela{
     margin-left: 10px;   
-     font-weight: 700;
-     color: #fff;
+    font-weight: 700;
+    color: #fff;
 }
+
+/* ao passar o mouse no botão */
 .botaoTabela:hover{
     margin-left: 10px;   
-     font-weight: 700;
-     color: #fff;
-     background-color: rgb(177, 120, 120);
+    font-weight: 700;
+    color: #fff;
+    background-color: rgb(177, 120, 120);
 }
+
+/* Espaçamento do botão */
 #botaoEspaco{
     padding-left: 70px;
 }
