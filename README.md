@@ -2,9 +2,7 @@
 
 ## O Sistema
 
- O sistema tem como objetivo principal facilitar e otimizar o tempo de cadastro dos participantes em cada oficina oferecida pelo ESPAÇO KIDS, além de fornecer para os usuários o acesso às informações sobre as mesmas e a lista dos participantes inscritos. Como também a possibilidade de alteração e exclusão dos participantes e oficinas.
- O sistema será utilizado na secretaria e na recepção do ESPAÇO KIDS onde os recepcionistas responsáveis pelo turno farão o cadastro, inserindo as informações solicitadas no formulário de inscrição dos participantes nas oficinas selecionadas. Podendo efetuar a matricula, alterar os dados do aluno e exclui-lo da oficina.
- Os participantes também poderão acessar o sistema, este pode criar um login e se matricular ou excluir a inscrição na oficina desejada.
+ O Sistema tem como objetivo principal facilitar e otimizar o tempo de cadastro dos participantes em cada oficina oferecida pelo ESPAÇO KIDS, além de fornecer para o o usuário do estabelecimento a opção de cadastrar um participante, como também uma oficina, permitindo posteriormente a sua edição ou exclusão. Além de fornecer o acesso ao usuário administrador da lista de participantes inscritos em cada oficina. 
 
 ## Descrição geral
 
