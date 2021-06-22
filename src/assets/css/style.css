@@ -1,11 +1,20 @@
 @media (min-width: 100px) {
     * {
-        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        font-family: "Nunito", Helvetica, Arial, Lucida, sans-serif;
     }
+        
     /* HEADER */
-    header {
-        margin-bottom: 60px;
-    }
+      header nav .logo {
+        width: 230px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+    
     header .container {
         max-width: 100%;
     }
@@ -19,6 +28,41 @@
     header .brDtSZ {
         width: auto!important;
     }
+
+
+.nav-link {
+    color: #8b0d32 !important;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    margin: 0px 20px;
+  }
+  
+  #idNav1:hover {
+    text-decoration: underline;
+  }
+  #idNav2:hover {
+    text-decoration: underline;
+  }
+  #idNav4:hover {
+    text-decoration: underline;
+  }
+  #idNav5:hover {
+    text-decoration: underline;
+  }
+  #idNav6:hover {
+    text-decoration: underline;
+  }
+  #idNav7:hover {
+    text-decoration: underline;
+  }
+  
+  .active {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
+  
     /* Colunas dos formularios */
     .colunasFormularios {
         display: flex;
