@@ -24,7 +24,6 @@ http.interceptors.response.use((response) =>{
 }, function (error){
         switch (error.response.status) {
             case 401:
-                store.dispatch(logoutAction())
                 history.push('/signin')
                 break;
             case 500:

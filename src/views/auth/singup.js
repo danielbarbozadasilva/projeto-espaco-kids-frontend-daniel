@@ -27,6 +27,7 @@ const SignUp = () => {
         email: "",
         senha: "",
     })
+    
     const handleChange = (props) => {
         const { value, name } = props.target;
         formValidarCampo(name, value);

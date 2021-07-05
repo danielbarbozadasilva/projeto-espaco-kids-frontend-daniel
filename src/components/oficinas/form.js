@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import * as moment from "moment";
 import { useDispatch, useSelector } from 'react-redux';
-import { FormGroup, Label, Input, Alert, Col, Row, Button, Spinner, FormFeedback } from 'reactstrap';
+import { FormGroup, Label, Input, Col, Row, FormFeedback } from 'reactstrap';
 import '../../assets/css/style.css'
 
 
 const FormOficina = ({ state, setIsValido}) => {
     const [hasError, setHasError] = useState(false)
-    const [success, setSuccess] = useState(false)
     const dispatch = useDispatch();
     const loading = useSelector(state => state.auth.loading)
     const error = useSelector(state => state.auth.error)
@@ -41,6 +39,7 @@ const FormOficina = ({ state, setIsValido}) => {
 
     const formValidarCampo = (nome, valor) => {
         var menssage = "";
+        // eslint-disable-next-line default-case
         switch (nome) {
             case 'nomeoficina':
                 var nomeregex = /\d/g;
@@ -59,6 +58,8 @@ const FormOficina = ({ state, setIsValido}) => {
                 break;
 
             case 'urlimagemoficina':
+                
+                // eslint-disable-next-line eqeqeq
                 if (valor.trim() == "") {
                     menssage += "URL não pode ser vazia!"
                 }
@@ -82,6 +83,7 @@ const FormOficina = ({ state, setIsValido}) => {
 
 
             case 'horaoficina':
+                
                 if (valor.trim() == "") {
                     menssage += "Não pode ser vazio!"
                 }
@@ -100,6 +102,7 @@ const FormOficina = ({ state, setIsValido}) => {
                 break;
 
             case 'nomemonitor':
+                // eslint-disable-next-line no-redeclare
                 var nomeregex = /\d/g;
                 if (nomeregex.test(valor)) {
                     menssage += "Não pode conter números!"
@@ -137,10 +140,6 @@ const FormOficina = ({ state, setIsValido}) => {
         return validacao;
 
     }
-
-    const closeError = () => setHasError(false);
-
-
 
     return (
         <BoxInscricao>

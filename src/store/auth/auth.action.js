@@ -46,7 +46,7 @@ export const signUpAction = (data) => {
     return async (dispatch) => {
         dispatch({ type: TYPES.SIGN_LOADING, status: true })
         try {
-            const result = await registerUserService(data) //liguei para o ezer
+            const result = await registerUserService(data) 
             if (result.data) {
                 saveAuth(result.data)
                 http.defaults.headers['token'] = result.data.token;

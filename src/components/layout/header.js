@@ -197,6 +197,7 @@ const SNavbar = styled(Navbar)`
     font-size: 18px;
     font-weight: 600;
     border-style: none;
+    margin-bottom: 60px;
 
 `
 
