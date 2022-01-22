@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Card, CardImg, CardBody, CardTitle, Button } from "reactstrap";
-import styled from "styled-components";
-import "../../assets/css/style.css";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Card, CardImg, CardBody, CardTitle, Button } from 'reactstrap'
+import styled from 'styled-components'
+import '../../assets/css/style.css'
 
 const CardItem = (props) => {
   const {
@@ -11,34 +11,34 @@ const CardItem = (props) => {
     urlimagemoficina,
     dataoficina,
     valoroficina,
-    inscrito,
-  } = props.item;
+    inscrito
+  } = props.item
 
   return (
     <div>
-      <SCard Style={inscrito ? "background-color:rgb(252, 245, 255)" : ""}>
-        <CardImg className="cardimg" src={urlimagemoficina} alt="oficinas" />
+      <SCard Style={inscrito ? 'background-color:rgb(252, 245, 255)' : ''}>
+        <CardImg className='cardimg' src={urlimagemoficina} alt='oficinas' />
 
         <CardBody>
-          <CardTitle className="title">{nomeoficina}</CardTitle>
+          <CardTitle className='title'>{nomeoficina}</CardTitle>
           <CardTitle>
-            <strong>Data: </strong>{" "}
-            {new Date(dataoficina).toLocaleDateString("pt-BR", {
-              timeZone: "UTC",
+            <strong>Data: </strong>{' '}
+            {new Date(dataoficina).toLocaleDateString('pt-BR', {
+              timeZone: 'UTC'
             })}
           </CardTitle>
           <CardTitle>
-            <strong>Valor: R$ </strong> {String(valoroficina).replace(".", ",")}{" "}
+            <strong>Valor: R$ </strong> {String(valoroficina).replace('.', ',')}{' '}
           </CardTitle>
 
           <Button
             className={
               !inscrito
-                ? "estilo-botao estiloBotaoDetails"
-                : "estilo-botao-inscrito estiloBotaoDetails"
+                ? 'estilo-botao estiloBotaoDetails'
+                : 'estilo-botao-inscrito estiloBotaoDetails'
             }
-            text="center"
-            size="md"
+            text='center'
+            size='md'
             tag={Link}
             to={`/detalhes/${codoficina}`}
           >
@@ -47,10 +47,10 @@ const CardItem = (props) => {
         </CardBody>
       </SCard>
     </div>
-  );
-};
+  )
+}
 
-export default CardItem;
+export default CardItem
 
 const SCard = styled(Card)`
   width: 20rem;
@@ -73,4 +73,4 @@ const SCard = styled(Card)`
     transition: 1s;
     opacity: 0.5;
   }
-`;
+`

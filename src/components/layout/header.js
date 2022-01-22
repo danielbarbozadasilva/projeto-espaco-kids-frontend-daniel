@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
-import { NavLink as RRDNavLink } from "react-router-dom";
+import React, { useState } from 'react'
+import { useLocation, NavLink as RRDNavLink } from 'react-router-dom'
+
 import {
   Collapse,
   Navbar,
@@ -14,92 +14,210 @@ import {
   UncontrolledDropdown,
   DropdownItem,
   DropdownToggle,
-  DropdownMenu,
-} from "reactstrap";
-import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
-import { logoutAction } from "../../store/auth/auth.action";
-import { isAuthenticated } from "../../config/auth";
-import history from "../../config/history";
+  DropdownMenu
+} from 'reactstrap'
+import styled from 'styled-components'
+import { useSelector, useDispatch } from 'react-redux'
+import { logoutAction } from '../../store/auth/auth.action'
+import { isAuthenticated } from '../../config/auth'
+import history from '../../config/history'
 
-import LogoHeader from "../../assets/img/logo.png";
+import LogoHeader from '../../assets/img/logo.png'
 
-import "../../assets/css/style.css";
-import { CriarCarousel } from "../carousel";
+import '../../assets/css/style.css'
+import { CriarCarousel } from '../carousel'
 const Header = (props) => {
-  const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
-  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const dispatch = useDispatch()
+  const [isOpen, setIsOpen] = useState(false)
+  const [tooltipOpen, setTooltipOpen] = useState(false)
 
-  const toggleTooltip = () => setTooltipOpen(!tooltipOpen);
-  const toggle = () => setIsOpen(!isOpen);
-  const usuario = useSelector((state) => state.auth.usuario);
-  const isAdmin = useSelector((state) => state.auth.isAdmin);
+  const toggleTooltip = () => setTooltipOpen(!tooltipOpen)
+  const toggle = () => setIsOpen(!isOpen)
+  const usuario = useSelector((state) => state.auth.usuario)
+  const isAdmin = useSelector((state) => state.auth.isAdmin)
 
   const logout = () => {
-    dispatch(logoutAction());
-  };
+    dispatch(logoutAction())
+  }
 
-  const location = useLocation();
+  const location = useLocation()
 
-  // pathname - Retorna o endereço da URL atual
-  if (location.pathname === "/") {
+  if (location.pathname === '/') {
     return (
       <header>
-        <SNavbar className="barraHeader" color="dark" dark expand="lg">
+        <SNavbar className='barraHeader' color='dark' dark expand='lg'>
           <Container>
-            <NavbarBrand tag={RRDNavLink} to="/" id="logoMain">
-              <img className="logo-img" src={LogoHeader} alt="logo" />
+            <NavbarBrand tag={RRDNavLink} to='/' id='logoMain'>
+              <img className='logo-img' src={LogoHeader} alt='logo' />
             </NavbarBrand>
             <Tooltip
-              placement="top"
+              placement='top'
               isOpen={tooltipOpen}
               autohide={false}
-              target="logoMain"
+              target='logoMain'
               toggle={toggleTooltip}
             >
               Voltar ao Menu Principal
             </Tooltip>
-            {isAuthenticated() ? (
-              <React.Fragment>
+            {isAuthenticated()
+              ? (
+                <>
+                  <SCollapse isOpen={isOpen} navbar>
+                    <Nav className='mr-auto' navbar>
+                      <NavItem>
+                        <SNavLink
+                          exact
+                          tag={RRDNavLink}
+                          activeClassName='active'
+                          to='/'
+                        >
+                          Inicio
+                        </SNavLink>
+                      </NavItem>
+                      {isAdmin
+                        ? (
+                          <>
+                            <NavItem>
+                              <SNavLink
+                                exact
+                                tag={RRDNavLink}
+                                activeClassName='active'
+                                to='/oficinas'
+                              >
+                                Oficinas
+                              </SNavLink>
+                            </NavItem>
+                            <NavItem>
+                              <SNavLink
+                                exact
+                                tag={RRDNavLink}
+                                activeClassName='active'
+                                to='/participantes'
+                              >
+                                Participantes
+                              </SNavLink>
+                            </NavItem>
+                          </>
+                          )
+                        : (
+                            ''
+                          )}
+                    </Nav>
+                  </SCollapse>
+
+                  <Nav>
+                    <UncontrolledDropdown nav inNavbar>
+                      <SDropdownToggle nav caret>
+                        {usuario.nomeusuario}
+                      </SDropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem onClick={() => history.push('/perfil')}>
+                          Perfil
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem onClick={logout}>Sair</DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+                  </Nav>
+                </>
+                )
+              : (
+                  ''
+                )}
+            {isAdmin ? <NavbarToggler onClick={toggle} /> : ''}
+          </Container>
+        </SNavbar>
+        <CriarCarousel />
+      </header>
+    )
+  }
+
+  if (location.pathname === '/signin') {
+    return (
+      <header>
+        <SNavbar light expand='md'>
+          <Container>
+            {isAdmin ? <NavbarToggler onClick={toggle} /> : ''}
+
+            <Collapse isOpen={isOpen} navbar>
+              <SNavbarBrand tag={RRDNavLink} to='/' id='titleNav'>
+                <img className='logo-img' src={LogoHeader} alt='logo' />
+              </SNavbarBrand>
+            </Collapse>
+
+            <Tooltip
+              placement='bottom'
+              isOpen={tooltipOpen}
+              autohide={false}
+              target='titleNav'
+              toggle={toggleTooltip}
+            >
+              Retornar para a página inicial.
+            </Tooltip>
+          </Container>
+        </SNavbar>
+      </header>
+    )
+  }
+  return (
+    <header>
+      <SNavbar className='barraHeader' color='dark' dark expand='lg'>
+        <Container>
+          <NavbarBrand tag={RRDNavLink} to='/' id='logoMain'>
+            <img className='logo-img' src={LogoHeader} alt='logo' />
+          </NavbarBrand>
+          <Tooltip
+            placement='top'
+            isOpen={tooltipOpen}
+            autohide={false}
+            target='logoMain'
+            toggle={toggleTooltip}
+          >
+            Voltar ao Menu Principal
+          </Tooltip>
+          {isAuthenticated()
+            ? (
+              <>
                 <SCollapse isOpen={isOpen} navbar>
-                  <Nav className="mr-auto" navbar>
+                  <Nav className='mr-auto' navbar>
                     <NavItem>
                       <SNavLink
                         exact
                         tag={RRDNavLink}
-                        activeClassName="active"
-                        to="/"
+                        activeClassName='active'
+                        to='/'
                       >
                         Inicio
                       </SNavLink>
                     </NavItem>
-                    {isAdmin ? (
-                      <>
-                        <NavItem>
-                          <SNavLink
-                            exact
-                            tag={RRDNavLink}
-                            activeClassName="active"
-                            to="/oficinas"
-                          >
-                            Oficinas
-                          </SNavLink>
-                        </NavItem>
-                        <NavItem>
-                          <SNavLink
-                            exact
-                            tag={RRDNavLink}
-                            activeClassName="active"
-                            to="/participantes"
-                          >
-                            Participantes
-                          </SNavLink>
-                        </NavItem>
-                      </>
-                    ) : (
-                      ""
-                    )}
+                    {isAdmin
+                      ? (
+                        <>
+                          <NavItem>
+                            <SNavLink
+                              exact
+                              tag={RRDNavLink}
+                              activeClassName='active'
+                              to='/oficinas'
+                            >
+                              Oficinas
+                            </SNavLink>
+                          </NavItem>
+                          <NavItem>
+                            <SNavLink
+                              exact
+                              tag={RRDNavLink}
+                              activeClassName='active'
+                              to='/participantes'
+                            >
+                              Participantes
+                            </SNavLink>
+                          </NavItem>
+                        </>
+                        )
+                      : (
+                          ''
+                        )}
                   </Nav>
                 </SCollapse>
 
@@ -109,7 +227,7 @@ const Header = (props) => {
                       {usuario.nomeusuario}
                     </SDropdownToggle>
                     <DropdownMenu>
-                      <DropdownItem onClick={() => history.push("/perfil")}>
+                      <DropdownItem onClick={() => history.push('/perfil')}>
                         Perfil
                       </DropdownItem>
                       <DropdownItem divider />
@@ -117,130 +235,19 @@ const Header = (props) => {
                     </DropdownMenu>
                   </UncontrolledDropdown>
                 </Nav>
-              </React.Fragment>
-            ) : (
-              ""
-            )}
-            {isAdmin ? <NavbarToggler onClick={toggle} /> : ""}
-          </Container>
-        </SNavbar>
-        <CriarCarousel></CriarCarousel>
-      </header>
-    ); // Fecha o return
-  }
-
-  if (location.pathname === "/signin") {
-    return (
-      <header>
-        <SNavbar light expand="md">
-          <Container>
-            {isAdmin ? <NavbarToggler onClick={toggle} /> : ""}
-
-            <Collapse isOpen={isOpen} navbar>
-              <SNavbarBrand tag={RRDNavLink} to="/" id="titleNav">
-                <img className="logo-img" src={LogoHeader} alt="logo" />
-              </SNavbarBrand>
-            </Collapse>
-
-            <Tooltip
-              placement="bottom"
-              isOpen={tooltipOpen}
-              autohide={false}
-              target="titleNav"
-              toggle={toggleTooltip}
-            >
-              Retornar para a página inicial.
-            </Tooltip>
-          </Container>
-        </SNavbar>
-      </header>
-    );
-  }
-  return (
-    <header>
-      <SNavbar className="barraHeader" color="dark" dark expand="lg">
-        <Container>
-          <NavbarBrand tag={RRDNavLink} to="/" id="logoMain">
-            <img className="logo-img" src={LogoHeader} alt="logo" />
-          </NavbarBrand>
-          <Tooltip
-            placement="top"
-            isOpen={tooltipOpen}
-            autohide={false}
-            target="logoMain"
-            toggle={toggleTooltip}
-          >
-            Voltar ao Menu Principal
-          </Tooltip>
-          {isAuthenticated() ? (
-            <React.Fragment>
-              <SCollapse isOpen={isOpen} navbar>
-                <Nav className="mr-auto" navbar>
-                  <NavItem>
-                    <SNavLink
-                      exact
-                      tag={RRDNavLink}
-                      activeClassName="active"
-                      to="/"
-                    >
-                      Inicio
-                    </SNavLink>
-                  </NavItem>
-                  {isAdmin ? (
-                    <>
-                      <NavItem>
-                        <SNavLink
-                          exact
-                          tag={RRDNavLink}
-                          activeClassName="active"
-                          to="/oficinas"
-                        >
-                          Oficinas
-                        </SNavLink>
-                      </NavItem>
-                      <NavItem>
-                        <SNavLink
-                          exact
-                          tag={RRDNavLink}
-                          activeClassName="active"
-                          to="/participantes"
-                        >
-                          Participantes
-                        </SNavLink>
-                      </NavItem>
-                    </>
-                  ) : (
-                    ""
-                  )}
-                </Nav>
-              </SCollapse>
-
-              <Nav>
-                <UncontrolledDropdown nav inNavbar>
-                  <SDropdownToggle nav caret>
-                    {usuario.nomeusuario}
-                  </SDropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem onClick={() => history.push("/perfil")}>
-                      Perfil
-                    </DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem onClick={logout}>Sair</DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-              </Nav>
-            </React.Fragment>
-          ) : (
-            ""
-          )}
-          {isAdmin ? <NavbarToggler onClick={toggle} /> : ""}
+              </>
+              )
+            : (
+                ''
+              )}
+          {isAdmin ? <NavbarToggler onClick={toggle} /> : ''}
         </Container>
       </SNavbar>
     </header>
-  ); // Fecha o return
-};
+  )
+}
 
-export default Header;
+export default Header
 
 const SNavbar = styled(Navbar)`
   background-image: linear-gradient(to left, #ff425b, #c42252);
@@ -249,7 +256,7 @@ const SNavbar = styled(Navbar)`
   font-size: 18px;
   font-weight: 600;
   border-style: none;
-`;
+`
 
 const SNavLink = styled(NavLink)`
   border-radius: 5px;
@@ -266,14 +273,14 @@ const SNavLink = styled(NavLink)`
   @media (max-width: 767.98px) {
     margin: 6px 0;
   }
-`;
-const SCollapse = styled(Collapse)``;
+`
+const SCollapse = styled(Collapse)``
 
 const SNavbarBrand = styled(NavbarBrand)`
   font-size: 24px;
   color: white !important;
-`;
+`
 const SDropdownToggle = styled(DropdownToggle)`
   color: white !important;
   padding: 0px 10px;
-`;
+`
