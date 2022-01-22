@@ -1,13 +1,9 @@
-import http from '../config/http';
+import http from '../config/http'
 
-// post - trabalha com o body, ele manda pela url as informações
-const authService = (data) => http.post('/auth', data);
-
-
-const registerUserService = (data) => http.post('/participante', {...data, realizarLogin:true});
-
+const authService = (data) => http.post('/auth', data)
+const registerUserService = (data) => http.post('/participante', { ...data, realizarLogin: true })
 
 export {
-    authService,
-    registerUserService
+  authService,
+  registerUserService
 }
