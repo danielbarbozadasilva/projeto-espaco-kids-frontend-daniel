@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import * as moment from "moment";
+import React, { useState, useEffect } from 'react'
+import * as moment from 'moment'
 
-import { signUpAction } from "../../store/auth/auth.action";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import "../../assets/css/style.css";
+import { signUpAction } from '../../store/auth/auth.action'
+import { useDispatch, useSelector } from 'react-redux'
+
+import '../../assets/css/style.css'
 import {
   FormGroup,
   Label,
@@ -12,357 +12,349 @@ import {
   Alert,
   Button,
   Spinner,
-  FormFeedback,
-} from "reactstrap";
+  FormFeedback
+} from 'reactstrap'
 
 const SignUp = () => {
-  const [hasError, setHasError] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const dispatch = useDispatch();
-  const loading = useSelector((state) => state.auth.loading);
-  const error = useSelector((state) => state.auth.error);
-  const registered = useSelector((state) => state.auth.registered);
+  const [hasError, setHasError] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const dispatch = useDispatch()
+  const loading = useSelector((state) => state.auth.loading)
+  const error = useSelector((state) => state.auth.error)
+  const registered = useSelector((state) => state.auth.registered)
 
-  const [formValidate, setFormValidate] = useState({});
+  const [formValidate, setFormValidate] = useState({})
   const [form, setForm] = useState({
-    nomeusuario: "",
-    datanascimentoparticipante: "",
-    nomeparticipante: "",
-    cpf: "",
-    telefone: "",
-    endereco: "",
-    email: "",
-    senha: "",
-  });
+    nomeusuario: '',
+    datanascimentoparticipante: '',
+    nomeparticipante: '',
+    cpf: '',
+    telefone: '',
+    endereco: '',
+    email: '',
+    senha: ''
+  })
 
   const handleChange = (props) => {
-    const { value, name } = props.target;
-    formValidarCampo(name, value);
+    const { value, name } = props.target
+    formValidarCampo(name, value)
     setForm({
       ...form,
-      [name]: value,
-    });
-  };
+      [name]: value
+    })
+  }
 
   const formValidarCampo = (nome, valor) => {
-    var menssage = "";
+    let menssage = ''
     switch (nome) {
-      case "nomeusuario":
-        var nomeregex = /\d/g;
+      case 'nomeusuario':
+        var nomeregex = /\d/g
         if (nomeregex.test(valor)) {
-          menssage += "Não pode conter números!";
-        } else if (valor.trim() == "") {
-          menssage += "Não pode ser vazio!";
+          menssage += 'Não pode conter números!'
+        } else if (valor.trim() === '') {
+          menssage += 'Não pode ser vazio!'
         } else if (valor.length <= 10) {
-          menssage += "Precisa ter mais que 10 caracteres!";
+          menssage += 'Precisa ter mais que 10 caracteres!'
         }
-        break;
+        break
 
-      case "datanascimentoparticipante":
-        const datanasc = valor.replaceAll("-", "/");
-
-        const dataAtual = moment().format("YYYY/MM/DD");
-
+      case 'datanascimentoparticipante':
+        const datanasc = valor.replaceAll('-', '/')
+        const dataAtual = moment().format('YYYY/MM/DD')
         if (!moment(datanasc).isValid) {
-          menssage += "Data inválida!";
+          menssage += 'Data inválida!'
         } else if (moment(datanasc).isAfter(dataAtual)) {
-          menssage += "Data maior que a atual!";
+          menssage += 'Data maior que a atual!'
         }
+        break
 
-        break;
-
-      case "nomeparticipante":
-        var nomeregex = /\d/g;
+      case 'nomeparticipante':
+        var nomeregex = /\d/g
         if (nomeregex.test(valor)) {
-          menssage += "Nome não pode conter números!";
-        } else if (valor.trim() == "") {
-          menssage += "Nome não pode ser vazio!";
+          menssage += 'Nome não pode conter números!'
+        } else if (valor.trim() === '') {
+          menssage += 'Nome não pode ser vazio!'
         } else if (valor.length <= 10) {
-          menssage += "Precisa ter mais que 10 caracteres!";
+          menssage += 'Precisa ter mais que 10 caracteres!'
         }
-        break;
+        break
 
-      case "cpf":
-        // Aceita apenas traço(-), ponto(.) e números (0 a 9)
-        var filtraCpf = /(?:\.|-|[0-9])*/;
+      case 'cpf':
+        var filtraCpf = /(?:\.|-|[0-9])*/
 
         if (!filtraCpf.test(valor)) {
-          menssage += "CPF inválido";
-        } else if (valor.trim() == "") {
-          menssage += "Não pode ser vazio!";
+          menssage += 'CPF inválido'
+        } else if (valor.trim() === '') {
+          menssage += 'Não pode ser vazio!'
         } else if (valor.length < 11 && valor.length > 14) {
-          menssage += "CPF inválido!";
+          menssage += 'CPF inválido!'
         }
-        break;
+        break
 
-      case "telefone":
-        // Nenhum DDD iniciado por 0 é aceito, e nenhum número de telefone pode iniciar com 0 ou 1.
-        // +55 (11) 98888-8888 / 9999-9999 / 21 98888-8888 / 5511988888888
+      case 'telefone':
         var filtraTelefone =
-          /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/;
-
+          /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/
         if (!filtraTelefone.test(valor)) {
-          menssage += "Número de telefone inválido!";
-        } else if (valor.replace(" ", "") == "") {
-          menssage += "Campo em branco!";
+          menssage += 'Número de telefone inválido!'
+        } else if (valor.replace(' ', '') === '') {
+          menssage += 'Campo em branco!'
         }
-        break;
+        break
 
-      case "endereco":
-        if (valor === "") {
-          menssage += "Campo em branco!";
+      case 'endereco':
+        if (valor === '') {
+          menssage += 'Campo em branco!'
         } else if (valor.length < 8) {
-          menssage += "Endereço precisa ter mais que 8 caracteres!";
+          menssage += 'Endereço precisa ter mais que 8 caracteres!'
         }
-        break;
+        break
 
-      case "email":
+      case 'email':
         var filtraEmail =
-          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if (!filtraEmail.test(valor)) {
-          menssage += "E-mail inválido!";
-        } else if (valor.replace(" ", "") == "") {
-          menssage += "Campo em branco!";
+          menssage += 'E-mail inválido!'
+        } else if (valor.replace(' ', '') === '') {
+          menssage += 'Campo em branco!'
         }
-        break;
+        break
 
-      case "senha":
+      case 'senha':
         if (valor.length < 6) {
-          menssage += "Não ter menos que 6 caracteres!";
+          menssage += 'Não ter menos que 6 caracteres!'
         }
-        break;
+        break
     }
+    setFormValidate({ ...formValidate, [nome]: menssage })
+  }
 
-    setFormValidate({ ...formValidate, [nome]: menssage });
-  };
-
-  const closeError = () => setHasError(false);
+  const closeError = () => setHasError(false)
 
   const formatDate = (date) => {
-    return new Date(date).toLocaleDateString("pt-BR", { timeZone: "UTC" });
-  };
+    return new Date(date).toLocaleDateString('pt-BR', { timeZone: 'UTC' })
+  }
 
   const submitForm = (event) => {
     const nForm = {
       ...form,
-      datanascimentoparticipante: formatDate(form.datanascimentoparticipante),
-    };
+      datanascimentoparticipante: formatDate(form.datanascimentoparticipante)
+    }
 
-    dispatch(signUpAction(nForm));
-  };
+    dispatch(signUpAction(nForm))
+  }
 
   const isNotValid = () => {
     const inputs = [
-      "nomeusuario",
-      "datanascimentoparticipante",
-      "nomeparticipante",
-      "cpf",
-      "telefone",
-      "endereco",
-      "email",
-      "senha",
-    ];
+      'nomeusuario',
+      'datanascimentoparticipante',
+      'nomeparticipante',
+      'cpf',
+      'telefone',
+      'endereco',
+      'email',
+      'senha'
+    ]
     const invalid = (label) =>
-      !Object.keys(form).includes(label) || form[label].length === 0;
+      !Object.keys(form).includes(label) || form[label].length === 0
 
     const validacoes =
-      Object.values(formValidate).filter((item) => item !== "").length > 0;
+      Object.values(formValidate).filter((item) => item !== '').length > 0
 
-    return inputs.some((item) => invalid(item)) || validacoes;
-  };
+    return inputs.some((item) => invalid(item)) || validacoes
+  }
 
   useEffect(() => {
     if (error.length > 0) {
-      setHasError(true);
+      setHasError(true)
     } else {
-      setHasError(false);
+      setHasError(false)
     }
 
     if (registered) {
-      setSuccess(true);
-      setForm({});
+      setSuccess(true)
+      setForm({})
     }
-  }, [error, registered]);
+  }, [error, registered])
 
   return (
     <>
-      <div className="colunasFormularios">
-        <div className="coluna1">
-          <h2 tag="h4" className="text-cadastro">
+      <div className='colunasFormularios'>
+        <div className='coluna1'>
+          <h2 tag='h4' className='text-cadastro'>
             Cadastre-se
           </h2>
           <FormGroup>
-            <Label htmlFor="nomeusuario" className="label">
+            <Label htmlFor='nomeusuario' className='label'>
               Nome do Responsável:
             </Label>
             <Input
-              invalid={formValidate.nomeusuario ? true : false}
+              invalid={!!formValidate.nomeusuario}
               disabled={loading}
-              type="text"
-              name="nomeusuario"
-              id="nomeusuario"
+              type='text'
+              name='nomeusuario'
+              id='nomeusuario'
               onChange={handleChange}
-              value={form.nomeusuario || ""}
-              placeholder="Informe o nome do usuário"
-              minLength="10"
-              maxLength="32"
+              value={form.nomeusuario || ''}
+              placeholder='Informe o nome do usuário'
+              minLength='10'
+              maxLength='32'
             />
-            <FormFeedback>{formValidate.nomeusuario || ""}</FormFeedback>
+            <FormFeedback>{formValidate.nomeusuario || ''}</FormFeedback>
           </FormGroup>
 
           <FormGroup>
-            <Label htmlFor="datanascimentoparticipante" className="label">
+            <Label htmlFor='datanascimentoparticipante' className='label'>
               Data de Nascimento:
             </Label>
             <Input
-              invalid={formValidate.datanascimentoparticipante ? true : false}
+              invalid={!!formValidate.datanascimentoparticipante}
               disabled={loading}
-              type="date"
-              name="datanascimentoparticipante"
-              id="datanascimentoparticipante"
+              type='date'
+              name='datanascimentoparticipante'
+              id='datanascimentoparticipante'
               onChange={handleChange}
-              value={form.datanascimentoparticipante || ""}
+              value={form.datanascimentoparticipante || ''}
             />
             <FormFeedback>
-              {formValidate.datanascimentoparticipante || ""}
+              {formValidate.datanascimentoparticipante || ''}
             </FormFeedback>
           </FormGroup>
 
           <FormGroup>
-            <Label htmlFor="nomeparticipante" className="label">
+            <Label htmlFor='nomeparticipante' className='label'>
               Nome do Participante:
             </Label>
             <Input
-              invalid={formValidate.nomeparticipante ? true : false}
+              invalid={!!formValidate.nomeparticipante}
               disabled={loading}
-              type="text"
-              name="nomeparticipante"
-              id="nomeparticipante"
+              type='text'
+              name='nomeparticipante'
+              id='nomeparticipante'
               onChange={handleChange}
-              value={form.nomeparticipante || ""}
-              placeholder="Informe o nome do participante"
-              minLength="10"
-              maxLength="32"
+              value={form.nomeparticipante || ''}
+              placeholder='Informe o nome do participante'
+              minLength='10'
+              maxLength='32'
             />
-            <FormFeedback>{formValidate.nomeparticipante || ""}</FormFeedback>
+            <FormFeedback>{formValidate.nomeparticipante || ''}</FormFeedback>
           </FormGroup>
 
           <FormGroup>
-            <Label htmlFor="cpf" className="label">
+            <Label htmlFor='cpf' className='label'>
               Cpf:
             </Label>
             <Input
-              invalid={formValidate.cpf ? true : false}
+              invalid={!!formValidate.cpf}
               disabled={loading}
-              type="text"
-              name="cpf"
-              id="cpf"
+              type='text'
+              name='cpf'
+              id='cpf'
               onChange={handleChange}
-              value={form.cpf || ""}
-              placeholder="Informe o cpf (apenas números)"
-              minLength="11"
-              maxLength="14"
+              value={form.cpf || ''}
+              placeholder='Informe o cpf (apenas números)'
+              minLength='11'
+              maxLength='14'
             />
-            {/* 11 digitos - sem caracteres ou 14 digitos com traços(-) e ponto(.) */}
-            <FormFeedback>{formValidate.cpf || ""}</FormFeedback>
+            <FormFeedback>{formValidate.cpf || ''}</FormFeedback>
           </FormGroup>
 
           <FormGroup>
-            <Label htmlFor="telefone" className="label">
+            <Label htmlFor='telefone' className='label'>
               Telefone:
             </Label>
             <Input
-              invalid={formValidate.telefone ? true : false}
+              invalid={!!formValidate.telefone}
               disabled={loading}
-              type="text"
-              name="telefone"
-              id="telefone"
+              type='text'
+              name='telefone'
+              id='telefone'
               onChange={handleChange}
-              value={form.telefone || ""}
-              placeholder="Informe o telefone"
-              minLength="8"
-              maxLength="25"
+              value={form.telefone || ''}
+              placeholder='Informe o telefone'
+              minLength='8'
+              maxLength='25'
             />
-            <FormFeedback>{formValidate.telefone || ""}</FormFeedback>
+            <FormFeedback>{formValidate.telefone || ''}</FormFeedback>
           </FormGroup>
         </div>
-        <div className="coluna2">
+        <div className='coluna2'>
           <FormGroup>
-            <Label htmlFor="endereco" className="label">
+            <Label htmlFor='endereco' className='label'>
               Endereço:
             </Label>
             <Input
-              invalid={formValidate.endereco ? true : false}
+              invalid={!!formValidate.endereco}
               disabled={loading}
-              type="text"
-              name="endereco"
-              id="endereco"
+              type='text'
+              name='endereco'
+              id='endereco'
               onChange={handleChange}
-              value={form.endereco || ""}
-              placeholder="Informe o endereço"
-              minLength="8"
-              maxLength="40"
+              value={form.endereco || ''}
+              placeholder='Informe o endereço'
+              minLength='8'
+              maxLength='40'
             />
-            <FormFeedback>{formValidate.endereco || ""}</FormFeedback>
+            <FormFeedback>{formValidate.endereco || ''}</FormFeedback>
           </FormGroup>
 
           <FormGroup>
-            <Label htmlFor="email" className="label">
+            <Label htmlFor='email' className='label'>
               E-mail:
             </Label>
             <Input
-              invalid={formValidate.email ? true : false}
+              invalid={!!formValidate.email}
               disabled={loading}
-              type="email"
-              name="email"
-              id="email"
+              type='email'
+              name='email'
+              id='email'
               onChange={handleChange}
-              value={form.email || ""}
-              placeholder="Informe seu E-mail"
+              value={form.email || ''}
+              placeholder='Informe seu E-mail'
             />
-            <FormFeedback>{formValidate.email || ""}</FormFeedback>
+            <FormFeedback>{formValidate.email || ''}</FormFeedback>
           </FormGroup>
 
           <FormGroup>
-            <Label htmlFor="senha" className="label">
+            <Label htmlFor='senha' className='label'>
               Senha:
             </Label>
             <Input
-              invalid={formValidate.senha ? true : false}
+              invalid={!!formValidate.senha}
               disabled={loading}
-              type="password"
-              name="senha"
-              id="senha"
+              type='password'
+              name='senha'
+              id='senha'
               onChange={handleChange}
-              value={form.senha || ""}
-              placeholder="Informe sua senha"
-              minLength="6"
-              maxLength="10"
+              value={form.senha || ''}
+              placeholder='Informe sua senha'
+              minLength='6'
+              maxLength='10'
             />
-            <FormFeedback>{formValidate.senha || ""}</FormFeedback>
+            <FormFeedback>{formValidate.senha || ''}</FormFeedback>
           </FormGroup>
 
           <Button
-            className="botaoFormulario"
+            className='botaoFormulario'
             className={
-              isNotValid() || loading ? "estilo-botao-desable" : "estilo-botao"
+              isNotValid() || loading ? 'estilo-botao-desable' : 'estilo-botao'
             }
             disabled={isNotValid()}
-            size="md"
+            size='md'
             block
             onClick={submitForm}
           >
-            {loading ? (
-              <>
-                <Spinner size="sm" color="light" /> Carregando...
-              </>
-            ) : (
-              "Cadastrar"
-            )}
+            {loading
+              ? (
+                <>
+                  <Spinner size='sm' color='light' /> Carregando...
+                </>
+                )
+              : (
+                  'Cadastrar'
+                )}
           </Button>
           <Alert
-            color="success"
+            color='success'
             isOpen={success}
             toggle={() => setSuccess(!success)}
           >
@@ -371,7 +363,7 @@ const SignUp = () => {
             </div>
             <div>Você será redirecionado em 5 segundos.</div>
           </Alert>
-          <Alert color="danger" isOpen={hasError} toggle={closeError}>
+          <Alert color='danger' isOpen={hasError} toggle={closeError}>
             <div>
               <strong>OPS !!! </strong> Aconteceu um erro.
             </div>
@@ -380,7 +372,7 @@ const SignUp = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp
