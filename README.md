@@ -63,6 +63,7 @@ with proper guidance in case of error.
 * NPM
 * Standard Javascript Style
 * Chart
+* React-icons
 * React-redux-toastr
 * React-toast
 * Reactstrap
