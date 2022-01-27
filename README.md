@@ -4,7 +4,7 @@ The main objective of the System is to facilitate and optimize the registration 
 <br/>
 
 > ## Product scope
-ESPAÇO KIDS is a space for children's recreation located in the west of Rio de Janeiro, in Recreio dos Bandeirantes. This place is small, still growing, and therefore has a team of 2 (two) monitors and 1 (one) receptionist in each shift and 1 (one) general coordinator.
+ESPAÇO KIDS is a space for children's recreation located in the west of Rio de Janeiro, in Recreio dos Bandeirantes. This place is small, still growing, and therefore has a team of two monitors and one receptionist in each shift and one general coordinator.
 The business is having problems due to the lack of practicality in registering and managing participants in the workshops, since all part of the registration and control of participants is done manually in forms. For this reason, the management of the same agreed to invest in a web system to assist in the process of registration and management of participants.
 <br/>
 <br/>
